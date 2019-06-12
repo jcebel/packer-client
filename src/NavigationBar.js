@@ -15,6 +15,7 @@ class NavigationBar extends Component{
                         src="Images/Packer.png"
                         width="110px"
                         height="50x"
+                        alt="Company Logo"
                     />
                 </Navbar.Brand>
                 <Nav className="mr-auto">
@@ -29,6 +30,7 @@ class NavigationBar extends Component{
                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                          width="50px"
                          height="50x"
+                         alt="Account Icon"
                          style={{marginLeft: '10px'}}
                     />
                 </Form>
