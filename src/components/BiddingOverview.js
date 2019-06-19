@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card, Table } from 'react-bootstrap';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 const mapStyles = {
@@ -31,69 +31,88 @@ class BiddingOverview extends Component{
                         />
                     </Col>
                     <Col>
-                        <h2>Route Details</h2>
-                        <Container>
-                            <Row>
-                                <Col>Length</Col>
-                                <Col>4.3 km</Col>
-                            </Row>
-                            <Row>
-                                <Col>Number of packages</Col>
-                                <Col>3</Col>
-                            </Row>
-                        </Container>
-                        <h2>Package List</h2>
-                        <Container>
-                            <Row>
-                                <Col>Item</Col>
-                                <Col>Size</Col>
-                                <Col>Weight</Col>
-                            </Row>
-                            <Row>
-                                <Col>Dish Set</Col>
-                                <Col>Smartphone</Col>
-                                <Col>Wine Bottle</Col>
-                            </Row>
-                            <Row>
-                                <Col>Medium</Col>
-                                <Col>Small</Col>
-                                <Col>Small</Col>
-                            </Row>
-                            <Row>
-                                <Col>Heavy</Col>
-                                <Col>Light</Col>
-                                <Col>Medium</Col>
-                            </Row>
-                        </Container>
+                        <h4>Route Details</h4>
+                            <div className="font-weight-bold">Length</div>
+                            <p>
+                                4.3 km<br/>
+                            </p>
+                            <div className="font-weight-bold">Number of packages</div>
+                            <p>
+                                3<br/>
+                            </p>
+                        <h4>Package List</h4>
+                            <Table striped bordered hover size="sm">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Item</th>
+                                    <th>Size</th>
+                                    <th>Weight</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Dish Set</td>
+                                    <td>Medium</td>
+                                    <td>Heavy</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Smartphone</td>
+                                    <td>Small</td>
+                                    <td>Light</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Wine Bottle</td>
+                                    <td>Medium</td>
+                                    <td>Light</td>
+                                </tr>
+                                </tbody>
+                            </Table>
                     </Col>
                 </Row>
                 <Row>
                     <Col sm={8}>
-                        <h2>
+                        <h4>
                             Bidding Information
-                        </h2>
+                        </h4>
                         <Container>
                             <Row>
-                                <Col>Vehicle Type</Col>
-                                <Col><Button variant="light">Car</Button>
-                                    <Button variant="secondary">Van</Button>
-                                    <Button variant="light">Bike</Button>
+                                <Col>
+                                    <div className="font-weight-bold">Current Bid</div>
+                                    <p>
+                                        50 €
+                                    </p>
+                                </Col>
+
+                                <Col>
+                                    <div className="font-weight-bold">Number of Bids</div>
+                                    <p>
+                                        8
+                                    </p>
                                 </Col>
                             </Row>
                             <Row>
-                                <Col>Current Bid:</Col>
-                                <Col>50 €</Col>
-                                <Col>Number of Bids:</Col>
-                                <Col>50</Col>
-                            </Row>
-                            <Row>
-                                <Col>Your bid: </Col>
-                                <Col><input type="text"/></Col>
-                                <Col><Button variant="success">Submit</Button></Col>
-                            </Row>
+                                <Col>
+                                    <div className="font-weight-bold">Vehicle Type</div>
+                                        <p>
+                                        <Button variant="light">Car</Button>
+                                        <Button variant="secondary">Van</Button>
+                                        <Button variant="light">Bike</Button>
+                                        </p>
+                                </Col>
 
+                                <Col>
+                                    <div className="font-weight-bold">Your bid</div>
+                                    <p>
+                                        <input type="text"/>
+                                        <Button variant="success">Submit</Button>
+                                    </p>
+                                </Col>
+                            </Row>
                         </Container>
-
                     </Col>
                 </Row>
             </Container>
