@@ -7,11 +7,6 @@ import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form'
 
 export default class RoutesList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    //TODO resume add input specification of header.
     // TODO Define Css Stylings!
     // TODO Create the row as a single component
     render() {
@@ -22,10 +17,10 @@ export default class RoutesList extends React.Component {
                     <tr>
                         <td><VehicleDropdown/></td>
                         <td><Form.Control as="input" placeholder="Distance" type="text"/></td>
-                        <td>Number of Items</td>
-                        <td>Start</td>
-                        <td>End</td>
-                        <td>Payment</td>
+                        <td><Form.Control as="input" placeholder="Number of Items" type="text"/></td>
+                        <td><Form.Control as="input" placeholder="Start" type="text"/></td>
+                        <td><Form.Control as="input" placeholder="End" type="text"/></td>
+                        <td><Form.Control as="input" placeholder="Payment" type="text"/></td>
                         <td><Button variant="danger">Delete Filters</Button></td>
                     </tr>
                 </thead>
@@ -39,7 +34,24 @@ export default class RoutesList extends React.Component {
                         <td>40€</td>
                         <td><Button variant="success">More Info</Button></td>
                     </tr>
-
+                    <tr>
+                        <td><Image src="Images/car.svg"/></td>
+                        <td>30 km</td>
+                        <td>15</td>
+                        <td>New Street</td>
+                        <td>Main Street</td>
+                        <td>30€</td>
+                        <td><Button variant="success">More Info</Button></td>
+                    </tr>
+                    <tr>
+                        <td><Image src="Images/bike.svg"/></td>
+                        <td>10 km</td>
+                        <td>5</td>
+                        <td>Some Road</td>
+                        <td>Funny Street</td>
+                        <td>20€</td>
+                        <td><Button variant="success">More Info</Button></td>
+                    </tr>
                 </tbody>
             </Table>
             </Container>
