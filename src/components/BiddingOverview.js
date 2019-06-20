@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, Card, Table } from 'react-bootstrap';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+{/*import { Map, GoogleApiWrapper } from 'google-maps-react';*/}
 
-const mapStyles = {
-    width: '95%',
-    height: '95%',
+const mapStyle = {
+    width: '100%',
+    height: '100%',
 };
 
-const rowstyle = {
+const rowStyle = {
     height: '350px',
 };
 
@@ -21,24 +21,31 @@ class BiddingOverview extends Component{
     render() {
         return (
             <Container>
-                <Row style= {rowstyle} >
+                <Row style= {rowStyle} >
                     <Col sm={8}>
-                        <Map
-                            google={this.props.google}
-                            zoom={15}
-                            style={mapStyles}
-                            initialCenter={{ lat: 48.262235, lng: 11.670273}}
-                        />
+                        <Card style={rowStyle}>
+                            Map: unccomment to be able to work offline
+                            {/*<Map
+                                google={this.props.google}
+                                zoom={15}
+                                style={mapStyle}
+                                initialCenter={{ lat: 48.262235, lng: 11.670273}}
+                            />*/}
+                        </Card>
                     </Col>
                     <Col>
                         <h4>Route Details</h4>
                             <div className="font-weight-bold">Length</div>
                             <p>
-                                4.3 km<br/>
+                                4.3 km
+                            </p>
+                            <div className="font-weight-bold">Estimated time</div>
+                            <p>
+                                2 hours 15 min
                             </p>
                             <div className="font-weight-bold">Number of packages</div>
                             <p>
-                                3<br/>
+                                3
                             </p>
                         <h4>Package List</h4>
                             <Table striped bordered hover size="sm">
@@ -121,6 +128,8 @@ class BiddingOverview extends Component{
     }
 
 }
-export default GoogleApiWrapper({
+{/*export default GoogleApiWrapper({
     apiKey: 'AIzaSyAf7aIGVns1ktVf5sw__NGaygucuRsqCiw'
-})(BiddingOverview);
+})(BiddingOverview);*/}
+
+export default BiddingOverview;
