@@ -2,9 +2,6 @@ const HttpService = require('./HttpService');
 
 class RouteService {
 
-    constructor(){
-    }
-
     static baseURL() {return "http://localhost:3000/route" }
 
     static getRoutes(){
@@ -44,4 +41,4 @@ class RouteService {
 
 }
 
-exports.default = RouteService;
+module.exports = RouteService;

@@ -1,8 +1,4 @@
-"use strict";
-
 class HttpService {
-    constructor() {
-    }
 
     static apiURL() {return "http://localhost:3000"; }
 
@@ -147,4 +143,4 @@ class HttpService {
 
 }
 
-exports.default = HttpService;
+module.exports = HttpService;
