@@ -17,7 +17,7 @@ class RouteService {
     static getRoute(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${this.baseURL()}/${id}`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
+                if(data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
                 else {

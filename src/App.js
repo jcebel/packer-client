@@ -1,12 +1,12 @@
 import NavigationBar from './components/NavigationBar';
-import BiddingOverview from './components/BiddingOverview';
+import BiddingProcessView from './views/BiddingProcessView';
 import React from 'react';
 
 const App = () => {
   return (
       <div className="App">
         <NavigationBar/>
-        <BiddingOverview/>
+        <BiddingProcessView/>
       </div>
   );
 };
