@@ -10,7 +10,7 @@ class BiddingInformation extends Component{
 
     render() {
         return (
-            <p>
+            <div>
                 <h4>
                     Bidding Information
                 </h4>
@@ -49,7 +49,7 @@ class BiddingInformation extends Component{
                         </Col>
                     </Row>
                 </Container>
-            </p>
+            </div>
         );
     }
 

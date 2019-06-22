@@ -9,7 +9,7 @@ class RouteDetails extends Component{
 
     render() {
         return (
-                <p>
+                <div>
                     <h4>Route Details</h4>
                     <div className="font-weight-bold">Length</div>
                     <p>
@@ -23,7 +23,7 @@ class RouteDetails extends Component{
                     <p>
                         3
                     </p>
-                </p>
+                </div>
         );
     }
 

@@ -19,14 +19,6 @@ const rowStyle = {
 
 class BiddingProcessView extends Component{
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: false,
-            route: {}
-        };
-    }
-
     componentWillMount(){
         this.setState({
             loading: false

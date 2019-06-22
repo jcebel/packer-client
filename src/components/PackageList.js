@@ -10,7 +10,7 @@ class PackageList extends Component{
 
     render() {
         return (
-            <p>
+            <div>
                 <h4>Package List</h4>
                 <Table striped bordered hover size="sm">
                     <thead>
@@ -42,7 +42,7 @@ class PackageList extends Component{
                     </tr>
                     </tbody>
                 </Table>
-            </p>
+            </div>
         );
     }
 
