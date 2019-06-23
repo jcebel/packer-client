@@ -17,13 +17,17 @@ const rowStyle = {
     height: '350px',
 };
 
-class BiddingProcessView extends Component{
+export class BiddingProcessView extends Component{
+
+    constructor(props) {
+        super(props);
+    }
 
     componentWillMount(){
         this.setState({
             loading: false
         });
-        let id = "5d0b87365b0d74236cf53ba0";
+        let id = "5d0a3e2893aa731d20e2b26a";
         RouteService.getRoute(id).then((data) => {
             this.setState({
                 route: data,
@@ -49,7 +53,8 @@ class BiddingProcessView extends Component{
                         </Card>
                     </Col>
                     <Col>
-                        <RouteDetails/>
+                        <RouteDetails route={this.state.route}
+                        />
                         <PackageList/>
                     </Col>
                 </Row>
@@ -64,5 +69,3 @@ class BiddingProcessView extends Component{
     }
 
 }
-
-export default BiddingProcessView;
