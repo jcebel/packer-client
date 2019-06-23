@@ -1,18 +1,16 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import VehicleDropdown from './VehicleDropdown';
-import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
 import {RoutesRow} from './RoutesRow';
+import {Page} from './Page';
 
 export class RoutesList extends React.Component {
     // TODO Define Css Stylings!
-    // TODO Create the row as a single component
     render() {
         return (
-            <Container>
+            <Page>
                 <Table>
                     <thead>
                     <tr>
@@ -31,7 +29,7 @@ export class RoutesList extends React.Component {
                                                                   onMoreInfo={(id) => this.props.onMoreInfo(id)}/>)}
                     </tbody>
                 </Table>
-            </Container>
+            </Page>
         );
     }
 }
