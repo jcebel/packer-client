@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import VehicleDropdown from './VehicleDropdown';
 import Form from 'react-bootstrap/Form';
 import {RoutesRow} from './RoutesRow';
-import {Page} from './Page';
+import Page from './Page';
 
 export class RoutesList extends React.Component {
     // TODO Define Css Stylings!
