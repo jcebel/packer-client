@@ -1,7 +1,6 @@
 import NavigationBar from './components/NavigationBar';
-import CarouselHome from './components/CarouselHome';
 import React, {Component} from 'react';
-import { Container, Row, Col, Carousel } from 'react-bootstrap';
+
 
 
 /*const App = () => {
