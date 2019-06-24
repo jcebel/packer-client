@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Carousel, Jumbotron, Container, Button} from 'react-bootstrap';
 
-class CarouselHome extends Component {
+class Home extends Component {
   
   constructor(props, context) {
     super(props, context);
@@ -99,5 +99,5 @@ class CarouselHome extends Component {
 }
 
 
-  export default CarouselHome;
+  export default Home;
   
