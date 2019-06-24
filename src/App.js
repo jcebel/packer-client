@@ -9,7 +9,7 @@ function App() {
         <Router>
             <div>
                 {
-                    //TODO : This needs to be routed to the home component @MaxiPfeiler
+                    //{this.state.routes.map((route, i) => (<Route key={i} {...route}/>) )}
                 }
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/sendanything" component={RegisterDeliveryRequest}/>
