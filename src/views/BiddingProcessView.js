@@ -32,7 +32,7 @@ export class BiddingProcessView extends React.Component{
         this.setState({
             loading: true
         });
-        let id = "5d10d6035cf3db35f8a026a9";
+        let id = "5d113c9630a226405c460868";
         RouteService.getRoute(id).then((data) => {
             this.setState({
                 route: data,

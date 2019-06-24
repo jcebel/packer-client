@@ -15,9 +15,7 @@ export class BiddingInformation extends React.Component{
                         <Col>
                             <div className="font-weight-bold">Current Bid</div>
                             <p>
-                                {this.props.route.auctionBids.sort((first, sec) => {
-                                return first.bid > sec.bid;
-                            })[0].bid} €
+                                {this.props.route.auctionBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; })} €
                             </p>
                         </Col>
 
