@@ -5,7 +5,6 @@ import Home from './components/Home';
 
 function App() {
     return (
-    <Page>
         <Router>
             <div>
                 {
@@ -14,7 +13,6 @@ function App() {
                 <Route exact path="/" component={Home}/>
             </div>
         </Router>
-    </Page>
     );
 }
 
