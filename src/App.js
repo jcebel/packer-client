@@ -2,6 +2,8 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HomeView from './views/HomeView';
 import RegisterDeliveryRequestView from './views/RegisterDeliveryRequestView';
+import RegisterDeliveryRequestConfView from './views/RegisterDeliveryRequestConfView';
+
 
 export default class App extends React.Component {
 
@@ -12,7 +14,8 @@ export default class App extends React.Component {
             title: 'Packer',
             routes: [
                 { component: HomeView , path: '/', exact: true},
-                { component: RegisterDeliveryRequestView , path: '/sendanything'}
+                { component: RegisterDeliveryRequestView , path: '/sendanything'},
+                { component: RegisterDeliveryRequestConfView , path: '/sendanythingconf'}
             ]
         };
     }
