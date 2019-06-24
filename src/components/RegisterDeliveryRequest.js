@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 import Page from './Page';
-import RegisterDeliveryRequestConf from './RegisterDeliveryRequestConf'
 
 const renderTooltipSmall = props => (
     <div

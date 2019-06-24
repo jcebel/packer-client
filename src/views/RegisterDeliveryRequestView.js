@@ -1,11 +1,11 @@
 import React from 'react';
-import RegisterDeliveryClient from './components/RegisterDeliveryClient';
+import RegisterDeliveryRequest from '../components/RegisterDeliveryRequest';
 
 /*
 Source:https://github.com/sebischair/sebamaster-movie-frontend
  */
 
-export default class RegisterDeliveryClientView extends React.Component {
+export default class RegisterDeliveryRequestView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ export default class RegisterDeliveryClientView extends React.Component {
     render() {
         return (
             <section>
-                <RegisterDeliveryClient/>
+                <RegisterDeliveryRequest/>
                 {this.props.children}
             </section>
         );
