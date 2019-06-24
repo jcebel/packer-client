@@ -27,6 +27,7 @@ class Home extends Component {
 
     return (
       <Page>
+        <Container>
         <Carousel
           activeIndex={index}
           direction={direction}
@@ -94,6 +95,7 @@ class Home extends Component {
             <Button variant="primary">My deliveries</Button>
           </p>
         </Jumbotron>
+        </Container>
       </Page>
     );
   }
