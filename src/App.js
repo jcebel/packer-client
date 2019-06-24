@@ -5,8 +5,8 @@ import Home from './components/Home';
 
 function App() {
     return (
+    <Page>
         <Router>
-            <Page/>
             <div>
                 {
                     //TODO : This needs to be routed to the home component @MaxiPfeiler
@@ -14,6 +14,7 @@ function App() {
                 <Route exact path="/" component={Home}/>
             </div>
         </Router>
+    </Page>
     );
 }
 
