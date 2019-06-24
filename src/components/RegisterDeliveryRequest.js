@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
+import Page from './Page';
+import RegisterDeliveryRequestConf from './RegisterDeliveryRequestConf'
 
 const renderTooltipSmall = props => (
     <div
@@ -97,8 +99,8 @@ class RegisterDeliveryRequest extends Component{
 
     render() {
         return (
-            <p class="text-dark">
-            <Container>
+            <Page>
+              <Container>
                 <p>
                 <Row>
                     Hello User, please enter the information for your package
@@ -134,14 +136,13 @@ class RegisterDeliveryRequest extends Component{
                 </p>
                 <p>
                     <Row>
-                        <label>
                         <ToggleButtonGroup type="checkbox" name="Weight">
                                 <OverlayTrigger
                                 placement="top"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipLight}
                                 >
-                                    <ToggleButton>Light</ToggleButton>
+                                    <ToggleButton type="Radio">Light</ToggleButton>
                                 </OverlayTrigger>
                             
                                 <OverlayTrigger
@@ -149,7 +150,7 @@ class RegisterDeliveryRequest extends Component{
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipMedium2}
                                 >
-                                    <Button variant="outline-secondary">Medium</Button>
+                                    <ToggleButton type="Radio">Medium</ToggleButton>
                                 </OverlayTrigger>
 
                                 <OverlayTrigger
@@ -157,22 +158,20 @@ class RegisterDeliveryRequest extends Component{
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipHeavy}
                                 >
-                                    <Button variant="outline-secondary">Heavy</Button>
+                                    <ToggleButton type="Radio">Heavy</ToggleButton>
                                 </OverlayTrigger>
                           </ToggleButtonGroup>
-                        </label>
                     </Row>
                 </p>
                 <p>
                     <Row>
-                        <label>
-                        <ButtonGroup aria-label="Size">
+                        <ToggleButtonGroup type="checkbox" name="Size">
                                 <OverlayTrigger
                                 placement="top"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipSmall}
                                 >
-                                    <Button variant="outline-secondary">Small</Button>
+                                    <ToggleButton type="Radio">Small</ToggleButton>
                                 </OverlayTrigger>
                             
                                 <OverlayTrigger
@@ -180,7 +179,7 @@ class RegisterDeliveryRequest extends Component{
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipMedium}
                                 >
-                                    <Button variant="outline-secondary">Medium</Button>
+                                    <ToggleButton type="Radio">Medium</ToggleButton>
                                 </OverlayTrigger>
 
                                 <OverlayTrigger
@@ -188,10 +187,9 @@ class RegisterDeliveryRequest extends Component{
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipLarge}
                                 >
-                                    <Button variant="outline-secondary">Large</Button>
+                                    <ToggleButton type="Radio">Large</ToggleButton>
                                 </OverlayTrigger>
-                        </ButtonGroup>
-                        </label>
+                        </ToggleButtonGroup>
                     </Row>
                 </p>
                 <p>
@@ -201,8 +199,8 @@ class RegisterDeliveryRequest extends Component{
                     </label>
                 </Row>
                 </p>
-            </Container>
-            </p>
+                </Container>
+            </Page>
         );
     };
 

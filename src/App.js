@@ -12,6 +12,7 @@ function App() {
                     //TODO : This needs to be routed to the home component @MaxiPfeiler
                 }
                 <Route exact path="/" component={Home}/>
+                <Route exact path="/sendanything" component={RegisterDeliveryRequest}/>
             </div>
         </Router>
     );

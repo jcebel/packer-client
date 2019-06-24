@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButton, ToggleButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import Page from './Page';
 
 class RegisterDeliveryRequest extends Component{
 
@@ -13,7 +14,7 @@ class RegisterDeliveryRequest extends Component{
     render() {
         return (
             <p class="text-dark">
-            <Container>
+            <Page>
                 <p>
                 <Row>
                     Hello User, here is a summary of your package
@@ -106,7 +107,7 @@ class RegisterDeliveryRequest extends Component{
                     </label>
                   </Row>
                 </p>
-            </Container>
+            </Page>
             </p>
         );
     };
