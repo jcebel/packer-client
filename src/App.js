@@ -1,15 +1,20 @@
-import NavigationBar from './components/NavigationBar';
-import RegisterDeliveryRequest from './components/RegisterDeliveryRequest';
-import RegisterDeliveryRequestConf from './components/RegisterDeliveryRequestConf';
-import React from 'react';
+import React from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Page from './components/Page';
+import Home from './components/Home';
 
-const App = () => {
-  return (
-      <div className="App">
-        <NavigationBar/>
-        <RegisterDeliveryRequestConf/>
-      </div>
-  );
-};
+function App() {
+    return (
+        <Router>
+            <Page/>
+            <div>
+                {
+                    //TODO : This needs to be routed to the home component @MaxiPfeiler
+                }
+                <Route exact path="/" component={Home}/>
+            </div>
+        </Router>
+    );
+}
 
 export default App;
