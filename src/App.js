@@ -1,18 +1,30 @@
 import React from "react";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HomeView from './views/HomeView';
 
-function App() {
-    return (
-        <Router>
+export default class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: 'Packer',
+            routes: [
+                { component: HomeView , path: '/', exact: true},
+            ]
+        };
+    }
+
+    render() {
+        return(
             <div>
-                {
-                    //TODO : This needs to be routed to the home component @MaxiPfeiler
-                }
-                <Route exact path="/" component={HomeView}/>
+                <Router>
+                    <Switch>
+                        {this.state.routes.map((route, i) => (<Route key={i} {...route}/>) )}
+                    </Switch>
+                </Router>
             </div>
-        </Router>
-    );
+        );
+    }
 }
 
-export default App;
