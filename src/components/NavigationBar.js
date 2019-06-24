@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Form} from 'react-bootstrap';
 
-class PlainNavigationBar extends React.Component{
+export class PlainNavigationBar extends React.Component{
 
     constructor(props) {
         super(props);
@@ -25,6 +25,7 @@ class PlainNavigationBar extends React.Component{
                     <Nav.Link>My Deliveries</Nav.Link>
                     <Nav.Link>Be A Driver</Nav.Link>
                     <Nav.Link>Send anything</Nav.Link>
+
 
                 </Nav>
 

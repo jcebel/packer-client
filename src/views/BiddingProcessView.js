@@ -5,6 +5,7 @@ import {RouteDetails} from "../components/RouteDetails";
 import {PackageList} from "../components/PackageList";
 import {BiddingInformation} from "../components/BiddingInformation";
 import {RouteService} from "../services/RouteService";
+import Page from "../components/Page";
 
 
 
@@ -48,25 +49,27 @@ export class BiddingProcessView extends React.Component{
             return (<h2>Loading...</h2>);
         }
         return (
-            <Container>
-                <Row style= {rowStyle} >
-                    <Col sm={8}>
-                        <Card style={rowStyle}>
-                            Map outcommented to be able to work offline
-                            {/*<GoogleMaps/>*/}
-                        </Card>
-                    </Col>
-                    <Col>
-                        <RouteDetails route={this.state.route}/>
-                        <PackageList route={this.state.route}/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={8}>
-                        <BiddingInformation route={this.state.route} onSubmit={(id) => this.submitBidByID(id)}/>
-                    </Col>
-                </Row>
-            </Container>
+            <Page>
+                <Container>
+                    <Row style= {rowStyle} >
+                        <Col sm={8}>
+                            <Card style={rowStyle}>
+                                Map outcommented to be able to work offline
+                                {/*<GoogleMaps/>*/}
+                            </Card>
+                        </Col>
+                        <Col>
+                            <RouteDetails route={this.state.route}/>
+                            <PackageList route={this.state.route}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={8}>
+                            <BiddingInformation route={this.state.route} onSubmit={(id) => this.submitBidByID(id)}/>
+                        </Col>
+                    </Row>
+                </Container>
+            </Page>
         );
     }
 
