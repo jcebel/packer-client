@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav, Form} from 'react-bootstrap';
 import styled from 'styled-components/macro';
 
+
 class PlainNavigationBar extends Component{
 
     constructor(props) {
@@ -20,8 +21,9 @@ class PlainNavigationBar extends Component{
                         alt="Company Logo"
                     />
                 </Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link>Home</Nav.Link>
+                <Nav className="mr-auto" activeKey="/home"
+                    >
+                    <Nav.Link href="/" >Home</Nav.Link>
                     <Nav.Link>My Deliveries</Nav.Link>
                     <Nav.Link>Be A Driver</Nav.Link>
                     <Nav.Link>Send anything</Nav.Link>
