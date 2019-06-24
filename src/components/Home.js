@@ -74,7 +74,7 @@ class Home extends Component {
             Do you want to send a package?
           </p>
           <p>
-            <Button variant="primary">Send something!</Button>
+            <Button variant="primary" href="/sendanything" >Send anything!</Button>
           </p>
         </Jumbotron>
         <Jumbotron>
