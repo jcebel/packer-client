@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel, Jumbotron, Container, Button} from 'react-bootstrap';
+import Page from './Page';
 
 class Home extends Component {
   
@@ -25,7 +26,7 @@ class Home extends Component {
     const { index, direction } = this.state;
 
     return (
-      <Container>
+      <Page>
         <Carousel
           activeIndex={index}
           direction={direction}
@@ -93,7 +94,7 @@ class Home extends Component {
             <Button variant="primary">My deliveries</Button>
           </p>
         </Jumbotron>
-      </Container>
+      </Page>
     );
   }
 }
