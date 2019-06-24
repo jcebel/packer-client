@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HomeView from './views/HomeView';
+import {RoutesListView} from "./views/RoutesListView";
 
 export default class App extends React.Component {
 
@@ -11,6 +12,7 @@ export default class App extends React.Component {
             title: 'Packer',
             routes: [
                 { component: HomeView , path: '/', exact: true},
+                { component: RoutesListView, path: '/beAdriver', exact:true}
             ]
         };
     }
