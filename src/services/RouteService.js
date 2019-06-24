@@ -4,9 +4,19 @@ export class RouteService {
 
     static baseURL() {return "http://localhost:3001/route" }
 
+    static getRoutesByDate(date){
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${this.baseURL()}/byDate/${date}`, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static getRoutes(){
         return new Promise((resolve, reject) => {
-            HttpService.get(this.baseURL(), function(data) {
+            HttpService.get(`${this.baseURL()}/`, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

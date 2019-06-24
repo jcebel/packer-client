@@ -16,7 +16,7 @@ export class RoutesListView extends React.Component {
         this.setState({
             loadingDone: false
         });
-
+        //TODO: USe getRoutesByDate, when the Database contains real data.
         RouteService.getRoutes()
             .then((data) => {
                 this.setState({
