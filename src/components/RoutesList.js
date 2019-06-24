@@ -5,6 +5,7 @@ import VehicleDropdown from './VehicleDropdown';
 import Form from 'react-bootstrap/Form';
 import {RoutesRow} from './RoutesRow';
 import Page from './Page';
+import {EmptyRow} from './EmptyRow'
 
 export class RoutesList extends React.Component {
     // TODO Define Css Stylings!
@@ -25,8 +26,8 @@ export class RoutesList extends React.Component {
                     </thead>
                     <tbody>
 
-                    {this.props.data.map((route, i) => <RoutesRow key={i} route={route}
-                                                                  onMoreInfo={(id) => this.props.onMoreInfo(id)}/>)}
+                    {this.props.loadingDone ? this.props.data.map((route, i) => <RoutesRow key={i} route={route}
+                                                                  onMoreInfo={(id) => this.props.onMoreInfo(id)}/>) :  <EmptyRow/> }
                     </tbody>
                 </Table>
             </Page>

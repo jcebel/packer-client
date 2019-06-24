@@ -7,21 +7,21 @@ export class RoutesListView extends React.Component {
         super(props);
 
         this.state = {
-            loading: false,
+            loadingDone: true,
             data: []
         };
     }
 
     componentWillMount() {
         this.setState({
-            loading: true
+            loadingDone: false
         });
 
         RouteService.getRoutes()
             .then((data) => {
                 this.setState({
                     data: [...data],
-                    loading: false
+                    loadingDone: true
                 });
             }).catch((e) => {
             console.log(e);
@@ -30,11 +30,9 @@ export class RoutesListView extends React.Component {
 
 
     render() {
-        if (this.state.loading) {
-            return (<h2>Loading...</h2>);
-        }
         return (
-            <RoutesList data={this.state.data} onMoreInfo={(id) => this.moreInfoPressed(id)}/>
+            <RoutesList loadingDone={this.state.loadingDone} data={this.state.data}
+                        onMoreInfo={(id) => this.moreInfoPressed(id)}/>
         );
     }
 
