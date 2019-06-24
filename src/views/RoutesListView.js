@@ -1,10 +1,9 @@
 import React from 'react';
 import {RoutesList} from '../components/RoutesList';
+import {RouteService} from '../services/RouteService';
 
-export class RoutesListView extends React.Component
-{
-    constructor(props)
-    {
+export class RoutesListView extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -13,21 +12,29 @@ export class RoutesListView extends React.Component
         };
     }
 
-    componentWillMount()
-    {
+    componentWillMount() {
         this.setState({
-            loading: true,
-
-            data: [{type: "car", distance: "22,5 km", numberOfItems:30, start:"Some Street", end: "Other street", payment:"40 "}]
+            loading: true
         });
 
-       //Call service
+        RouteService.getRoutes()
+            .then((data) => {
+                this.setState({
+                    data: [...data],
+                    loading: false
+                });
+            }).catch((e) => {
+            console.log(e);
+        });
     }
 
 
-    render () {
+    render() {
+        if (this.state.loading) {
+            return (<h2>Loading...</h2>);
+        }
         return (
-          <RoutesList data={this.state.data} onMoreInfo={(id) => this.moreInfoPressed(id)}/>
+            <RoutesList data={this.state.data} onMoreInfo={(id) => this.moreInfoPressed(id)}/>
         );
     }
 
