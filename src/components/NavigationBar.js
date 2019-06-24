@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Form} from 'react-bootstrap';
 
-export class NavigationBar extends React.Component{
+class PlainNavigationBar extends React.Component{
 
     constructor(props) {
         super(props);
@@ -19,8 +19,9 @@ export class NavigationBar extends React.Component{
                         alt="Company Logo"
                     />
                 </Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link>Home</Nav.Link>
+                <Nav className="mr-auto" activeKey="/home"
+                    >
+                    <Nav.Link href="/" >Home</Nav.Link>
                     <Nav.Link>My Deliveries</Nav.Link>
                     <Nav.Link>Be A Driver</Nav.Link>
                     <Nav.Link>Send anything</Nav.Link>
