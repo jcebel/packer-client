@@ -136,7 +136,7 @@ class RegisterDeliveryRequest extends Component{
                     <Row>
                         <label>
                         <ButtonGroup aria-label="Weight">
-                        <OverlayTrigger
+                                <OverlayTrigger
                                 placement="top"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipLight}

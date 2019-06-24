@@ -6,16 +6,17 @@ import RegisterDeliveryRequest from './components/RegisterDeliveryRequest'
 
 function App() {
     return (
-        <Router>
-            <Page/>
-            <div>
-                {
-                    //TODO : This needs to be routed to the home component @MaxiPfeiler
-                }
-                <Route exact path="/" component={Home}/>
-                <Route path="/sendanything" component={RegisterDeliveryRequest}/>
-            </div>
-        </Router>
+        <Page>
+            <Router>
+                <div>
+                    {
+                        //TODO : This needs to be routed to the home component @MaxiPfeiler
+                    }
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/sendanything" component={RegisterDeliveryRequest}/>
+                </div>
+            </Router>
+        </Page>
     );
 }
 
