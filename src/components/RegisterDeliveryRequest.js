@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger} from 'react-bootstrap';
+import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 
 const renderTooltipSmall = props => (
     <div
@@ -135,13 +135,13 @@ class RegisterDeliveryRequest extends Component{
                 <p>
                     <Row>
                         <label>
-                        <ButtonGroup aria-label="Weight">
+                        <ToggleButtonGroup type="checkbox" name="Weight">
                                 <OverlayTrigger
                                 placement="top"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipLight}
                                 >
-                                    <Button variant="outline-secondary">Light</Button>
+                                    <ToggleButton>Light</ToggleButton>
                                 </OverlayTrigger>
                             
                                 <OverlayTrigger
@@ -159,7 +159,7 @@ class RegisterDeliveryRequest extends Component{
                                 >
                                     <Button variant="outline-secondary">Heavy</Button>
                                 </OverlayTrigger>
-                        </ButtonGroup>
+                          </ToggleButtonGroup>
                         </label>
                     </Row>
                 </p>
