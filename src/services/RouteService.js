@@ -1,8 +1,8 @@
 const HttpService = require('./HttpService');
 
-class RouteService {
+export class RouteService {
 
-    static baseURL() {return "http://localhost:3000/route" }
+    static baseURL() {return "http://localhost:3001/route" }
 
     static getRoutes(){
         return new Promise((resolve, reject) => {
@@ -40,5 +40,3 @@ class RouteService {
     }
 
 }
-
-module.exports = RouteService;

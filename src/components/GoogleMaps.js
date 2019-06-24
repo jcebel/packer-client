@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 
@@ -6,7 +6,7 @@ const mapStyle = {
     width: '100%',
     height: '100%',
 };
-class GoogleMaps extends Component{
+class GoogleMaps extends React.Component{
 
     constructor(props) {
         super(props);

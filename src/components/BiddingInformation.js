@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
+import {ButtonVehicleType} from "./ButtonVehicleType";
 
-class BiddingInformation extends Component{
-
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+export class BiddingInformation extends React.Component{
 
     render() {
         return (
@@ -19,32 +15,30 @@ class BiddingInformation extends Component{
                         <Col>
                             <div className="font-weight-bold">Current Bid</div>
                             <p>
-                                50 €
+                                {this.props.route.auctionBids.sort((first, sec) => {
+                                return first.bid > sec.bid;
+                            })[0].bid} €
                             </p>
                         </Col>
 
                         <Col>
                             <div className="font-weight-bold">Number of Bids</div>
                             <p>
-                                8
+                                {this.props.route.auctionBids.length}
                             </p>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <div className="font-weight-bold">Vehicle Type</div>
-                            <p>
-                                <Button variant="light">Car</Button>
-                                <Button variant="secondary">Van</Button>
-                                <Button variant="light">Bike</Button>
-                            </p>
+                                <ButtonVehicleType vehicleType={this.props.route.vehicleType}/>
                         </Col>
 
                         <Col>
                             <div className="font-weight-bold">Your bid</div>
                             <p>
                                 <input type="text"/>
-                                <Button variant="success">Submit</Button>
+                                <Button variant="success" onClick={() => this.props.onSubmit(this.props.route._id)}>Submit</Button>
                             </p>
                         </Col>
                     </Row>
@@ -53,6 +47,5 @@ class BiddingInformation extends Component{
         );
     }
 
-}
 
-export default BiddingInformation;
+}

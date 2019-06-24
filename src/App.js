@@ -1,4 +1,4 @@
-import NavigationBar from './components/NavigationBar';
+import {NavigationBar} from './components/NavigationBar';
 import {BiddingProcessView} from './views/BiddingProcessView';
 import React from 'react';
 

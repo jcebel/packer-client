@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import GoogleMaps from '../components/GoogleMaps'
-import RouteDetails from "../components/RouteDetails";
-import PackageList from "../components/PackageList";
-import BiddingInformation from "../components/BiddingInformation";
-import RouteService from "../services/RouteService";
+import {RouteDetails} from "../components/RouteDetails";
+import {PackageList} from "../components/PackageList";
+import {BiddingInformation} from "../components/BiddingInformation";
+import {RouteService} from "../services/RouteService";
 
 
 
@@ -17,23 +17,27 @@ const rowStyle = {
     height: '350px',
 };
 
-export class BiddingProcessView extends Component{
+export class BiddingProcessView extends React.Component{
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            loading: false,
+            route: {}
+        };
     }
 
     componentWillMount(){
         this.setState({
-            loading: false
+            loading: true
         });
-        let id = "5d0a3e2893aa731d20e2b26a";
+        let id = "5d10d6035cf3db35f8a026a9";
         RouteService.getRoute(id).then((data) => {
             this.setState({
                 route: data,
                 loading: false
             });
-            console.log(this.state.route);
         }).catch((e) => {
             console.error(e);
         });
@@ -53,19 +57,22 @@ export class BiddingProcessView extends Component{
                         </Card>
                     </Col>
                     <Col>
-                        <RouteDetails route={this.state.route}
-                        />
-                        <PackageList/>
+                        <RouteDetails route={this.state.route}/>
+                        <PackageList route={this.state.route}/>
                     </Col>
                 </Row>
                 <Row>
                     <Col sm={8}>
-                        <BiddingInformation/>
+                        <BiddingInformation route={this.state.route} onSubmit={(id) => this.submitBidByID(id)}/>
                     </Col>
                 </Row>
             </Container>
-
         );
     }
+
+    submitBidByID(id){
+        alert("Bid made for " + id);
+    }
+
 
 }

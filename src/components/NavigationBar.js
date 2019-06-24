@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar, Nav, Form} from 'react-bootstrap';
-class NavigationBar extends Component{
+
+export class NavigationBar extends React.Component{
 
     constructor(props) {
         super(props);
@@ -42,4 +43,3 @@ class NavigationBar extends Component{
     }
 
 }
-export default NavigationBar;
