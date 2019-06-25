@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HomeView from './views/HomeView';
 import RegisterDeliveryRequestView from './views/RegisterDeliveryRequestView';
 import RegisterDeliveryRequestConfView from './views/RegisterDeliveryRequestConfView';
-import RegisterDeliveryRequestConf from './components/RegisterDeliveryRequestConf';
+
 
 
 export default class App extends React.Component {
@@ -16,8 +16,9 @@ export default class App extends React.Component {
             routes: [
                 { component: HomeView , path: '/', exact: true},
                 { component: RegisterDeliveryRequestView , path: '/sendanything'},
-                { component: RegisterDeliveryRequestConfView , path: '/sendanythingconf'},
-                { component: RegisterDeliveryRequestConf, path: '/sendanythingconfdata'}
+                { render: (props) => {return (<RegisterDeliveryRequestConfView {... props} />)} , path: '/sendanythingconf'}
+                //{ component: RegisterDeliveryRequestConfView , path: '/sendanythingconf'}
+                
             ]
         };
     }

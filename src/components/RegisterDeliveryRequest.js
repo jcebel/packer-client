@@ -19,6 +19,15 @@ class RegisterDeliveryRequest extends Component{
     }
 
     render() {
+        var datadr = {
+            what : "Smartphone",
+            start : "Boltzmannstr. 5",
+            end: "Schellingstr. 10",
+            size: "Large",
+            weight: "Light",
+            date: "7.5.2019"
+        }
+        console.log(datadr);
         return (
             <Page>
               <Container>
@@ -75,7 +84,13 @@ class RegisterDeliveryRequest extends Component{
                 <p>
                 <Row>
                     <label>
+                    <Link
+                    to={{
+                        pathname: "/sendanythingconf",
+                        data: datadr // your data array of objects
+                    }}>
                     <Button href = "/sendanythingconf" variant="success">Make me an offer!</Button>
+                    </Link>
                     </label>
                 </Row>
                  </p>
@@ -85,7 +100,6 @@ class RegisterDeliveryRequest extends Component{
     };
 
 }
-
 
 
 export default RegisterDeliveryRequest;
