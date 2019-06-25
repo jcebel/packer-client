@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
-import ToggleButtonBar from './ToggleButtonBar'
-import Page from '../components/Page'
+import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton, Link } from 'react-bootstrap';
 import {ToggleButtonBar1} from './ToggleButtonBar';
 import {ToggleButtonBar2} from './ToggleButtonBar';
+import DatepickerClass from './Datepicker';
+import Page from "./Page";
 
 
 
@@ -18,6 +18,15 @@ class RegisterDeliveryRequest extends Component{
     }
 
     render() {
+        var datadr = {
+            what : "Smartphone",
+            start : "Boltzmannstr",
+            end: "Schellingstr",
+            size: "Large",
+            weight: "Light",
+            date: "7.5.2019"
+        }
+        
         return (
             <Page>
               <Container>
@@ -28,6 +37,7 @@ class RegisterDeliveryRequest extends Component{
                 </p>
                 <p>
                 <Row>
+                    <Col>
                     <label>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
@@ -36,11 +46,13 @@ class RegisterDeliveryRequest extends Component{
                         <FormControl/>
                         </InputGroup>
                     </label>
+                    </Col>
                 </Row>
                 </p>
                 <p>
                 <Row>
                 <label>
+                    <Col>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start</InputGroup.Text>
@@ -51,6 +63,7 @@ class RegisterDeliveryRequest extends Component{
                             </InputGroup.Prepend>
                         <FormControl/>
                         </InputGroup>
+                    </Col>
                     </label>
                 </Row>
                 </p>
@@ -61,12 +74,19 @@ class RegisterDeliveryRequest extends Component{
                         <ToggleButtonBar2/>
                 </p>
                 <p>
+                    <Row>
+                        <Col>
+                            <DatepickerClass/>
+                        </Col>
+                    </Row>
+                </p>
+                <p>
                 <Row>
                     <label>
                     <Button href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </label>
                 </Row>
-                </p>
+                 </p>
                 </Container>
             </Page>
         );

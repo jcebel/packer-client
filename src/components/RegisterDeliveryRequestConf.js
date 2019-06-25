@@ -12,6 +12,7 @@ class RegisterDeliveryRequest extends Component{
     }
 
     render() {
+        //console.log(this.this.props);
         return (
             <p class="text-dark">
             <Page>
@@ -23,13 +24,16 @@ class RegisterDeliveryRequest extends Component{
                 </p>
                 <p>
                   <Row>
+                    <Col>
                     <label>
                       Costs: 5 Euro
                     </label>
+                    </Col>
                   </Row>
                 </p>
                 <p>
                 <Row>
+                    <Col>
                     <label>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
@@ -41,10 +45,12 @@ class RegisterDeliveryRequest extends Component{
                        
                         </InputGroup>
                     </label>
+                    </Col>
                 </Row>
                 </p>
                 <p>
                 <Row>
+                    <Col>
                 <label>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
@@ -62,7 +68,47 @@ class RegisterDeliveryRequest extends Component{
                             </InputGroup.Prepend>
                         </InputGroup>
                     </label>
+                    </Col>
                 </Row>
+                </p>
+                <p>
+                    <Row>
+                        <Col>
+                        <label>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Size:</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Large</InputGroup.Text>
+                            </InputGroup.Prepend>
+                        
+                        <InputGroup.Prepend>
+                                <InputGroup.Text>Weight:</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Medium</InputGroup.Text>
+                            </InputGroup.Prepend>
+                        </InputGroup>
+                    </label>
+                        </Col>
+                    </Row>
+                </p>
+                <p>
+                    <Row>
+                        <Col>
+                        <label>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Date</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>5.7.2019</InputGroup.Text>
+                            </InputGroup.Prepend>
+                        </InputGroup>
+                        </label>
+                        </Col>
+                    </Row>
                 </p>
                 <p>
                 <Row>
@@ -81,7 +127,7 @@ class RegisterDeliveryRequest extends Component{
                     <label>
                     <ButtonToolbar>
                       <Button variant="success">Accept</Button>
-                      <Button href = "/" variant="danger">Reject</Button>
+                      <Button href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
                     </label>
                   </Row>
