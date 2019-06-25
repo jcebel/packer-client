@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButton, ToggleButtonGroup, ButtonToolbar} from 'react-bootstrap';
 import Page from './Page';
+import {History} from "react-router-dom";
+
 
 class RegisterDeliveryRequest extends Component{
 
@@ -12,7 +14,7 @@ class RegisterDeliveryRequest extends Component{
     }
 
     render() {
-        //console.log(this.this.props);
+        console.log(this.history.location.sendanything);
         return (
             <p class="text-dark">
             <Page>

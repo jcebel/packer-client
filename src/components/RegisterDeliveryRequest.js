@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton, Link } from 'react-bootstrap';
+import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import {ToggleButtonBar1} from './ToggleButtonBar';
 import {ToggleButtonBar2} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
 import Page from "./Page";
+import {Link} from "react-router-dom";
 
 
 
@@ -87,6 +88,12 @@ class RegisterDeliveryRequest extends Component{
                     </label>
                 </Row>
                  </p>
+                    <Link
+                    to={{
+                        pathname: "/sendanythingconfdata",
+                        data: datadr // your data array of objects
+                    }}
+                    ></Link>
                 </Container>
             </Page>
         );
