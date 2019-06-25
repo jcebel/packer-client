@@ -15,19 +15,28 @@ class RegisterDeliveryRequest extends Component{
 
     constructor(props) {
         super(props);
-        this.state = {};
-    }
-
-    render() {
-        var datadr = {
-            what : "Smartphone",
-            start : "Boltzmannstr. 5",
+        this.state = {
+            what : "",
+            start : "",
             end: "Schellingstr. 10",
             size: "Large",
             weight: "Light",
             date: "7.5.2019"
-        }
-        console.log(datadr);
+        };
+    }
+
+    changeHandlerWhat = event => {
+        this.setState({
+          what: event.target.value
+        });
+      }
+
+      changeHandlerStart = event => {
+        this.setState({
+          start: event.target.value
+        });
+      }
+    render() {
         return (
             <Page>
               <Container>
@@ -44,7 +53,7 @@ class RegisterDeliveryRequest extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>What is it?</InputGroup.Text>
                             </InputGroup.Prepend>
-                        <FormControl/>
+                        <FormControl value = {this.state.what} onChange={this.changeHandlerWhat} />
                         </InputGroup>
                     </label>
                     </Col>
@@ -58,7 +67,7 @@ class RegisterDeliveryRequest extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
-                        <FormControl/>
+                        <FormControl value = {this.state.start} onChange={this.changeHandlerStart}/>
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
@@ -83,15 +92,13 @@ class RegisterDeliveryRequest extends Component{
                 </p>
                 <p>
                 <Row>
-                    <label>
                     <Link
                     to={{
                         pathname: "/sendanythingconf",
-                        data: datadr // your data array of objects
+                        data: this.state // your data array of objects
                     }}>
                     <Button href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </Link>
-                    </label>
                 </Row>
                  </p>
                 </Container>

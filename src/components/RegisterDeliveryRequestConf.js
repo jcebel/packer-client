@@ -40,10 +40,7 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>What is it?</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>{this.props.datadr.what}</InputGroup.Text>
-                            </InputGroup.Prepend>
-                       
+                            <FormControl readOnly placeholder={this.props.datadr.what}/>
                         </InputGroup>
                     </label>
                     </Col>
@@ -57,16 +54,12 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>{this.props.datadr.start}</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder={this.props.datadr.start}/>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>{this.props.datadr.end}</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder={this.props.datadr.end}/>
                         </InputGroup>
                     </label>
                     </Col>
@@ -80,16 +73,12 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Size:</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>{this.props.datadr.size}</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder={this.props.datadr.size}/>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>Weight:</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>{this.props.datadr.weight}</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder={this.props.datadr.weight}/>
                         </InputGroup>
                     </label>
                         </Col>
@@ -103,9 +92,7 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Date</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>{this.props.datadr.date}</InputGroup.Text>
-                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder={this.props.datadr.date}/>
                         </InputGroup>
                         </label>
                         </Col>
