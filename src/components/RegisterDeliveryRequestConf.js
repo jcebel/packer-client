@@ -4,7 +4,7 @@ import Page from './Page';
 import {History} from "react-router-dom";
 
 
-class RegisterDeliveryRequest extends Component{
+class RegisterDeliveryRequestConf extends Component{
 
     
 
@@ -14,7 +14,6 @@ class RegisterDeliveryRequest extends Component{
     }
 
     render() {
-        console.log(this.history.location.sendanything);
         return (
             <p class="text-dark">
             <Page>
@@ -42,7 +41,7 @@ class RegisterDeliveryRequest extends Component{
                                 <InputGroup.Text>What is it?</InputGroup.Text>
                             </InputGroup.Prepend>
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Smartphone</InputGroup.Text>
+                                <InputGroup.Text>{this.props.data.what}</InputGroup.Text>
                             </InputGroup.Prepend>
                        
                         </InputGroup>
@@ -59,14 +58,14 @@ class RegisterDeliveryRequest extends Component{
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Schellingstr. 8</InputGroup.Text>
+                                <InputGroup.Text>{this.props.data.start}</InputGroup.Text>
                             </InputGroup.Prepend>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Boltzmannstr.15</InputGroup.Text>
+                                <InputGroup.Text>{this.props.data.end}</InputGroup.Text>
                             </InputGroup.Prepend>
                         </InputGroup>
                     </label>
@@ -82,14 +81,14 @@ class RegisterDeliveryRequest extends Component{
                                 <InputGroup.Text>Size:</InputGroup.Text>
                             </InputGroup.Prepend>
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Large</InputGroup.Text>
+                                <InputGroup.Text>{this.props.data.size}</InputGroup.Text>
                             </InputGroup.Prepend>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>Weight:</InputGroup.Text>
                             </InputGroup.Prepend>
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Medium</InputGroup.Text>
+                                <InputGroup.Text>{this.props.data.weight}</InputGroup.Text>
                             </InputGroup.Prepend>
                         </InputGroup>
                     </label>
@@ -105,7 +104,7 @@ class RegisterDeliveryRequest extends Component{
                                 <InputGroup.Text>Date</InputGroup.Text>
                             </InputGroup.Prepend>
                             <InputGroup.Prepend>
-                                <InputGroup.Text>5.7.2019</InputGroup.Text>
+                                <InputGroup.Text>{this.props.data.date}</InputGroup.Text>
                             </InputGroup.Prepend>
                         </InputGroup>
                         </label>
@@ -141,4 +140,4 @@ class RegisterDeliveryRequest extends Component{
     };
 
 }
-export default RegisterDeliveryRequest;
+export default RegisterDeliveryRequestConf;

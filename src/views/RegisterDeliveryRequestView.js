@@ -20,6 +20,7 @@ export default class RegisterDeliveryRequestView extends React.Component {
     }
 
     render() {
+        
         return (
             <section>
                 <RegisterDeliveryRequest/>

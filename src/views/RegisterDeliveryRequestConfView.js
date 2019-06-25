@@ -20,9 +20,17 @@ export default class RegisterDeliveryRequestConfView extends React.Component {
     }
 
     render() {
+        var datadr = {
+            what : "Smartphone",
+            start : "Boltzmannstr",
+            end: "Schellingstr",
+            size: "Large",
+            weight: "Light",
+            date: "7.5.2019"
+        }
         return (
             <section>
-                <RegisterDeliveryRequestConf/>
+                <RegisterDeliveryRequestConf data = {datadr}/>
                 {this.props.children}
             </section>
         );

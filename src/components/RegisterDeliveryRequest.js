@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButto } from 'react-bootstrap';
 import {ToggleButtonBar1} from './ToggleButtonBar';
 import {ToggleButtonBar2} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
@@ -19,15 +19,6 @@ class RegisterDeliveryRequest extends Component{
     }
 
     render() {
-        var datadr = {
-            what : "Smartphone",
-            start : "Boltzmannstr",
-            end: "Schellingstr",
-            size: "Large",
-            weight: "Light",
-            date: "7.5.2019"
-        }
-        
         return (
             <Page>
               <Container>
@@ -88,16 +79,13 @@ class RegisterDeliveryRequest extends Component{
                     </label>
                 </Row>
                  </p>
-                    <Link
-                    to={{
-                        pathname: "/sendanythingconfdata",
-                        data: datadr // your data array of objects
-                    }}
-                    ></Link>
                 </Container>
             </Page>
         );
     };
 
 }
+
+
+
 export default RegisterDeliveryRequest;
