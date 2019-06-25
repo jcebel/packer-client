@@ -56,12 +56,14 @@ class RegisterDeliveryRequest extends Component{
                 </p>
                 <p>
                         <ToggleButtonBar1/>
-                        <ToggleButtonBar1/>
+                </p>
+                <p>
+                        <ToggleButtonBar2/>
                 </p>
                 <p>
                 <Row>
                     <label>
-                    <Button variant="success">Make me an offer!</Button>
+                    <Button href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </label>
                 </Row>
                 </p>
