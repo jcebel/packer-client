@@ -23,7 +23,7 @@ export class PlainNavigationBar extends React.Component{
                     >
                     <Nav.Link href="/" >Home</Nav.Link>
                     <Nav.Link>My Deliveries</Nav.Link>
-                    <Nav.Link>Be A Driver</Nav.Link>
+                    <Nav.Link href="/beAdriver">Be A Driver</Nav.Link>
                     <Nav.Link>Send anything</Nav.Link>
 
 

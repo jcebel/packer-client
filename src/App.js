@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import HomeView from './views/HomeView';
 import {BiddingProcessView} from "./views/BiddingProcessView";
+import {RoutesListView} from "./views/RoutesListView";
 
 export default class App extends React.Component {
 
@@ -13,6 +14,7 @@ export default class App extends React.Component {
             routes: [
                 { component: HomeView , path: '/', exact: true},
                 { component: BiddingProcessView , path: '/route/:id', exact: true},
+                { component: RoutesListView, path: '/beAdriver', exact:true}
             ]
         };
     }

@@ -1,4 +1,4 @@
-class HttpService {
+export class HttpService {
 
     static apiURL() {return "http://localhost:3001"; }
 
@@ -142,5 +142,3 @@ class HttpService {
     }
 
 }
-
-module.exports = HttpService;
