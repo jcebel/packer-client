@@ -28,8 +28,7 @@ export class RoutesList extends React.Component {
                         </thead>
                         <tbody>
 
-                        {this.props.loadingDone ? this.props.data.map((route, i) => <RoutesRow key={i} route={route}
-                                                                                               onMoreInfo={(id) => this.props.onMoreInfo(id)}/>) :
+                        {this.props.loadingDone ? this.props.data.map((route, i) => <RoutesRow key={i} route={route}/>) :
                             <EmptyRow/>}
                         </tbody>
                     </Table>

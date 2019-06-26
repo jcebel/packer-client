@@ -31,13 +31,7 @@ export class RoutesListView extends React.Component {
 
     render() {
         return (
-            <RoutesList loadingDone={this.state.loadingDone} data={this.state.data}
-                        onMoreInfo={(id) => this.moreInfoPressed(id)}/>
+            <RoutesList loadingDone={this.state.loadingDone} data={this.state.data}/>
         );
     }
-
-    moreInfoPressed(id) {
-        console.log('More info pressed ' + id);
-    }
-
 }

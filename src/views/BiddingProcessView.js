@@ -33,12 +33,13 @@ export class BiddingProcessView extends React.Component{
         this.setState({
             loading: true
         });
-        let id = "5d113c9630a226405c460868";
+        let id = this.props.match.params.id;
         RouteService.getRoute(id).then((data) => {
             this.setState({
                 route: data,
                 loading: false
             });
+
         }).catch((e) => {
             console.error(e);
         });

@@ -5,7 +5,7 @@ import {Button} from "react-bootstrap";
 export class ButtonVehicleType extends React.Component{
 
     render() {
-        if (this.props.vehicleType === "van") {
+        if (this.props.vehicleType.toLowerCase() === "van") {
             return (
                 <div>
                     <Button variant="light" disabled>Car</Button>
@@ -14,7 +14,7 @@ export class ButtonVehicleType extends React.Component{
                 </div>
             );
         }
-        if (this.props.vehicleType === "car") {
+        if (this.props.vehicleType.toLowerCase() === "car") {
             return (
                 <div>
                     <Button variant="secondary" disabled>Car</Button>
@@ -23,7 +23,7 @@ export class ButtonVehicleType extends React.Component{
                 </div>
             );
         }
-        if (this.props.vehicleType === "bike") {
+        if (this.props.vehicleType.toLowerCase() === "bike") {
             return (
                 <div>
                     <Button variant="light" disabled>Car</Button>
