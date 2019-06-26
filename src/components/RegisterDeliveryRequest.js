@@ -18,10 +18,10 @@ class RegisterDeliveryRequest extends Component{
         this.state = {
             what : "",
             start : "",
-            end: "Schellingstr. 10",
-            size: "Large",
-            weight: "Light",
-            date: "7.5.2019"
+            end: "",
+            size: "",
+            weight: "",
+            date: ""
         };
     }
 
@@ -30,12 +30,43 @@ class RegisterDeliveryRequest extends Component{
           what: event.target.value
         });
       }
-
       changeHandlerStart = event => {
         this.setState({
           start: event.target.value
         });
       }
+      changeHandlerEnd = event => {
+        this.setState({
+          end: event.target.value
+        });
+      }
+      changeHandlerSize = (sizedr) => {
+        this.setState({size: this.changeSize(sizedr)});
+    }
+    changeHandlerWeight = (weightdr) => {
+        this.setState({weight: this.changeWeight(weightdr)});
+    }
+
+    changeSize = (sizedr) => {
+        if(sizedr == 1) {
+            return "Small";
+        } else if (sizedr == 2) {
+            return "Medium";
+        } else {
+            return "Large";
+        }
+    }
+    changeWeight = (weightdr) => {
+        if(weightdr == 1) {
+            return "Light";
+        } else if (weightdr == 2) {
+            return "Medium";
+        } else {
+            return "Heavy";
+        }
+    }
+      
+
     render() {
         return (
             <Page>
@@ -71,18 +102,19 @@ class RegisterDeliveryRequest extends Component{
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
-                        <FormControl/>
+                            <FormControl value = {this.state.end} onChange={this.changeHandlerEnd}/>
                         </InputGroup>
                     </Col>
                     </label>
                 </Row>
                 </p>
                 <p>
-                        <ToggleButtonBar1/>
+                        <ToggleButtonBar2 onSelectSize={this.changeHandlerSize}/>
                 </p>
                 <p>
-                        <ToggleButtonBar2/>
+                        <ToggleButtonBar1  onSelectWeight={this.changeHandlerWeight}/>
                 </p>
+                
                 <p>
                     <Row>
                         <Col>

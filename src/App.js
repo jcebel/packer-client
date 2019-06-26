@@ -15,7 +15,8 @@ export default class App extends React.Component {
             title: 'Packer',
             routes: [
                 { component: HomeView , path: '/', exact: true},
-                { component: RegisterDeliveryRequestView , path: '/sendanything'},
+                //{ component: RegisterDeliveryRequestView , path: '/sendanything'},
+                { render: (props) => {return (<RegisterDeliveryRequestView {... props} />)} , path: '/sendanything'},
                 { render: (props) => {return (<RegisterDeliveryRequestConfView {... props} />)} , path: '/sendanythingconf'}
                 //{ component: RegisterDeliveryRequestConfView , path: '/sendanythingconf'}
                 

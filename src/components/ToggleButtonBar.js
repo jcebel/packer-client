@@ -47,12 +47,21 @@ class ToggleButtonBar1 extends Component{
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
-          value: [],
+          value: "",
         };
     }
+
     handleChange(value, event) {
       this.setState({ value });
     }
+  
+    handleChangeWeight = (value) => {
+      this.setState({value})
+      var weight = value;
+      this.props.onSelectWeight(weight);            
+  }
+
+
 
     render() {
         return (
@@ -66,9 +75,9 @@ class ToggleButtonBar1 extends Component{
                           <Button variant="primary">Weight (Hover me for information)</Button>
                           </OverlayTrigger>
                         </Col>
-                        <Col>
+                        <Col>            
                         <ToggleButtonGroup type="radio" value={this.state.value}
-                          onChange={this.handleChange} name="Weight">
+                          onChange={this.handleChangeWeight} name="Weight">
                                     <ToggleButton type="radio" value = {1}>Light</ToggleButton>
                                     <ToggleButton type="radio" value = {2}>Medium</ToggleButton>
                                     <ToggleButton type="radio" value = {3}>Heavy</ToggleButton>
@@ -89,9 +98,15 @@ class ToggleButtonBar2 extends Component{
       this.handleChange = this.handleChange.bind(this);
 
       this.state = {
-        value: [],
+        value: "",
       };
   }
+    handleChangeSize = (value) => {
+      this.setState({value})
+      var size = value;
+      this.props.onSelectSize(size);            
+  }
+
   handleChange(value, event) {
     this.setState({ value });
   }
@@ -110,7 +125,7 @@ class ToggleButtonBar2 extends Component{
                         </Col>
                         <Col>
                       <ToggleButtonGroup type="radio" value={this.state.value}
-                      onChange={this.handleChange} name="Weight">
+                      onChange={this.handleChangeSize} name="Weight">
                                   <ToggleButton type="radio" value = {1}>Small</ToggleButton>
                                   <ToggleButton type="radio" value = {2}>Medium</ToggleButton>
                                   <ToggleButton type="radio" value = {3}>Large</ToggleButton>
