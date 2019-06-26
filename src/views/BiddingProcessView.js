@@ -39,7 +39,7 @@ export class BiddingProcessView extends React.Component{
                 route: data,
                 loading: false
             });
-
+            console.log(this.props.route);
         }).catch((e) => {
             console.error(e);
         });
@@ -66,7 +66,7 @@ export class BiddingProcessView extends React.Component{
                     </Row>
                     <Row>
                         <Col sm={8}>
-                            <BiddingInformation route={this.state.route} onSubmit={(id) => this.submitBidByID(id)}/>
+                            <BiddingInformation route={this.state.route} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
                         </Col>
                     </Row>
                 </Container>
@@ -74,8 +74,8 @@ export class BiddingProcessView extends React.Component{
         );
     }
 
-    submitBidByID(id){
-        alert("Bid made for " + id);
+    submitBidByID(id, newBid){
+        alert("New Bid " + newBid + " made for route " + id);
     }
 
 

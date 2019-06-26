@@ -35,8 +35,8 @@ export class BiddingInformation extends React.Component{
                         <Col>
                             <div className="font-weight-bold">Your bid</div>
                             <p>
-                                <input type="text"/>
-                                <Button variant="success" onClick={() => this.props.onSubmit(this.props.route._id)}>Submit</Button>
+                                <input id="newBid" type="text"/>
+                                <Button variant="success" onClick={() => this.props.onSubmit(this.props.route._id, document.getElementById("newBid").value)}>Submit</Button>
                             </p>
                         </Col>
                     </Row>

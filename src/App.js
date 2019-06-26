@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import HomeView from './views/HomeView';
+import {HomeView} from './views/HomeView';
 import {BiddingProcessView} from "./views/BiddingProcessView";
 import {RoutesListView} from "./views/RoutesListView";
 
