@@ -62,7 +62,7 @@ export class RoutesListView extends React.Component {
 
     render() {
         return (
-            <RoutesList loadingDone={this.state.loadingDone} data={this.state.filteredData}
+            <RoutesList key={"routesList01"} loadingDone={this.state.loadingDone} data={this.state.filteredData}
                         triggerFilterOnInput={(criteria) => this.triggerFilterDataOnInput(criteria)}/>
         );
     }
