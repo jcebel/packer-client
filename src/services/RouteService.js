@@ -2,7 +2,7 @@ import {HttpService} from './HttpService';
 
 export class RouteService {
 
-    static baseURL() {return "http://localhost:3001/route" }
+    static baseURL() {return "http://localhost:3000/route" }
 
     static getRoutesByDate(date){
         return new Promise((resolve, reject) => {
