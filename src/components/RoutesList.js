@@ -7,23 +7,30 @@ import {RoutesRow} from './RoutesRow';
 import Page from './Page';
 import {EmptyRow} from './EmptyRow'
 import Container from "react-bootstrap/Container";
+import {StyledCell} from './StyledCell';
+import styled from 'styled-components/macro';
 
 export class RoutesList extends React.Component {
     // TODO Define Css Stylings!
+
+
     render() {
+
+        const StyledDeleteFilter = styled(Button)`width:max-content`;
+        const StyledTable = styled(Table)`vertical-align:middle;`;
         return (
             <Page>
                 <Container>
-                    <Table>
+                    <StyledTable>
                         <thead>
                         <tr>
-                            <td><VehicleDropdown/></td>
-                            <td><Form.Control as="input" placeholder="Distance" type="text"/></td>
-                            <td><Form.Control as="input" placeholder="Number of Items" type="text"/></td>
-                            <td><Form.Control as="input" placeholder="Start" type="text"/></td>
-                            <td><Form.Control as="input" placeholder="End" type="text"/></td>
-                            <td><Form.Control as="input" placeholder="Payment" type="text"/></td>
-                            <td><Button variant="danger">Delete Filters</Button></td>
+                            <StyledCell><VehicleDropdown/></StyledCell>
+                            <StyledCell><Form.Control as="input" placeholder="Distance" type="text"/></StyledCell>
+                            <StyledCell><Form.Control as="input" placeholder="Items" type="text"/></StyledCell>
+                            <StyledCell><Form.Control as="input" placeholder="Start" type="text"/></StyledCell>
+                            <StyledCell><Form.Control as="input" placeholder="End" type="text"/></StyledCell>
+                            <StyledCell><Form.Control as="input" placeholder="Payment" type="text"/></StyledCell>
+                            <StyledCell><StyledDeleteFilter variant="danger">Delete Filters</StyledDeleteFilter></StyledCell>
                         </tr>
                         </thead>
                         <tbody>
@@ -31,7 +38,7 @@ export class RoutesList extends React.Component {
                         {this.props.loadingDone ? this.props.data.map((route, i) => <RoutesRow key={i} route={route}/>) :
                             <EmptyRow/>}
                         </tbody>
-                    </Table>
+                    </StyledTable>
                 </Container>
             </Page>
         );
