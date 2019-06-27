@@ -46,6 +46,9 @@ class RegisterDeliveryRequest extends Component{
     changeHandlerWeight = (weightdr) => {
         this.setState({weight: this.changeWeight(weightdr)});
     }
+    changeHandlerDate = (datedr) => {
+        this.setState({date: datedr});
+    }
 
     changeSize = (sizedr) => {
         if(sizedr == 1) {
@@ -68,6 +71,7 @@ class RegisterDeliveryRequest extends Component{
       
 
     render() {
+        try{
         return (
             <Page>
               <Container>
@@ -96,11 +100,11 @@ class RegisterDeliveryRequest extends Component{
                     <Col>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Start</InputGroup.Text>
+                                <InputGroup.Text>Start (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
                         <FormControl value = {this.state.start} onChange={this.changeHandlerStart}/>
                         <InputGroup.Prepend>
-                                <InputGroup.Text>End</InputGroup.Text>
+                                <InputGroup.Text>End (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl value = {this.state.end} onChange={this.changeHandlerEnd}/>
                         </InputGroup>
@@ -118,7 +122,7 @@ class RegisterDeliveryRequest extends Component{
                 <p>
                     <Row>
                         <Col>
-                            <DatepickerClass/>
+                            <DatepickerClass onSelectDate={this.changeHandlerDate}/>
                         </Col>
                     </Row>
                 </p>
@@ -136,6 +140,9 @@ class RegisterDeliveryRequest extends Component{
                 </Container>
             </Page>
         );
+    }catch(e){
+        console.log('error', e);        
+    }
     };
 
 }

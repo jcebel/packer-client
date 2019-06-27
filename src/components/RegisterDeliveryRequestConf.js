@@ -12,8 +12,42 @@ class RegisterDeliveryRequestConf extends Component{
         super(props);
         this.state = {};
     }
+/*  
+Price Calculation:
+Basic is 1$
+Small = 1$
+Medium = 2$
+Large = 5$
+
+Light = 1$
+Medium = 2$
+Large is 5$
+*/
+    priceCalculation() {
+        var size = this.props.datadr.size;
+        var weight = this.props.datadr.weight;
+
+        var price = 1;
+        if(size == "Small") {
+            price = price + 1;
+        } else if(size == "Medium") {
+            price = price + 2;
+        } else if(size == "Large") {
+            price = price + 5;
+        }
+        if(weight == "Light") {
+            price = price + 1;
+        } else if(weight == "Medium") {
+            price = price + 2;
+        } else if (weight == "Heavy") {
+            price = price + 5;
+        }
+
+        return price;
+      }
 
     render() {
+        try{
         return (
             <p class="text-dark">
             <Page>
@@ -27,7 +61,12 @@ class RegisterDeliveryRequestConf extends Component{
                   <Row>
                     <Col>
                     <label>
-                      Costs: 5 Euro
+                    <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Costs</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder = {this.priceCalculation()}/>
+                        </InputGroup>
                     </label>
                     </Col>
                   </Row>
@@ -52,12 +91,12 @@ class RegisterDeliveryRequestConf extends Component{
                 <label>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Start</InputGroup.Text>
+                                <InputGroup.Text>Start (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl readOnly placeholder={this.props.datadr.start}/>
                         
                         <InputGroup.Prepend>
-                                <InputGroup.Text>End</InputGroup.Text>
+                                <InputGroup.Text>End (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl readOnly placeholder={this.props.datadr.end}/>
                         </InputGroup>
@@ -124,6 +163,13 @@ class RegisterDeliveryRequestConf extends Component{
             </Page>
             </p>
         );
+    }catch(e){
+        return(
+            <p>
+                Fehler 404: Keine Daten, weil du die Seite refresht hast du Eumel! Geh zurück
+            </p>
+        );   
+    }
     };
 
 }

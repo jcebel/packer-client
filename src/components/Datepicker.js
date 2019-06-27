@@ -14,6 +14,8 @@ export default class DatepickerClass extends React.Component {
   }
   handleDayChange(day) {
     this.setState({ selectedDay: day });
+    var datedr = day;
+    this.props.onSelectDate(datedr);     
   }
   render() {
     const { selectedDay } = this.state;
