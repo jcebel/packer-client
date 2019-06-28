@@ -10,7 +10,17 @@ class RegisterDeliveryRequestConf extends Component{
 
     constructor(props) {
         super(props);
-        this.state = {};
+        if(this.props.datadr !== undefined) {
+            this.state = {
+                what: this.props.datadr.what,
+                start: this.props.datadr.start,
+                end: this.props.datadr.end,
+                size: this.props.datadr.size,
+                weight: this.props.datadr.weight,
+                date: this.props.datadr.date
+            };
+        }
+        
     }
 /*  
 Price Calculation:
@@ -23,9 +33,11 @@ Light = 1$
 Medium = 2$
 Large is 5$
 */
+
+    
     priceCalculation() {
-        var size = this.props.datadr.size;
-        var weight = this.props.datadr.weight;
+        var size = this.state.size;
+        var weight = this.state.weight;
 
         var price = 1;
         if(size == "Small") {
@@ -79,7 +91,7 @@ Large is 5$
                             <InputGroup.Prepend>
                                 <InputGroup.Text>What is it?</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.props.datadr.what}/>
+                            <FormControl readOnly placeholder={this.state.what}/>
                         </InputGroup>
                     </label>
                     </Col>
@@ -93,12 +105,12 @@ Large is 5$
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.props.datadr.start}/>
+                            <FormControl readOnly placeholder={this.state.start}/>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.props.datadr.end}/>
+                            <FormControl readOnly placeholder={this.state.end}/>
                         </InputGroup>
                     </label>
                     </Col>
@@ -112,12 +124,12 @@ Large is 5$
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Size:</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.props.datadr.size}/>
+                            <FormControl readOnly placeholder={this.state.size}/>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>Weight:</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.props.datadr.weight}/>
+                            <FormControl readOnly placeholder={this.state.weight}/>
                         </InputGroup>
                     </label>
                         </Col>
@@ -131,7 +143,7 @@ Large is 5$
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Date</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.props.datadr.date}/>
+                            <FormControl readOnly placeholder={this.state.date}/>
                         </InputGroup>
                         </label>
                         </Col>
@@ -166,7 +178,7 @@ Large is 5$
     }catch(e){
         return(
             <p>
-                Fehler 404: Keine Daten, weil du die Seite refresht hast du Eumel! Geh zurück
+                Fehler 404
             </p>
         );   
     }
