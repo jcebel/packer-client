@@ -2,7 +2,6 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import VehicleDropdown from './VehicleDropdown';
-import Form from 'react-bootstrap/Form';
 import {RoutesRow} from './RoutesRow';
 import Page from './Page';
 import {EmptyRow} from './EmptyRow'
@@ -11,43 +10,57 @@ import {StyledCell} from './StyledCell';
 import styled from 'styled-components/macro';
 import {FilterInput} from './FilterInput';
 
+const StyledDeleteFilter = styled(Button)`width:max-content`;
+const StyledTable = styled(Table)`vertical-align:middle;`;
+
 export class RoutesList extends React.Component {
     // TODO Define Css Stylings!
     constructor(props) {
         super(props);
 
         this.state = {
+            data: [],
             searchCriteria: {}
         };
+        this.onInputChanged = this.onInputChanged.bind(this);
     }
 
     onInputChanged(identifier, newValue) {
-        const state = this.state;
-        state.searchCriteria[identifier] = newValue;
-
-        this.setState({...state});
-        this.props.triggerFilterOnInput(this.state.searchCriteria);
+        const doesAttributeMatch = (criteriaName, row) => {
+            const attribute = filterCriteria[criteriaName].resolveAttribute(row);
+            if (attribute) {
+                return attribute.startsWith(filterCriteria[criteriaName].inputValue);
+            }
+            return false;
+        };
+        const filter = (data) => {
+            return data.filter((row) => {
+                const array = Object.getOwnPropertyNames(filterCriteria).map((criteria) =>
+                    doesAttributeMatch(criteria, row));
+                return array.reduce((total, currentValue) => total && currentValue, true);
+            });
+        };
+        const filterCriteria = {...this.state.searchCriteria};
+        filterCriteria[identifier] = newValue;
+        if (filterCriteria) {
+            const filteredData = filter(this.props.data);
+            this.setState({
+                data: filteredData,
+                searchCriteria: filterCriteria
+            });
+        }
     }
 
-    createFilterCriteria(event) {
-        return {inputValue: event.target.value, resolveAttribute: this.props.resolver}
+    componentDidUpdate(prevProps) {
+        if (!prevProps.loadingDone && this.props.loadingDone) {
+            this.setState({data: this.props.data});
+        }
     }
-
-    /*
-    <Form.Control as="input" placeholder="Distance" type="text"
-                                                          defaultValue={this.state.searchCriteria.distance ? this.state.searchCriteria.distance.inputValue : ""}
-                                                          onInput={(event) => {
-                                                              this.onInputChanged("distance", this.createFilterCriteria(event, (row) => row.kilometers + " km"));
-                                                          }}/>
-     */
-
 
     render() {
 
-        const StyledDeleteFilter = styled(Button)`width:max-content`;
-        const StyledTable = styled(Table)`vertical-align:middle;`;
         return (
-            <Page key="RoutesListPage">
+            <Page>
                 <Container>
                     <StyledTable>
                         <thead>
@@ -55,46 +68,36 @@ export class RoutesList extends React.Component {
                             <StyledCell><VehicleDropdown/></StyledCell>
                             <StyledCell>
                                 <FilterInput
-                                    identifier="distance"
-                                    defaultValue={this.state.searchCriteria.distance ? this.state.searchCriteria.distance.inputValue : ""}
                                     placeholder="Distance"
-                                    onInputChanged={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
+                                    triggerFilter={this.onInputChanged}
                                     resolver={(row) => row.kilometers + " km"}
                                 />
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
-                                    identifier="items"
-                                    defaultValue={this.state.searchCriteria.items ? this.state.searchCriteria.items.inputValue : ""}
                                     placeholder="Items"
-                                    onInputChanged={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
+                                    triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => String(row.items.length)}
                                 />
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
-                                    identifier="start"
-                                    defaultValue={this.state.searchCriteria.start ? this.state.searchCriteria.start.inputValue : ""}
                                     placeholder="Start"
-                                    onInputChanged={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
+                                    triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => row.items[0].origination.street}
                                 />
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
-                                    identifier="end"
-                                    defaultValue={this.state.searchCriteria.end ? this.state.searchCriteria.end.inputValue : ""}
                                     placeholder="End"
-                                    onInputChanged={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
+                                    triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => row.items[row.items.length - 1].destination.street}
                                 />
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
-                                    identifier="payment"
-                                    defaultValue={this.state.searchCriteria.payment ? this.state.searchCriteria.payment.inputValue : ""}
                                     placeholder="Payment"
-                                    onInputChanged={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
+                                    triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => row.minBid + ' €'}
                                 />
                             </StyledCell>
@@ -105,7 +108,7 @@ export class RoutesList extends React.Component {
                         </thead>
                         <tbody>
 
-                        {this.props.loadingDone ? this.props.data.map((route, i) => <RoutesRow key={i}
+                        {this.props.loadingDone ? this.state.data.map((route, i) => <RoutesRow key={route._id}
                                                                                                route={route}/>) :
                             <EmptyRow/>}
                         </tbody>
