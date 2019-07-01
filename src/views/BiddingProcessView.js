@@ -33,6 +33,11 @@ export class BiddingProcessView extends React.Component{
         this.setState({
             loading: true
         });
+        this.refreshRouteData();
+
+    }
+
+    refreshRouteData(){
         let id = this.props.match.params.id;
         RouteService.getRoute(id).then((data) => {
             this.setState({
@@ -43,6 +48,15 @@ export class BiddingProcessView extends React.Component{
             console.error(e);
         });
     }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.refreshRouteData(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
 
     render() {
         if (this.state.loading) {
@@ -108,13 +122,6 @@ export class BiddingProcessView extends React.Component{
             }).catch((e) => {
                 console.error(e);
             });
-
-
         }
-
-
-
     }
-
-
 }
