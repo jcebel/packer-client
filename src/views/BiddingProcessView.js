@@ -39,7 +39,6 @@ export class BiddingProcessView extends React.Component{
                 route: data,
                 loading: false
             });
-            console.log(this.props.route);
         }).catch((e) => {
             console.error(e);
         });
@@ -75,7 +74,46 @@ export class BiddingProcessView extends React.Component{
     }
 
     submitBidByID(id, newBid){
-        alert("New Bid " + newBid + " made for route " + id);
+        if(isNaN(newBid)){
+            alert("Please enter a Number to sumbit a new bid");
+        } else{
+            var auctionBids = [];
+            var currentBid = -1;
+            RouteService.getRoute(id).then((data) => {
+                auctionBids = data.auctionBids;
+                currentBid = auctionBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; });
+                if( newBid >= currentBid){
+                    alert("Your bid must be under " + currentBid + " €.");
+                } else{
+                    let route = {
+                        "_id": id,
+                        "owner": "5d19fdb047ec6c05280c8541",
+                        "bid": newBid
+                    };
+                    RouteService.updateRoute(route).then(() => {
+                        RouteService.getRoute(id).then((data) => {
+                            this.setState({
+                                route: data,
+                                loading: false
+                            });
+                            alert("Route successfully updated");
+                            console.log("Route successfully updated");
+                        }).catch((e) => {
+                            console.error(e);
+                        });
+                    }).catch((e) => {
+                        console.error(e);
+                    });
+                }
+            }).catch((e) => {
+                console.error(e);
+            });
+
+
+        }
+
+
+
     }
 
 
