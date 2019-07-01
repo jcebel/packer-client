@@ -14,15 +14,16 @@ const StyledDeleteFilter = styled(Button)`width:max-content`;
 const StyledTable = styled(Table)`vertical-align:middle;`;
 
 export class RoutesList extends React.Component {
-    // TODO Define Css Stylings!
     constructor(props) {
         super(props);
 
         this.state = {
             data: [],
-            searchCriteria: {}
+            searchCriteria: {},
+            deleted:false
         };
         this.onInputChanged = this.onInputChanged.bind(this);
+        this.deleteFilters = this.deleteFilters.bind(this);
     }
 
     onInputChanged(identifier, newValue) {
@@ -57,6 +58,12 @@ export class RoutesList extends React.Component {
         }
     }
 
+    deleteFilters() {
+        this.setState(function(state,props) {
+            return ({data: props.data, searchCriteria: {}, deleted: !state.deleted });
+        })
+    }
+
     render() {
 
         return (
@@ -68,6 +75,7 @@ export class RoutesList extends React.Component {
                             <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged} resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
                             <StyledCell>
                                 <FilterInput
+                                    triggerUpdate={this.state.deleted}
                                     placeholder="Distance"
                                     triggerFilter={this.onInputChanged}
                                     resolver={(row) => row.kilometers + " km"}
@@ -75,6 +83,7 @@ export class RoutesList extends React.Component {
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
+                                    triggerUpdate={this.state.deleted}
                                     placeholder="Items"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => String(row.items.length)}
@@ -82,6 +91,7 @@ export class RoutesList extends React.Component {
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
+                                    triggerUpdate={this.state.deleted}
                                     placeholder="Start"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => row.items[0].origination.street}
@@ -89,6 +99,7 @@ export class RoutesList extends React.Component {
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
+                                    triggerUpdate={this.state.deleted}
                                     placeholder="End"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => row.items[row.items.length - 1].destination.street}
@@ -96,13 +107,14 @@ export class RoutesList extends React.Component {
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
+                                    triggerUpdate={this.state.deleted}
                                     placeholder="Payment"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
                                     resolver={(row) => row.minBid + ' €'}
                                 />
                             </StyledCell>
                             <StyledCell>
-                                <StyledDeleteFilter variant="danger">Delete Filters</StyledDeleteFilter>
+                                <StyledDeleteFilter variant="danger" onClick={this.deleteFilters}>Delete Filters</StyledDeleteFilter>
                             </StyledCell>
                         </tr>
                         </thead>

@@ -20,6 +20,12 @@ export class FilterInput extends React.Component {
         this.props.triggerFilter(event.target.name, this.createFilterCriteria(event))
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.triggerUpdate != this.props.triggerUpdate) {
+            this.setState({value: ''});
+        }
+    }
+
     render() {
         return (
             <Form.Control type="text"
