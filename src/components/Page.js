@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationBar} from './NavigationBar';
+import {PlainNavigationBar} from './NavigationBar';
 
 /*
 Source:https://github.com/sebischair/sebamaster-movie-frontend
@@ -24,7 +24,7 @@ export default class Page extends React.Component {
     render() {
         return (
             <section>
-                <NavigationBar/>
+                <PlainNavigationBar/>
                 {this.props.children}
             </section>
         );
