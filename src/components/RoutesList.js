@@ -65,7 +65,7 @@ export class RoutesList extends React.Component {
                     <StyledTable>
                         <thead>
                         <tr>
-                            <StyledCell><VehicleDropdown/></StyledCell>
+                            <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged} resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
                             <StyledCell>
                                 <FilterInput
                                     placeholder="Distance"
