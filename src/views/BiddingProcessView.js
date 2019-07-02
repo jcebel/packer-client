@@ -68,8 +68,7 @@ export class BiddingProcessView extends React.Component{
                     <Row style= {rowStyle} >
                         <Col sm={8}>
                             <Card style={rowStyle}>
-                                Map outcommented to be able to work offline
-                                {/*<GoogleMaps/>*/}
+                                <GoogleMaps/>
                             </Card>
                         </Col>
                         <Col>
@@ -111,6 +110,7 @@ export class BiddingProcessView extends React.Component{
                                 loading: false
                             });
                             alert("Route successfully updated");
+                            document.getElementById("newBid").value = "";
                             console.log("Route successfully updated");
                         }).catch((e) => {
                             console.error(e);
