@@ -24,11 +24,14 @@ const MapWithADirectionsRenderer = compose(
 
             DirectionsService.route({
                 origin: 'Regensburg HBF',
-                destination: 'München Hbf, Bayerstraße 10A, 80335 München, Deutschland',
+                destination: 'Leiherkasten',
                 travelMode: google.maps.TravelMode.DRIVING,
                 unitSystem: google.maps.UnitSystem.METRIC,
-                //waypoints[]: DirectionsWaypoint,
-                //optimizeWaypoints: Boolean,
+                waypoints: [
+                    {location: 'Elsendorf', stopover: true},
+                    {location: 'Pfaffenhofen', stopover: true}
+                ],
+                optimizeWaypoints: false,
             }, (result, status) => {
                 if (status === google.maps.DirectionsStatus.OK) {
                     this.setState({
@@ -43,7 +46,7 @@ const MapWithADirectionsRenderer = compose(
 )(props =>
     <GoogleMap
         defaultZoom={7}
-        defaultCenter={new google.maps.LatLng(449.012619, 12.099691)}
+        defaultCenter={new google.maps.LatLng(48.1548256,11.4017508,)}
     >
         {props.directions && <DirectionsRenderer directions={props.directions} />}
     </GoogleMap>
