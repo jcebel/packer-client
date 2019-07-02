@@ -62,13 +62,20 @@ export class BiddingProcessView extends React.Component{
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
+        var mockedRoute = {
+            origin: 'Regensburg HBF',
+            destination: 'Leiherkasten',
+            waypoints: ['Kehlheim', 'Elsendorf', 'Pfaffenhofen'],
+            travelMode: 'Driving'
+        };
+
         return (
             <Page>
                 <Container>
                     <Row style= {rowStyle} >
                         <Col sm={8}>
                             <Card style={rowStyle}>
-                                <GoogleMaps/>
+                                <GoogleMaps route={mockedRoute}/>
                             </Card>
                         </Col>
                         <Col>

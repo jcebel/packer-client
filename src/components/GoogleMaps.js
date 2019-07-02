@@ -20,17 +20,27 @@ const MapWithADirectionsRenderer = compose(
     withGoogleMap,
     lifecycle({
         componentDidMount() {
+            var receivedWaypoints = this.props.route.waypoints;
+            var waypointArray = [];
+            receivedWaypoints.forEach(function(element) {
+                waypointArray.push({location: element,  stopover: true});
+            });
             const DirectionsService = new google.maps.DirectionsService();
 
+            var travelMode = '';
+            if(this.props.route.travelMode === 'Driving'){
+                travelMode = google.maps.TravelMode.DRIVING;
+            } else if(this.props.route.travelMode === 'Biking'){
+                travelMode = google.maps.TravelMode.BICYCLING;
+            } else{
+                travelMode = google.maps.TravelMode.DRIVING;
+            }
             DirectionsService.route({
-                origin: 'Regensburg HBF',
-                destination: 'Leiherkasten',
-                travelMode: google.maps.TravelMode.DRIVING,
+                origin: this.props.route.origin,
+                destination: this.props.route.destination,
+                travelMode: travelMode,
                 unitSystem: google.maps.UnitSystem.METRIC,
-                waypoints: [
-                    {location: 'Elsendorf', stopover: true},
-                    {location: 'Pfaffenhofen', stopover: true}
-                ],
+                waypoints: waypointArray,
                 optimizeWaypoints: false,
             }, (result, status) => {
                 if (status === google.maps.DirectionsStatus.OK) {
