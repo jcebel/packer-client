@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Carousel, Jumbotron, Container, Button} from 'react-bootstrap';
 import Page from './Page';
 
-class Home extends Component {
+export class Home extends Component {
   
   constructor(props, context) {
     super(props, context);
@@ -100,7 +100,3 @@ class Home extends Component {
     );
   }
 }
-
-
-  export default Home;
-  

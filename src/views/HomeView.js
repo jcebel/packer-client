@@ -1,11 +1,11 @@
 import React from 'react';
-import Home from '../components/Home';
+import {Home} from '../components/Home';
 
 /*
 Source:https://github.com/sebischair/sebamaster-movie-frontend
  */
 
-export default class HomeView extends React.Component {
+export class HomeView extends React.Component {
 
     constructor(props) {
         super(props);

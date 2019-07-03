@@ -1,4 +1,4 @@
-class HttpService {
+export class HttpService {
 
     static apiURL() {return "http://localhost:3000"; }
 
@@ -135,12 +135,10 @@ class HttpService {
     }
 
     static checkIfUnauthorized(res) {
-        if(res.status == 401) {
+        if(res.status === 401) {
             return true;
         }
         return false;
     }
 
 }
-
-module.exports = HttpService;

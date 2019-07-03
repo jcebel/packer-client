@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar, Nav, Form} from 'react-bootstrap';
-import styled from 'styled-components/macro';
 
-
-class PlainNavigationBar extends Component{
+export class PlainNavigationBar extends React.Component{
 
     constructor(props) {
         super(props);
@@ -12,22 +10,22 @@ class PlainNavigationBar extends Component{
 
     render() {
         return (
-            <Navbar  variant="light" className={this.props.className}>
+            <Navbar bg="light" variant="light">
                 <Navbar.Brand>
-                    <img
-                        src="Images/Packer.png"
+                    <a href="/">
+                        <img
+                        src="/Images/Packer.png"
                         width="110px"
                         height="50x"
                         alt="Company Logo"
-                    />
+                        />
+                    </a>
                 </Navbar.Brand>
-                <Nav className="mr-auto" activeKey="/home"
-                    >
+                <Nav className="mr-auto" activeKey="/home">
                     <Nav.Link href="/" >Home</Nav.Link>
                     <Nav.Link>My Deliveries</Nav.Link>
-                    <Nav.Link>Be A Driver</Nav.Link>
-                    <Nav.Link href= "/sendanything">Send anything</Nav.Link>
-
+                    <Nav.Link href="/beAdriver">Be A Driver</Nav.Link>
+                    <Nav.Link>Send anything</Nav.Link>
                 </Nav>
 
                 <Form inline>
@@ -46,4 +44,3 @@ class PlainNavigationBar extends Component{
     }
 
 }
-export const NavigationBar = styled(PlainNavigationBar)`background-color: green`

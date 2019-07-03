@@ -1,12 +1,22 @@
-const HttpService = require('./HttpService');
+import {HttpService} from './HttpService';
 
-class RouteService {
+export class RouteService {
 
     static baseURL() {return "http://localhost:3000/route" }
 
+    static getRoutesByDate(date){
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${this.baseURL()}/byDate/${date}`, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static getRoutes(){
         return new Promise((resolve, reject) => {
-            HttpService.get(this.baseURL(), function(data) {
+            HttpService.get(`${this.baseURL()}/`, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
@@ -17,7 +27,7 @@ class RouteService {
     static getRoute(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${this.baseURL()}/${id}`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
+                if(data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
                 else {
@@ -40,5 +50,3 @@ class RouteService {
     }
 
 }
-
-module.exports = RouteService;
