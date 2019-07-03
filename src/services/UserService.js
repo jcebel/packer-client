@@ -52,5 +52,9 @@ export default class UserService {
             email: JSON.parse(window.atob(base64)).email
         };
     }
+
+    static logout(){
+        window.localStorage.removeItem('jwtToken');
+    }
 }
 
