@@ -261,15 +261,45 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import {Container} from 'react-bootstrap';
 import * as Yup from 'yup';
+import {withRouter} from 'react-router-dom';
 
 class Registration extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            firstName: '',
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChangeFirstName(value){
+        //this.setState();
+    }
+
+    handleSubmit(event){
+        this.setState(event);
+        console.log("State: " + this.state);
+        let fields = this.state;
+        console.log("Reg.handleSubmit: " + fields);
+        delete fields.confirmPassword;
+        console.log("Reg.handleSubmitDel: " + fields);
+        this.props.onSubmit(fields)
+    }
+
+
     render() {
         return (
             <Container>
                 <Formik
                     initialValues={{
                         firstName: '',
-                        lastName: '',
+                        name: '',
                         email: '',
                         password: '',
                         confirmPassword: ''
@@ -277,7 +307,7 @@ class Registration extends React.Component {
                     validationSchema={Yup.object().shape({
                         firstName: Yup.string()
                             .required('First Name is required'),
-                        lastName: Yup.string()
+                        name: Yup.string()
                             .required('Last Name is required'),
                         email: Yup.string()
                             .email('Email is invalid')
@@ -289,9 +319,7 @@ class Registration extends React.Component {
                             .oneOf([Yup.ref('password'), null], 'Passwords must match')
                             .required('Confirm Password is required')
                     })}
-                    onSubmit={fields => {
-                        alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
-                    }}
+                    onSubmit={this.handleSubmit}
                     render={({ errors, status, touched }) => (
                         <Form>
                             <div className="form-group">
@@ -300,9 +328,9 @@ class Registration extends React.Component {
                                 <ErrorMessage name="firstName" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="lastName">Last Name</label>
-                                <Field name="lastName" type="text" className={'form-control' + (errors.lastName && touched.lastName ? ' is-invalid' : '')} />
-                                <ErrorMessage name="lastName" component="div" className="invalid-feedback" />
+                                <label htmlFor="name">Last Name</label>
+                                <Field name="name" type="text" className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')} />
+                                <ErrorMessage name="name" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
@@ -331,4 +359,4 @@ class Registration extends React.Component {
     }
 }
 
-export { Registration };
+export default withRouter(Registration);

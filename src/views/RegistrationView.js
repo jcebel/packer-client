@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Registration} from '../components/Registration'
+import Registration from '../components/Registration'
+import UserService from '../services/UserService';
 
 export class RegistrationView extends React.Component{
 
@@ -9,9 +10,22 @@ export class RegistrationView extends React.Component{
         this.state = {};
     }
 
+    register(fields) {
+        console.log("RevView.register: " + fields);
+        UserService.register(fields).then((data) => {
+            this.props.history.push('/');
+        }).catch((e) => {
+            console.error(e);
+            this.setState({
+                error: e
+            });
+        })
+    }
+
     render() {
+        console.log("regview");
         return (
-            <Registration onSubmit={(user) => this.register(user)} error={this.state.error}></Registration>
+            <Registration onSubmit={(fields) => this.register(fields)} error={this.state.error}></Registration>
         );
     }
 }
