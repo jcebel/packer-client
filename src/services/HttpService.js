@@ -6,7 +6,7 @@ export class HttpService {
         let token = window.localStorage['jwtToken'];
         let header = new Headers();
         if(token) {
-            header.append('Authorization', `JWT ${token}`);
+            header.append('Authorization', token);
         }
 
         fetch(url, {
@@ -38,7 +38,7 @@ export class HttpService {
         let token = window.localStorage['jwtToken'];
         let header = new Headers();
         if(token) {
-            header.append('Authorization', `JWT ${token}`);
+            header.append('Authorization', token);
         }
         header.append('Content-Type', 'application/json');
 
@@ -73,7 +73,7 @@ export class HttpService {
         let token = window.localStorage['jwtToken'];
         let header = new Headers();
         if(token) {
-            header.append('Authorization', `JWT ${token}`);
+            header.append('Authorization', token);
         }
         header.append('Content-Type', 'application/json');
         console.log("Header: " + JSON.stringify(header));
@@ -112,7 +112,7 @@ export class HttpService {
         let token = window.localStorage['jwtToken'];
         let header = new Headers();
         if(token) {
-            header.append('Authorization', `JWT ${token}`);
+            header.append('Authorization', token);
         }
 
         fetch(url, {

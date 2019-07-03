@@ -36,5 +36,21 @@ export default class UserService {
             });
         });
     }
+
+    static isAuthenticated() {
+        return !!window.localStorage['jwtToken'];
+    }
+
+    static getCurrentUser() {
+        let token = window.localStorage['jwtToken'];
+        if (!token) return {};
+
+        let base64Url = token.split('.')[1];
+        let base64 = base64Url.replace('-', '+').replace('_', '/');
+        return {
+            id : JSON.parse(window.atob(base64)).id,
+            email: JSON.parse(window.atob(base64)).email
+        };
+    }
 }
 
