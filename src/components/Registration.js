@@ -108,7 +108,9 @@ class Registration extends React.Component {
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary mr-2">Register</button>
-                                <button type="reset" className="btn btn-secondary">Reset</button>
+                                <button type="reset" className="btn btn-secondary mr-2">Reset</button>
+                                <button type="button" className="btn btn-secondary"
+                                        onClick={()=> this.props.history.push('/login')}>Login</button>
                             </div>
                         </Form>
                     )}

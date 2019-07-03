@@ -57,6 +57,8 @@ class Login extends React.Component {
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary mr-2">Login</button>
+                                <button type="button" className="btn btn-secondary"
+                                        onClick={()=> this.props.history.push('/register')}>Register</button>
                             </div>
                         </Form>
                         )}
