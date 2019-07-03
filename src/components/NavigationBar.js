@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Form} from 'react-bootstrap';
+import { Navbar, Nav, Form, NavDropdown} from 'react-bootstrap';
 
 export class PlainNavigationBar extends React.Component{
 
@@ -27,18 +27,22 @@ export class PlainNavigationBar extends React.Component{
                     <Nav.Link href="/beAdriver">Be A Driver</Nav.Link>
                     <Nav.Link>Send anything</Nav.Link>
                 </Nav>
-
-                <Form inline>
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                         width="50px"
-                         height="50x"
-                         alt="Account Icon"
-                         style={{marginLeft: '10px'}}
-                    />
-                </Form>
-
-
-
+                <Nav>
+                    <NavDropdown eventKey={1}
+                        title={
+                            <div className>
+                                <img
+                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                                    width="50px"
+                                    height="50x"
+                                    alt="Account Icon"
+                                    // style={{marginLeft: '10px'}}
+                                />
+                            </div>
+                        }>
+                        <NavDropdown.Item href="/">Logout</NavDropdown.Item>
+                    </NavDropdown>
+                </Nav>
             </Navbar>
         );
     }
