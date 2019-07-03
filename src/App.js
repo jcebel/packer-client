@@ -6,6 +6,7 @@ import {RoutesListView} from "./views/RoutesListView";
 import {RegistrationView} from "./views/RegistrationView";
 import {LoginView} from "./views/LoginView";
 import UserService from "./services/UserService";
+import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
 
 export default class App extends React.Component {
 
@@ -34,6 +35,8 @@ export default class App extends React.Component {
                     }, path: '/beAdriver', exact:true},
                 { component: RegistrationView, path: '/register', exact:true},
                 { component: LoginView, path: '/login', exact:true},
+                { component: DeliveryMonitorView, path: '/deliverymonitor', exact: true}
+
             ]
         };
     }
