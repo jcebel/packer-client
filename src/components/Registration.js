@@ -278,18 +278,15 @@ class Registration extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeFirstName(value){
-        //this.setState();
-    }
-
     handleSubmit(event){
         this.setState(event);
         console.log("State: " + this.state);
         let fields = this.state;
-        console.log("Reg.handleSubmit: " + fields);
+        console.log("Reg.handleSubmit: " + JSON.stringify(fields));
         delete fields.confirmPassword;
-        console.log("Reg.handleSubmitDel: " + fields);
-        this.props.onSubmit(fields)
+        console.log("Reg.handleSubmitDel: " + JSON.stringify(fields));
+        this.props.onSubmit(fields);
+        console.log("Props: " + JSON.stringify(this.props));
     }
 
 
@@ -302,7 +299,13 @@ class Registration extends React.Component {
                         name: '',
                         email: '',
                         password: '',
-                        confirmPassword: ''
+                        confirmPassword: ''/*,
+                        homeAddress:{
+                            city: '',
+                            street: '',
+                            houseNumber: '',
+                            postalCode: ''
+                        }*/
                     }}
                     validationSchema={Yup.object().shape({
                         firstName: Yup.string()
@@ -317,7 +320,20 @@ class Registration extends React.Component {
                             .required('Password is required'),
                         confirmPassword:  Yup.string()
                             .oneOf([Yup.ref('password'), null], 'Passwords must match')
-                            .required('Confirm Password is required')
+                            .required('Confirm Password is required')/*,
+                        homeAddress: Yup.array()
+                            .of(
+                                Yup.object().shape({
+                                    city: Yup.string()
+                                        .required('City is required'),
+                                    street: Yup.string()
+                                        .required('Street is required'),
+                                    houseNumber: Yup.number()
+                                        .required('House number is required'),
+                                    postalCode: Yup.string()
+                                        .required('Postal Code is required')
+                                })
+                            )*/
                     })}
                     onSubmit={this.handleSubmit}
                     render={({ errors, status, touched }) => (

@@ -76,15 +76,15 @@ export class HttpService {
             header.append('Authorization', `JWT ${token}`);
         }
         header.append('Content-Type', 'application/json');
-        console.log("Header: " + header);
-        console.log("Body: " + data);
+        console.log("Header: " + JSON.stringify(header));
+        console.log("Body: " + JSON.stringify(data));
 
         fetch(url, {
             method: 'POST',
             headers: header,
             body: JSON.stringify(data)
         }).then((resp) => {
-            console.log("HTTP Service resp: " + resp);
+            console.log("HTTP Service resp: " + JSON.stringify(resp));
             if(this.checkIfUnauthorized(resp)) {
                 window.location = "/#login";
                 return;
