@@ -21,5 +21,20 @@ export default class UserService {
             });
         });
     }
+
+    static login(email, password) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${UserService.baseURL()}/login`, {
+                email: email,
+                password: password
+            }, function(data) {
+                console.log("UService resolve: " + JSON.stringify(data));
+                resolve(data);
+            }, function(textStatus) {
+                console.log("UService reject: " + JSON.stringify(textStatus));
+                reject(textStatus);
+            });
+        });
+    }
 }
 

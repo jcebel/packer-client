@@ -18,7 +18,7 @@ export default class App extends React.Component {
                 { component: BiddingProcessView , path: '/route/:id', exact: true},
                 { component: RoutesListView, path: '/beAdriver', exact:true},
                 { component: RegistrationView, path: '/register', exact:true},
-                { component: LoginView, path: '/login'},
+                { component: LoginView, path: '/login', exact:true},
             ]
         };
     }

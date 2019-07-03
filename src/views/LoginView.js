@@ -15,7 +15,7 @@ export class LoginView extends React.Component {
     }
 
     login(user) {
-        UserService.login(user.username, user.password).then((data) => {
+        UserService.login(user.email, user.password).then((data) => {
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);
