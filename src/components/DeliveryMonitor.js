@@ -6,15 +6,37 @@ import Badge from "react-bootstrap/Badge";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Page from "./Page";
+import MonitorRow from "./MonitorRow";
+
+class DeliveryMonitor extends Component {
 
 
-class MonitorList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: []
+        };
+        // this.onInputChanged = this.onInputChanged.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log("Prev Props: " + JSON.stringify(prevProps));
+        if (!prevProps.loadingDone && this.props.loadingDone) {
+            this.setState({data: this.props.data});
+        }
+    }
+
     render() {
         return (
-            <Page>
-                <Container>
+            <Page activetab="delivery">
+                {this.props.loadingDone ? this.state.data.map((deliverygood, i) => <MonitorRow key={deliverygood._id}
+                                                                                       deliverygood={deliverygood}/>) :
+                    "Empty"}
+
+{/*                <Container>
                     <p/>
-                    <div className="list-group">{/*https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-list-groups.php*/}
+                    <div className="list-group">https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-list-groups.php
                         <a href="#" className="list-group-item list-group-item-action">
                             <div className="d-flex justify-content-between text-secondary">
                                     <div><b>Date:</b> 13.06.2019</div>
@@ -124,9 +146,9 @@ class MonitorList extends Component {
                             </Row>
                         </a>
                     </div>
-                </Container>
+                </Container>*/}
             </Page>
-        );
+        )
     }
 }
-export default MonitorList;
+export default DeliveryMonitor;

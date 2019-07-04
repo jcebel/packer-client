@@ -33,9 +33,16 @@ export default class App extends React.Component {
                         return (<Redirect to={'/login'}/>)
                     }
                     }, path: '/beAdriver', exact:true},
+                { render: (props) => {
+                    if(UserService.isAuthenticated()){
+                        return(<DeliveryMonitorView{... props}/>)
+                    }
+                    else{
+                        return (<Redirect to={'/login'}/>)
+                    }
+                    }, path: '/deliverymonitor', exact: true},
                 { component: RegistrationView, path: '/register', exact:true},
-                { component: LoginView, path: '/login', exact:true},
-                { component: DeliveryMonitorView, path: '/deliverymonitor', exact: true}
+                { component: LoginView, path: '/login', exact:true}
 
             ]
         };
