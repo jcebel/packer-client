@@ -67,7 +67,7 @@ export class RoutesList extends React.Component {
     render() {
 
         return (
-            <Page>
+            <Page activetab="driver">
                 <Container>
                     <StyledTable>
                         <thead>

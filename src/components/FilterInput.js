@@ -21,7 +21,7 @@ export class FilterInput extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.triggerUpdate != this.props.triggerUpdate) {
+        if(prevProps.triggerUpdate !== this.props.triggerUpdate) {
             this.setState({value: ''});
         }
     }
