@@ -24,7 +24,7 @@ export default class Page extends React.Component {
     render() {
         return (
             <section>
-                <PlainNavigationBar/>
+                <PlainNavigationBar activetab={this.props.activetab}/>
                 {this.props.children}
             </section>
         );
