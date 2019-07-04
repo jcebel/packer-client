@@ -70,7 +70,7 @@ export class BiddingProcessView extends React.Component{
         };
 
         return (
-            <Page>
+            <Page activetab="driver">
                 <Container>
                     <Row style= {rowStyle} >
                         <Col sm={8}>
