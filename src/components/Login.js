@@ -18,13 +18,9 @@ class Login extends React.Component {
 
     handleSubmit(event){
         this.setState(event);
-        console.log("State: " + this.state);
         let fields = this.state;
-        console.log("Reg.handleSubmit: " + JSON.stringify(fields));
         delete fields.confirmPassword;
-        console.log("Reg.handleSubmitDel: " + JSON.stringify(fields));
         this.props.onSubmit(fields);
-        console.log("Props: " + JSON.stringify(this.props));
     }
 
     render() {
@@ -43,7 +39,7 @@ class Login extends React.Component {
                             .required('Password is required')
                     })}
                     onSubmit={this.handleSubmit}
-                    render={({errors, status, touched}) => (
+                    render={({errors, touched}) => (
                         <Form>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>

@@ -1,5 +1,3 @@
-"use strict";
-
 import React from 'react';
 
 import Login from '../components/Login';
@@ -15,7 +13,7 @@ export class LoginView extends React.Component {
     }
 
     login(user) {
-        UserService.login(user.email, user.password).then((data) => {
+        UserService.login(user.email, user.password).then(() => {
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);

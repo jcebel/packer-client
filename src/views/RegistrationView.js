@@ -11,8 +11,7 @@ export class RegistrationView extends React.Component{
     }
 
     register(fields) {
-        console.log("RevView.register: " + fields);
-        UserService.register(fields).then((data) => {
+        UserService.register(fields).then(() => {
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);
@@ -23,7 +22,6 @@ export class RegistrationView extends React.Component{
     }
 
     render() {
-        console.log("regview");
         return (
             <Registration onSubmit={(fields) => this.register(fields)} error={this.state.error}></Registration>
         );

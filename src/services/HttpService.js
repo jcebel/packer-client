@@ -76,15 +76,12 @@ export class HttpService {
             header.append('Authorization', token);
         }
         header.append('Content-Type', 'application/json');
-        console.log("Header: " + JSON.stringify(header));
-        console.log("Body: " + JSON.stringify(data));
 
         fetch(url, {
             method: 'POST',
             headers: header,
             body: JSON.stringify(data)
         }).then((resp) => {
-            console.log("HTTP Service resp: " + JSON.stringify(resp));
             if(this.checkIfUnauthorized(resp)) {
                 window.location = "/#login";
                 return;
@@ -94,7 +91,6 @@ export class HttpService {
             }
         }).then((resp) => {
             if(resp.error) {
-                console.log("Resp error: " + resp.error);
                 onError(resp.error);
             }
             else {
