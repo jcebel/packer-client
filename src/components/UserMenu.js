@@ -18,7 +18,7 @@ class UserMenu extends React.Component {
         this.setState({
             user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
         });
-        if(this.props.location.pathname != '/') {
+        if(this.props.location.pathname !== '/') {
             this.props.history.push('/');
         }
         else {
