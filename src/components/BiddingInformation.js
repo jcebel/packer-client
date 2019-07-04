@@ -19,7 +19,6 @@ export class BiddingInformation extends React.Component{
                     route: data,
                     loading: false
                 });
-                console.log("Route successfully updated");
             }).catch((e) => {
                 console.error(e);
             });
@@ -72,8 +71,9 @@ export class BiddingInformation extends React.Component{
                                         .moreThan(0,"Your are not allowed to drive for free.")
                                         .typeError('Bid must be a number.')
                                 })}
-                                onSubmit={(values) => {
+                                onSubmit={(values, {resetForm}) => {
                                     this.submitBidByID(this.props.route._id, values.Bid);
+                                    resetForm({Bid:''});
                                 }}
                                 render={({ errors, touched }) => (
                                     <Form>
