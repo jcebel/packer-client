@@ -1,6 +1,7 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
 import {PackageListRow} from "./PackageListRow";
+import {StyledHeaderCell} from "./StyledHeaderCell";
 
 export class PackageList extends React.Component{
 
@@ -11,10 +12,10 @@ export class PackageList extends React.Component{
                 <Table striped bordered hover size="sm">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Item</th>
-                            <th>Size</th>
-                            <th>Weight</th>
+                            <StyledHeaderCell><b>#</b></StyledHeaderCell>
+                            <StyledHeaderCell>Item</StyledHeaderCell>
+                            <StyledHeaderCell>Size</StyledHeaderCell>
+                            <StyledHeaderCell>Weight</StyledHeaderCell>
                         </tr>
                     </thead>
                     <tbody>
