@@ -50,7 +50,7 @@ export class BiddingProcessView extends React.Component{
             return (<h2>Loading...</h2>);
         }
         return (
-            <Page>
+            <Page activetab="driver">
                 <Container>
                     <Row style= {rowStyle} >
                         <Col sm={8}>
