@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DeliveryMonitor from "../components/DeliveryMonitor";
 import DeliveryGoodService from "../services/DeliveryGoodService";
