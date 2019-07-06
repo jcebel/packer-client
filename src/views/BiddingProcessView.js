@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import GoogleMaps from '../components/GoogleMaps'
 import {RouteDetails} from "../components/RouteDetails";
 import {PackageList} from "../components/PackageList";
@@ -7,10 +7,9 @@ import {BiddingInformation} from "../components/BiddingInformation";
 import {RouteService} from "../services/RouteService";
 import Page from "../components/Page";
 import UserService from "../services/UserService";
+import {StyledCard} from "../components/StyledCard";
+import {StyledRow} from "../components/StyledRow";
 
-const rowStyle = {
-    height: '350px',
-};
 
 export class BiddingProcessView extends React.Component{
 
@@ -66,17 +65,17 @@ export class BiddingProcessView extends React.Component{
         return (
             <Page activetab="driver">
                 <Container>
-                    <Row style= {rowStyle} >
+                    <StyledRow>
                         <Col sm={8}>
-                            <Card style={rowStyle}>
+                            <StyledCard>
                                 <GoogleMaps route={mockedRoute}/>
-                            </Card>
+                            </StyledCard>
                         </Col>
                         <Col>
                             <RouteDetails route={this.state.route}/>
                             <PackageList route={this.state.route}/>
                         </Col>
-                    </Row>
+                    </StyledRow>
                     <Row>
                         <Col sm={8}>
                             <BiddingInformation route={this.state.route} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>

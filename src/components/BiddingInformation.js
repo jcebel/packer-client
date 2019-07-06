@@ -3,8 +3,6 @@ import {Col, Container, Row} from "react-bootstrap";
 import {ButtonVehicleType} from "./ButtonVehicleType";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
-import {RouteService} from "../services/RouteService";
-import UserService from "../services/UserService";
 
 export class BiddingInformation extends React.Component{
 
@@ -48,7 +46,7 @@ export class BiddingInformation extends React.Component{
                                 validationSchema={Yup.object().shape({
                                     Bid: Yup.number()
                                         .required('Please enter a Bid.')
-                                        .lessThan(lowestBid, "Bid must be lower than ${less} €.")
+                                        .lessThan(lowestBid, `Bid must be lower than ${lowestBid} €.`)
                                         .moreThan(0,"Your are not allowed to drive for free.")
                                         .typeError('Bid must be a number.')
                                 })}
