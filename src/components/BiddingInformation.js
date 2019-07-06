@@ -3,7 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import {ButtonVehicleType} from "./ButtonVehicleType";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
-import {BidingConfirmationPopup} from "./BidingConfirmationPopup";
+import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
 
 export class BiddingInformation extends React.Component{
 
@@ -60,7 +60,7 @@ export class BiddingInformation extends React.Component{
                                         <div className="form-group">
                                             <label htmlFor="Bid"><b>Your Bid</b></label>
                                             <div className="form-inline">
-                                                <BidingConfirmationPopup disabled={(!touched.Bid && errors.Bid === undefined) || (errors.Bid !== undefined) } />
+                                                <BiddingConfirmationPopup disabled={(!touched.Bid && errors.Bid === undefined) || (errors.Bid !== undefined) } />
                                                 <Field name="Bid" type="text" className={'form-control' + (errors.Bid && touched.Bid ? ' is-invalid' : '')} />
                                                 <ErrorMessage name="Bid" component="div" className="invalid-feedback" />
                                             </div>

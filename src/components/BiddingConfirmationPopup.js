@@ -1,7 +1,7 @@
 import React from "react";
 import Popup from "reactjs-popup";
 
-export class BidingConfirmationPopup extends React.Component {
+export class BiddingConfirmationPopup extends React.Component {
 
     render() {
         return (
