@@ -73,7 +73,7 @@ class RegisterDeliveryRequest extends Component{
     render() {
         try{
         return (
-            <Page>
+            <Page activetab = "send">
               <Container>
                 <p>
                 <Row>

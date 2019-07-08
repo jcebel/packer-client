@@ -62,7 +62,7 @@ Large is 5$
         try{
         return (
             <p class="text-dark">
-            <Page>
+            <Page activetab = "send">
                 <Container>
                 <p>
                 <Row>
