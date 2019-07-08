@@ -40,7 +40,7 @@ export default class App extends React.Component {
                     else{
                         return (<Redirect to={'/login'}/>)
                     }
-                    }, path: '/deliverymonitor', exact: true},
+                    }, path: '/deliverymonitor/:id', exact: true},
                 { component: RegistrationView, path: '/register', exact:true},
                 { component: LoginView, path: '/login', exact:true}
 
