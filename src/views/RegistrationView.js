@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Registration from '../components/Registration'
-import UserService from '../services/UserService';
+import AuthService from '../services/AuthService';
 
 export class RegistrationView extends React.Component{
 
@@ -11,7 +11,7 @@ export class RegistrationView extends React.Component{
     }
 
     register(fields) {
-        UserService.register(fields).then(() => {
+        AuthService.register(fields).then(() => {
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);

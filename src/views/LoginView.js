@@ -2,7 +2,7 @@ import React from 'react';
 
 import Login from '../components/Login';
 
-import UserService from '../services/UserService';
+import AuthService from '../services/AuthService';
 
 
 export class LoginView extends React.Component {
@@ -13,7 +13,7 @@ export class LoginView extends React.Component {
     }
 
     login(user) {
-        UserService.login(user.email, user.password).then(() => {
+        AuthService.login(user.email, user.password).then(() => {
             this.props.history.push('/');
         }).catch((e) => {
             console.error(e);
