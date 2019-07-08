@@ -1,6 +1,6 @@
 import React from 'react';
 import DeliveryMonitor from "../components/DeliveryMonitor";
-import DeliveryGoodService from "../services/DeliveryGoodService";
+import DeliveryClientService from "../services/DeliveryClientService";
 
 
 export class DeliveryMonitorView extends React.Component {
@@ -20,7 +20,7 @@ export class DeliveryMonitorView extends React.Component {
 
         let id = this.props.match.params.id;
         id = "5d1d2ab48850e61b400671db";
-        DeliveryGoodService.getDeliveriesByClientId(id)
+        DeliveryClientService.getDeliveriesByClientId(id)
             .then((data) => {
                 console.log("DelMonView.data" + JSON.stringify(data.goodsToDeliver));
                 this.setState({

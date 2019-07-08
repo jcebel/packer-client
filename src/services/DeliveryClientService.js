@@ -1,6 +1,6 @@
 import {HttpService} from "./HttpService";
 
-export default class DeliveryGoodService {
+export default class DeliveryClientService {
 
     static baseURL() {return "http://localhost:3000/deliveryclient" }
 
@@ -8,11 +8,11 @@ export default class DeliveryGoodService {
         return new Promise((resolve, reject) => {
             HttpService.get(`${this.baseURL()}/${id}/goodstodeliver`, function (data) {
                 if(data != undefined || Object.keys(data).length !== 0){
-                    console.log("Data: " + JSON.stringify(data))
+                    console.log("Data: " + JSON.stringify(data));
                     resolve(data);
                 }
                 else{
-                    console.log('Log: Error while retrieving delivery goods')
+                    console.log('Log: Error while retrieving delivery goods');
                     reject('Error while retrieving delivery goods')
                 }
             }, function (textStatus) {
