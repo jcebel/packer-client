@@ -20,7 +20,6 @@ export class DeliveryMonitorView extends React.Component {
 
         let id = this.props.match.params.id;
         console.log("User id: "+ this.props.match.params.id);
-        id = "5d1d2ab58850e61b400671de";
         UserService.getDeliveriesByUserId(id)
             .then((data) => {
                 //console.log("DelMonView.data" + data);
