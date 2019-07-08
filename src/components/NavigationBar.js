@@ -2,13 +2,25 @@ import React from 'react';
 import UserMenu from './UserMenu'
 import { Navbar, Nav} from 'react-bootstrap';
 import styled from 'styled-components/macro';
+import UserService from "../services/UserService";
 
 const StyledTab = styled(Nav.Link)`background: ${props => props.isactivetab ? "#e4e6e7" : "#0000" };`;
 export class PlainNavigationBar extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+        };
+        this.handleLogout = this.handleLogout.bind(this);
+        console.log("Navbar State: " + JSON.stringify(this.state))
+    }
+
+    handleLogout() {
+        UserService.logout();
+        this.setState({
+            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
+        });
     }
 
     render() {
@@ -31,7 +43,7 @@ export class PlainNavigationBar extends React.Component{
                     <StyledTab isactivetab={this.props.activetab === "send" ? "true" : undefined}>Send anything</StyledTab>
                 </Nav>
                 <Nav>
-                    <UserMenu/>
+                    <UserMenu user={this.state.user} handleLogout={this.handleLogout}/>
                 </Nav>
             </Navbar>
         );
