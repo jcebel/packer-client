@@ -20,24 +20,35 @@ const GoogleMaps = compose(
     withGoogleMap,
     lifecycle({
         componentDidMount() {
-            var receivedWaypoints = this.props.route.waypoints;
+            var collect = this.props.route.collect;
+            var deliver = this.props.route.deliver;
+
+            var origin = collect[0];
+            var destination = deliver[deliver.length-1];
+
+            collect.splice(0,1);
+            deliver.splice(deliver.length-1,1);
+
+            var receivedWaypoints = collect.concat(deliver);
             var waypointArray = [];
             receivedWaypoints.forEach(function(element) {
-                waypointArray.push({location: element,  stopover: true});
+                var adress = element.street + " " + element.houseNumber + ", " + element.postalCode + " " + element.city;
+                waypointArray.push({location: adress,  stopover: true});
             });
+
             const DirectionsService = new google.maps.DirectionsService();
 
             var travelMode = '';
-            if(this.props.route.travelMode === 'Driving'){
+            if((this.props.route.vehicleType.toLowerCase() === 'car') || (this.props.route.vehicleType.toLowerCase() === 'van')){
                 travelMode = google.maps.TravelMode.DRIVING;
-            } else if(this.props.route.travelMode === 'Biking'){
+            } else if(this.props.route.vehicleType.toLowerCase() === 'bike'){
                 travelMode = google.maps.TravelMode.BICYCLING;
             } else{
                 travelMode = google.maps.TravelMode.DRIVING;
             }
             DirectionsService.route({
-                origin: this.props.route.origin,
-                destination: this.props.route.destination,
+                origin: origin.street + " " + origin.houseNumber + ", " + origin.postalCode + " " + origin.city,
+                destination: destination.street + " " + destination.houseNumber + ", " + destination.postalCode + " " + destination.city,
                 travelMode: travelMode,
                 unitSystem: google.maps.UnitSystem.METRIC,
                 waypoints: waypointArray,
