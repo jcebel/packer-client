@@ -26,7 +26,7 @@ export class Home extends Component {
     const { index, direction } = this.state;
 
     return (
-      <Page>
+      <Page activetab="home">
         <Container>
         <Carousel
           activeIndex={index}
