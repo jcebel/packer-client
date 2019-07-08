@@ -10,7 +10,7 @@ class UserMenu extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-
+    
     handleLogout(){
         this.props.handleLogout();
         if(this.props.location.pathname !== '/') {
