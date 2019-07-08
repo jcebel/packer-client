@@ -1,6 +1,7 @@
 import React from 'react';
 import DeliveryMonitor from "../components/DeliveryMonitor";
 import DeliveryClientService from "../services/DeliveryClientService";
+import UserService from "../services/UserService";
 
 
 export class DeliveryMonitorView extends React.Component {
@@ -20,17 +21,17 @@ export class DeliveryMonitorView extends React.Component {
 
         let id = this.props.match.params.id;
         console.log("User id: "+ this.props.match.params.id);
-        id = "5d1d2ab48850e61b400671db";
-        DeliveryClientService.getDeliveriesByClientId(id)
+        id = "5d1d2ab58850e61b400671de";
+        DeliveryClientService.getDeliveriesByUserId(id)
             .then((data) => {
-                console.log("DelMonView.data" + JSON.stringify(data.goodsToDeliver));
+                //console.log("DelMonView.data" + data);
                 this.setState({
-                    data: data.goodsToDeliver,//TODO: Check if this is normal way or just workaround
+                    data: data,
                     loadingDone: true
                 });
                 console.log("Onfulfilled State: " + JSON.stringify(this.state))
             }).catch((e) => {
-            console.log(e);
+                console.log(e);
         });
     }
 

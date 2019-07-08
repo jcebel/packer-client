@@ -2,9 +2,9 @@ import {HttpService} from "./HttpService";
 
 export default class DeliveryClientService {
 
-    static baseURL() {return "http://localhost:3000/deliveryclient" }
+    static baseURL() {return "http://localhost:3000/user" }
 
-    static getDeliveriesByClientId(id) {
+    static getDeliveriesByUserId(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${this.baseURL()}/${id}/goodstodeliver`, function (data) {
                 if(data != undefined || Object.keys(data).length !== 0){
