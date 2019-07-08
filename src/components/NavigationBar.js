@@ -38,7 +38,9 @@ export class PlainNavigationBar extends React.Component{
                 </Navbar.Brand>
                 <Nav className="mr-auto" activeKey="/home">
                     <StyledTab href="/" isactivetab={this.props.activetab === "home" ? "true" : undefined}>Home</StyledTab>
-                    <StyledTab href={`/deliverymonitor/${this.state.user.id}`} isactivetab={this.props.activetab === "delivery" ? "true" : undefined}>My Deliveries</StyledTab>
+                    <StyledTab href={this.state.user === undefined ? "/login" : `/deliverymonitor/${this.state.user.id}`}
+                               isactivetab={this.props.activetab === "delivery" ? "true" : undefined}>My Deliveries</StyledTab>
+                    {/*TODO: Check if there is better way than if clause here (is partly redundant with App.js, maybe insecure?)*/}
                     <StyledTab href="/beAdriver" isactivetab={this.props.activetab === "driver" ? "true" : undefined}>Be A Driver</StyledTab>
                     <StyledTab isactivetab={this.props.activetab === "send" ? "true" : undefined}>Send anything</StyledTab>
                 </Nav>
