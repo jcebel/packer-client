@@ -45,8 +45,14 @@ export default class MonitorRow extends React.Component {
         else if(this.props.deliverygood.deliveryState === "Delivered"){
             return "success";
         }
-        else{
+        else if(this.props.deliverygood.deliveryState === "Waiting for Routing"){
             return "warning";
+        }
+        else if(this.props.deliverygood.deliveryState === "Waiting for Pickup"){
+            return "primary";
+        }
+        else{
+            return "dark";
         }
     }
 
@@ -66,7 +72,7 @@ export default class MonitorRow extends React.Component {
                             }).format(new Date(this.props.deliverygood.deliveryDate))}
                             </div>
                             <div><b>Price:</b> {this.props.deliverygood.price} €</div>
-                            <div><b>Delivery No.:</b> PA-1906130087</div>
+                            {/*<div><b>Delivery No.:</b> PA-1906130087</div>*/}
                             {/*//TODO: Add Delivery No to database schema*/}
                         </div>
                         <p/>
@@ -100,9 +106,10 @@ export default class MonitorRow extends React.Component {
                                 <p>
                                     <Button href="#" variant="secondary" size="xs">More Info</Button>
                                 </p>
+                                {this.props.deliverygood.deliveryState === "Waiting for Routing" ?
                                 <p>
                                     <Button href="#" variant="danger" size="xs">Delete</Button>
-                                </p>
+                                </p> : <span/>}
                             </Col>
                         </Row>
                     </div>

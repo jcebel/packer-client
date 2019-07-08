@@ -13,7 +13,6 @@ export class PlainNavigationBar extends React.Component{
             user: AuthService.isAuthenticated() ? AuthService.getCurrentUser() : undefined
         };
         this.handleLogout = this.handleLogout.bind(this);
-        console.log("Navbar State: " + JSON.stringify(this.state))
     }
 
     handleLogout() {

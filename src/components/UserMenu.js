@@ -8,7 +8,6 @@ class UserMenu extends React.Component {
     constructor(props) {
         super(props);
         this.handleLogout = this.handleLogout.bind(this);
-        console.log("User Menu props: " + JSON.stringify(this.props))
     }
 
 
