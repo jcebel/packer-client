@@ -2,7 +2,7 @@ import React from 'react';
 
 import Login from '../components/Login';
 
-import AuthService from '../services/AuthService';
+import {AuthService} from '../services/AuthService';
 
 
 export class LoginView extends React.Component {

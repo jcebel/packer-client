@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Registration from '../components/Registration'
-import AuthService from '../services/AuthService';
+import {AuthService} from '../services/AuthService';
 
 export class RegistrationView extends React.Component{
 

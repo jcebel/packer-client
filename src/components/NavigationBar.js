@@ -2,7 +2,7 @@ import React from 'react';
 import UserMenu from './UserMenu'
 import { Navbar, Nav} from 'react-bootstrap';
 import styled from 'styled-components/macro';
-import AuthService from "../services/AuthService";
+import {AuthService} from "../services/AuthService";
 
 const StyledTab = styled(Nav.Link)`background: ${props => props.isactivetab ? "#e4e6e7" : "#0000" };`;
 export class PlainNavigationBar extends React.Component{

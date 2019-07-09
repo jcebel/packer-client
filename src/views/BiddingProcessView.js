@@ -6,7 +6,7 @@ import {PackageList} from "../components/PackageList";
 import {BiddingInformation} from "../components/BiddingInformation";
 import {RouteService} from "../services/RouteService";
 import Page from "../components/Page";
-import UserService from "../services/UserService";
+import {UserService} from "../services/UserService";
 import styled from 'styled-components/macro';
 
 const StyledRow = styled(Row)`height:"350px"`;

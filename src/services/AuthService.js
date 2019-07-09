@@ -1,7 +1,7 @@
 import {HttpService} from "./HttpService";
 
 
-export default class AuthService {
+export class AuthService {
 
     static baseURL() {return "http://localhost:3000/auth"; }
 

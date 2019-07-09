@@ -31,7 +31,7 @@ import styled from 'styled-components/macro';
 //     return
 // };
 
-export default class MonitorRow extends React.Component {
+export class MonitorRow extends React.Component {
 
     constructor(props) {
         super(props);

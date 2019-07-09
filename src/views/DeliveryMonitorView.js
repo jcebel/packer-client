@@ -1,6 +1,6 @@
 import React from 'react';
-import DeliveryMonitor from "../components/DeliveryMonitor";
-import UserService from "../services/UserService";
+import {DeliveryMonitor} from "../components/DeliveryMonitor";
+import {UserService} from "../services/UserService";
 
 
 export class DeliveryMonitorView extends React.Component {

@@ -5,7 +5,7 @@ import {BiddingProcessView} from "./views/BiddingProcessView";
 import {RoutesListView} from "./views/RoutesListView";
 import {RegistrationView} from "./views/RegistrationView";
 import {LoginView} from "./views/LoginView";
-import AuthService from "./services/AuthService";
+import {AuthService} from "./services/AuthService";
 import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
 
 export default class App extends React.Component {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Container} from 'react-bootstrap'
 import Page from "./Page";
-import MonitorRow from "./MonitorRow";
+import {MonitorRow} from "./MonitorRow";
 
-class DeliveryMonitor extends Component {
+export class DeliveryMonitor extends Component {
 
 
     constructor(props) {
@@ -32,4 +32,3 @@ class DeliveryMonitor extends Component {
         )
     }
 }
-export default DeliveryMonitor;
