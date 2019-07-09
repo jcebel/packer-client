@@ -19,6 +19,7 @@ export default class DatepickerClass extends React.Component {
   }
   render() {
     const { selectedDay } = this.state;
+    console.log(selectedDay);
     return (
       <div>
         {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
