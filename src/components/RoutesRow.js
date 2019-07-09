@@ -17,7 +17,7 @@ export class RoutesRow extends React.Component {
         return (
             <tr>
                 <StyledCell><VehicleImage vehicleType={this.props.route.vehicleType}/></StyledCell>
-                <StyledCell>{`${this.props.route.kilometers} km`}</StyledCell>
+                <StyledCell>{`${this.props.route.meters / 1000} km`}</StyledCell>
                 <StyledCell>{this.props.route.items.length}</StyledCell>
                 <StyledCell>{this.props.route.items[0].origination.street}</StyledCell>
                 <StyledCell>{this.props.route.items[this.props.route.items.length - 1 ].destination.street}</StyledCell>
