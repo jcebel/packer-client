@@ -82,6 +82,7 @@ class ToggleButtonBar1 extends Component{
                                     <ToggleButton type="radio" value = {2}>Medium</ToggleButton>
                                     <ToggleButton type="radio" value = {3}>Heavy</ToggleButton>
                           </ToggleButtonGroup>
+                          <p></p>
                           </Col>
                           </Row>
                         </div>
@@ -113,7 +114,7 @@ class ToggleButtonBar2 extends Component{
 
   render() {
       return (
-        <div>         
+        <div>    
                       <Row>
                         <Col>
                             <OverlayTrigger

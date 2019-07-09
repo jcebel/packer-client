@@ -75,12 +75,12 @@ class RegisterDeliveryRequest extends Component{
         return (
             <Page activetab = "send">
               <Container>
-                <p>
+                <div>
                 <Row>
                     Hello User, please enter the information for your package
                 </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                 <Row>
                     <Col>
                     <label>
@@ -93,8 +93,8 @@ class RegisterDeliveryRequest extends Component{
                     </label>
                     </Col>
                 </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                 <Row>
                 <label>
                     <Col>
@@ -111,22 +111,23 @@ class RegisterDeliveryRequest extends Component{
                     </Col>
                     </label>
                 </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                         <ToggleButtonBar2 onSelectSize={this.changeHandlerSize}/>
-                </p>
-                <p>
+                </div>
+                <div>
                         <ToggleButtonBar1  onSelectWeight={this.changeHandlerWeight}/>
-                </p>
+                </div>
                 
-                <p>
+                <div>
                     <Row>
                         <Col>
                             <DatepickerClass onSelectDate={this.changeHandlerDate}/>
                         </Col>
                     </Row>
-                </p>
-                <p>
+                </div>
+                <p></p>
+                <div>
                 <Row>
                     <Link
                     to={{
@@ -136,7 +137,7 @@ class RegisterDeliveryRequest extends Component{
                     <Button href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </Link>
                 </Row>
-                 </p>
+                 </div>
                 </Container>
             </Page>
         );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButton, ToggleButtonGroup, ButtonToolbar} from 'react-bootstrap';
 import Page from './Page';
 import {History} from "react-router-dom";
+import {DeliveryGoodService} from "../services/DeliveryGoodService";
 
 
 class RegisterDeliveryRequestConf extends Component{
@@ -58,18 +59,47 @@ Large is 5$
         return price;
       }
 
+      submitRequest = () => {
+        let DeliveryRequest = {
+            "name": this.props.datadr.what,
+            "deliveryDate": this.props.datadr.date,
+            "weight": this.props.datadr.weight, //small, medium, large
+            "size": this.props.datadr.size,   //light, medium, heavy
+            "price": this.priceCalculation(),
+            "deliveryState": "Waiting for Routing",
+            destination: {
+                "city": "Muenchen",
+                "street": this.props.datadr.start,
+                "houseNumber": 5,
+                "postalCode": "84762"
+              },
+              "origination": {
+                "city": "München",
+                "street": this.props.datadr.end,
+                "houseNumber": 28,
+                "postalCode": "86361"
+              }
+        };
+        /*
+        DeliveryGoodService.createDeliveryRequest(DeliveryRequest).then(() => {
+        }).catch((e) => {
+            console.error(e);
+        });   */
+        console.log(DeliveryRequest);
+    }
+
     render() {
         try{
         return (
-            <p class="text-dark">
+            <div class="text-dark">
             <Page activetab = "send">
                 <Container>
-                <p>
+                <div>
                 <Row>
                     Hello User, here is a summary of your package
                 </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                   <Row>
                     <Col>
                     <label>
@@ -82,8 +112,8 @@ Large is 5$
                     </label>
                     </Col>
                   </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                 <Row>
                     <Col>
                     <label>
@@ -96,8 +126,8 @@ Large is 5$
                     </label>
                     </Col>
                 </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                 <Row>
                     <Col>
                 <label>
@@ -115,8 +145,8 @@ Large is 5$
                     </label>
                     </Col>
                 </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                     <Row>
                         <Col>
                         <label>
@@ -134,8 +164,8 @@ Large is 5$
                     </label>
                         </Col>
                     </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                     <Row>
                         <Col>
                         <label>
@@ -148,8 +178,8 @@ Large is 5$
                         </label>
                         </Col>
                     </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                 <Row>
                     <label>
                         <InputGroup className="mb-3">
@@ -160,26 +190,27 @@ Large is 5$
                         </InputGroup>
                     </label>
                 </Row>
-                </p>
-                <p>
+                </div>
+                <div>
                   <Row>
                     <label>
                     <ButtonToolbar>
-                      <Button variant="success">Accept</Button>
+                      <Button 
+                      onClick={this.submitRequest} variant="success">Accept</Button>
                       <Button href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
                     </label>
                   </Row>
-                </p>
+                </div>
                 </Container>
             </Page>
-            </p>
+            </div>
         );
     }catch(e){
         return(
-            <p>
+            <div>
                 Fehler 404
-            </p>
+            </div>
         );   
     }
     };
