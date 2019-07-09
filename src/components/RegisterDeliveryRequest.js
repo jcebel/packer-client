@@ -3,6 +3,7 @@ import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, Button
 import {ToggleButtonBar1} from './ToggleButtonBar';
 import {ToggleButtonBar2} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
+import LocationSearchInput from './LocationSearchInput';
 import Page from "./Page";
 import {Link} from "react-router-dom";
 
@@ -123,6 +124,13 @@ class RegisterDeliveryRequest extends Component{
                     <Row>
                         <Col>
                             <DatepickerClass onSelectDate={this.changeHandlerDate}/>
+                        </Col>
+                    </Row>
+                </div>
+                <div>
+                    <Row>
+                        <Col>
+                            <LocationSearchInput/>
                         </Col>
                     </Row>
                 </div>
