@@ -5,7 +5,7 @@ import {RouteDetails} from "../components/RouteDetails";
 import {PackageList} from "../components/PackageList";
 import {BiddingInformation} from "../components/BiddingInformation";
 import {RouteService} from "../services/RouteService";
-import Page from "../components/Page";
+import {Page} from "../components/Page";
 import {UserService} from "../services/UserService";
 import styled from 'styled-components/macro';
 

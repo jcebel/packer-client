@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import VehicleDropdown from './VehicleDropdown';
 import {RoutesRow} from './RoutesRow';
-import Page from './Page';
+import {Page} from './Page';
 import {EmptyRow} from './EmptyRow'
 import Container from "react-bootstrap/Container";
 import {StyledCell} from './StyledCell';
