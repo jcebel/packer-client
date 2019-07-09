@@ -1,5 +1,7 @@
 /*global google*/
 import React from 'react';
+import {Marker, InfoWindow} from "react-google-maps";
+import { geolocated } from "react-geolocated";
 
 const { compose, withProps, lifecycle } = require("recompose");
 const {
@@ -57,6 +59,8 @@ const GoogleMaps = compose(
                 if (status === google.maps.DirectionsStatus.OK) {
                     this.setState({
                         directions: result,
+                        longitude: this.props.coords.longitude,
+                        latitude:  this.props.coords.latitude,
                     });
                 } else {
                     console.error(`error fetching directions ${result}`);
@@ -70,9 +74,13 @@ const GoogleMaps = compose(
         defaultCenter={new google.maps.LatLng(48.1548256,11.4017508,)}
     >
         {props.directions && <DirectionsRenderer directions={props.directions} />}
+        <Marker position={new google.maps.LatLng(props.latitude,props.longitude)}/>
     </GoogleMap>
 );
 
-export default GoogleMaps;
-
-//https://github.com/tomchentw/react-google-maps/blob/master/src/components/DirectionsRenderer.md
+export default geolocated({
+    positionOptions: {
+        enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+})(GoogleMaps);
