@@ -1,6 +1,6 @@
 /*global google*/
 import React from 'react';
-import {Marker, InfoWindow} from "react-google-maps";
+import {Marker} from "react-google-maps";
 import { geolocated } from "react-geolocated";
 
 const { compose, withProps, lifecycle } = require("recompose");
@@ -57,11 +57,18 @@ const GoogleMaps = compose(
                 optimizeWaypoints: false,
             }, (result, status) => {
                 if (status === google.maps.DirectionsStatus.OK) {
-                    this.setState({
-                        directions: result,
-                        longitude: this.props.coords.longitude,
-                        latitude:  this.props.coords.latitude,
-                    });
+                    if(this.props.coords !== null) {
+                        this.setState({
+                            directions: result,
+                            longitude: this.props.coords.longitude,
+                            latitude: this.props.coords.latitude,
+                        });
+                    } else{
+                        this.setState({
+                            directions: result,
+                        });
+                    }
+
                 } else {
                     console.error(`error fetching directions ${result}`);
                 }
@@ -71,16 +78,20 @@ const GoogleMaps = compose(
 )(props =>
     <GoogleMap
         defaultZoom={7}
-        defaultCenter={new google.maps.LatLng(48.1548256,11.4017508,)}
+        defaultCenter={new google.maps.LatLng(48.1548256, 11.4017508)}
     >
         {props.directions && <DirectionsRenderer directions={props.directions} />}
-        <Marker position={new google.maps.LatLng(props.latitude,props.longitude)}/>
+        <Marker
+            position={new google.maps.LatLng(props.latitude,props.longitude)}
+            icon={'https://icon-icons.com/icons2/1369/PNG/32/-home_90315.png'}
+            visible={props.latitude !== undefined}
+        />
     </GoogleMap>
 );
 
 export default geolocated({
     positionOptions: {
-        enableHighAccuracy: false,
+        enableHighAccuracy: true,
     },
-    userDecisionTimeout: 5000,
+    watchPosition : true
 })(GoogleMaps);
