@@ -18,7 +18,7 @@ class RegisterDeliveryRequestConf extends Component{
                 end: this.props.datadr.end,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
-                date: this.props.datadr.date
+                date: this.props.datadr.date.toLocaleDateString()
             };
         }
         
@@ -35,7 +35,7 @@ Medium = 2$
 Large is 5$
 */
 
-    
+   
     priceCalculation() {
         var size = this.state.size;
         var weight = this.state.weight;
