@@ -101,12 +101,14 @@ class RegisterDeliveryRequest extends Component{
                     <Col>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Start (Street. Number)</InputGroup.Text>
+                                <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
-                        <FormControl value = {this.state.start} onChange={this.changeHandlerStart}/>
+                            <LocationSearchInput/>
+                            <FormControl value = {this.state.start} onChange={this.changeHandlerStart}/>
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
+                            <LocationSearchInput/>
                             <FormControl value = {this.state.end} onChange={this.changeHandlerEnd}/>
                         </InputGroup>
                     </Col>
