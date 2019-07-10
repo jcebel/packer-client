@@ -9,14 +9,18 @@ import {FormControl} from "react-bootstrap";
 class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: ''
+    this.state = { address: '',
+                  city : ''
                     };
   }
  
-  handleChange = address => {
-    this.setState({ address });
+  handleChange = (address,city) => {
+    this.setState({ address : address,
+                    city : city});
     var addressInput = address;
-    this.props.onSelectAdd(addressInput);
+    var addressInput2 = city;
+
+    this.props.onSelectAdd(addressInput, city);
   };
  
   handleSelect = address => {
@@ -27,7 +31,7 @@ class LocationSearchInput extends React.Component {
       .catch(error => console.error('Error', error));
     
     geocodeByAddress(address)
-      .then(results => this.handleChange(results[0].address_components[0].long_name))
+      .then(results => this.handleChange(results[0].address_components[0].long_name, results[0].address_components[2].long_name))
       .then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error));
   };

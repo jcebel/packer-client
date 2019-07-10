@@ -20,8 +20,10 @@ class RegisterDeliveryRequest extends Component{
             what : "",
             start : "",
             startnum : "",
+            startcity: "",
             end: "",
             endnum: "",
+            endcity: "",
             size: "",
             weight: "",
             date: ""
@@ -52,11 +54,14 @@ class RegisterDeliveryRequest extends Component{
     changeHandlerDate = (datedr) => {
         this.setState({date: datedr});
     }
-    changeHandlerStartAdd = (startadd) => {
-        this.setState({start: startadd});
+    changeHandlerStartAdd = (startadd, city) => {
+        this.setState({start: startadd,
+                     startcity: city});
+        
     }
-    changeHandlerEndAdd = (endadd) => {
-        this.setState({end: endadd});
+    changeHandlerEndAdd = (endadd, city) => {
+        this.setState({end: endadd,
+            endcity: city});
     }
     testdata = () => {
         console.log(this.state);

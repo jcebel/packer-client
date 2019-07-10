@@ -16,8 +16,10 @@ class RegisterDeliveryRequestConf extends Component{
                 what: this.props.datadr.what,
                 start: this.props.datadr.start,
                 startnum: this.props.datadr.startnum,
+                startcity: this.props.datadr.startcity,
                 end: this.props.datadr.end,
-                end: this.props.datadr.endnum,
+                endnum: this.props.datadr.endnum,
+                endcity: this.props.datadr.endcity,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
                 date: this.props.datadr.date.toLocaleDateString()
@@ -70,13 +72,13 @@ Large is 5$
             "price": this.priceCalculation(),
             "deliveryState": "Waiting for Routing",
             destination: {
-                "city": "Muenchen",
+                "city": this.props.datadr.startcity,
                 "street": this.props.datadr.start,
                 "houseNumber": this.props.datadr.startnum,
                 "postalCode": "80331"
               },
               "origination": {
-                "city": "Muenchen",
+                "city": this.props.datadr.endcity,
                 "street": this.props.datadr.end,
                 "houseNumber": this.props.datadr.endnum,
                 "postalCode": "80331"
@@ -133,17 +135,19 @@ Large is 5$
                 <Row>
                     <Col>
                 <label>
+                    <div class="input-group input-group-lg">
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Start (Street. Number)</InputGroup.Text>
+                                <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.state.start}/>
+                            <FormControl readOnly placeholder={this.state.start + " " + this.state.startnum + ", " + this.state.startcity}/>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End (Street. Number)</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.state.end}/>
+                            <FormControl readOnly placeholder={this.state.end + " " + this.state.endnum + ", " + this.state.endcity}/>
                         </InputGroup>
+                        </div>
                     </label>
                     </Col>
                 </Row>
