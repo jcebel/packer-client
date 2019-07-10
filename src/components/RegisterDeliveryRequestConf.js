@@ -15,7 +15,9 @@ class RegisterDeliveryRequestConf extends Component{
             this.state = {
                 what: this.props.datadr.what,
                 start: this.props.datadr.start,
+                startnum: this.props.datadr.startnum,
                 end: this.props.datadr.end,
+                end: this.props.datadr.endnum,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
                 date: this.props.datadr.date.toLocaleDateString()
@@ -70,14 +72,14 @@ Large is 5$
             destination: {
                 "city": "Muenchen",
                 "street": this.props.datadr.start,
-                "houseNumber": 5,
-                "postalCode": "84762"
+                "houseNumber": this.props.datadr.startnum,
+                "postalCode": "80331"
               },
               "origination": {
-                "city": "München",
+                "city": "Muenchen",
                 "street": this.props.datadr.end,
-                "houseNumber": 28,
-                "postalCode": "86361"
+                "houseNumber": this.props.datadr.endnum,
+                "postalCode": "80331"
               }
         };
         /*

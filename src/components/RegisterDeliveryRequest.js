@@ -19,7 +19,9 @@ class RegisterDeliveryRequest extends Component{
         this.state = {
             what : "",
             start : "",
+            startnum : "",
             end: "",
+            endnum: "",
             size: "",
             weight: "",
             date: ""
@@ -31,14 +33,14 @@ class RegisterDeliveryRequest extends Component{
           what: event.target.value
         });
       }
-      changeHandlerStart = event => {
+      changeHandlerStartNum = event => {
         this.setState({
-          start: event.target.value
+          startnum: event.target.value
         });
       }
-      changeHandlerEnd = event => {
+      changeHandlerEndNum = event => {
         this.setState({
-          end: event.target.value
+          endnum: event.target.value
         });
       }
       changeHandlerSize = (sizedr) => {
@@ -49,6 +51,20 @@ class RegisterDeliveryRequest extends Component{
     }
     changeHandlerDate = (datedr) => {
         this.setState({date: datedr});
+    }
+    changeHandlerStartAdd = (startadd) => {
+        this.setState({start: startadd});
+    }
+    changeHandlerEndAdd = (endadd) => {
+        this.setState({end: endadd});
+    }
+    testdata = () => {
+        console.log(this.state);
+        if(this.state.date=="")
+         {
+            let today = new Date().toISOString().slice(0, 10)
+            this.setState({date: today});
+        }
     }
 
     changeSize = (sizedr) => {
@@ -103,13 +119,13 @@ class RegisterDeliveryRequest extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <LocationSearchInput/>
-                            <FormControl value = {this.state.start} onChange={this.changeHandlerStart}/>
+                            <LocationSearchInput onSelectAdd={this.changeHandlerStartAdd}/>
+                            <FormControl placeholder={"Number"} value = {this.state.startnum} onChange={this.changeHandlerStartNum}/>
                         <InputGroup.Prepend>
-                                <InputGroup.Text>End (Street. Number)</InputGroup.Text>
+                                <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <LocationSearchInput/>
-                            <FormControl value = {this.state.end} onChange={this.changeHandlerEnd}/>
+                            <LocationSearchInput onSelectAdd={this.changeHandlerEndAdd}/>
+                            <FormControl placeholder={"Number"} value = {this.state.endnum} onChange={this.changeHandlerEndNum}/>
                         </InputGroup>
                     </Col>
                     </label>
@@ -118,6 +134,7 @@ class RegisterDeliveryRequest extends Component{
                 <div>
                         <ToggleButtonBar2 onSelectSize={this.changeHandlerSize}/>
                 </div>
+                <p></p>
                 <div>
                         <ToggleButtonBar1  onSelectWeight={this.changeHandlerWeight}/>
                 </div>
@@ -130,21 +147,14 @@ class RegisterDeliveryRequest extends Component{
                     </Row>
                 </div>
                 <div>
-                    <Row>
-                        <Col>
-                            <LocationSearchInput/>
-                        </Col>
-                    </Row>
-                </div>
                 <p></p>
-                <div>
                 <Row>
                     <Link
                     to={{
                         pathname: "/sendanythingconf",
                         data: this.state // your data array of objects
                     }}>
-                    <Button href = "/sendanythingconf" variant="success">Make me an offer!</Button>
+                    <Button onClick={this.testdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </Link>
                 </Row>
                  </div>
