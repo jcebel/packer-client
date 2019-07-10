@@ -33,9 +33,6 @@ import styled from 'styled-components/macro';
 
 export class MonitorRow extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
 
     //TODO: Check if there is better way with styled components
     statusButtonVariant(){
@@ -62,7 +59,7 @@ export class MonitorRow extends React.Component {
             <Container>
                 <p/>
                 <div className="list-group">{/*https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-list-groups.php*/}
-                    <div href="#" className="list-group-item list-group-item-action">
+                    <div className="list-group-item list-group-item-action">
                         <div className="d-flex justify-content-between text-secondary">
                             <div>
                                 <b>Date:</b> {new Intl.DateTimeFormat('en-GB', {
@@ -108,7 +105,7 @@ export class MonitorRow extends React.Component {
                                 </p>
                                 {this.props.deliverygood.deliveryState === "Waiting for Routing" ?
                                 <p>
-                                    <Button href="#" variant="danger" size="xs">Delete</Button>
+                                    <Button href="#" variant="danger" onClick={() => this.props.onDelete(this.props.deliverygood._id)} size="xs">Delete</Button>
                                 </p> : <span/>}
                             </Col>
                         </Row>
