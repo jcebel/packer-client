@@ -3,14 +3,14 @@ import {Formik, Field, Form, ErrorMessage, FieldArray} from 'formik';
 import {Container} from 'react-bootstrap';
 import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Warning = styled.div`
-color: red;`;
+    color: red;`;
 
 const checkboxes = [
     { id: "deliveryClient", name: "Delivery Client" },
-    { id: "Driver", name: "Driver" },
+    { id: "driver", name: "Driver" },
 ];
 
 class Registration extends React.Component {
