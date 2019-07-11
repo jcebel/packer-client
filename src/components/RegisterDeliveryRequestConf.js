@@ -3,6 +3,7 @@ import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, Button
 import Page from './Page';
 import {History} from "react-router-dom";
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
+import {PriceService} from "../services/PriceService";
 
 
 class RegisterDeliveryRequestConf extends Component{
@@ -20,12 +21,14 @@ class RegisterDeliveryRequestConf extends Component{
                 startnum: this.props.datadr.startnum,
                 startcity: this.props.datadr.startcity,
                 end: this.props.datadr.end,
+                price: 0,
                 endnum: this.props.datadr.endnum,
                 endcity: this.props.datadr.endcity,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
                 date: this.props.datadr.date
             };
+            this.priceCalculation();
         }
         
     }
@@ -43,10 +46,25 @@ Large is 5$
 
    
     priceCalculation() {
+
+        let parameters = {
+            size: this.state.size,
+            weight: this.state.weight,
+            distance: 10
+        };
+
+        PriceService.createPriceCalculation(parameters).then((data) => {
+            console.log(data);
+            this.setState({
+                price : data.price
+            });
+        }).catch((e) => {
+            console.error(e);
+        });   
+        
         /*var size = this.state.size;
         var weight = this.state.weight;*/
 
-        var price = 1;
        /* if(size == "Small") {
             price = price + 1;
         } else if(size == "Medium") {
@@ -61,8 +79,6 @@ Large is 5$
         } else if (weight == "Heavy") {
             price = price + 5;
         }*/
-
-        return price;
       }
 
       submitRequest = () => {
@@ -138,7 +154,7 @@ Large is 5$
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Costs</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder = {this.priceCalculation()}/>
+                            <FormControl readOnly placeholder = {this.state.price}/>
                         </InputGroup>
                     </label>
                     </Col>

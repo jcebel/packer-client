@@ -16,6 +16,7 @@ class RegisterDeliveryRequest extends Component{
 
     constructor(props) {
         super(props);
+        let today = new Date().toISOString().slice(0, 10)
         this.state = {
             what : "",
             sender: "",
@@ -28,7 +29,7 @@ class RegisterDeliveryRequest extends Component{
             endcity: "",
             size: "",
             weight: "",
-            date: ""
+            date: today
         };
     }
 
@@ -74,14 +75,6 @@ class RegisterDeliveryRequest extends Component{
     changeHandlerEndAdd = (endadd, city) => {
         this.setState({end: endadd,
             endcity: city});
-    }
-    testdata = () => {
-        console.log(this.state);
-        if(this.state.date=="")
-         {
-            let today = new Date().toISOString().slice(0, 10)
-            this.setState({date: today});
-        }
     }
 
     changeSize = (sizedr) => {
