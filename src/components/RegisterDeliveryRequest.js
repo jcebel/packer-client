@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
+import { Container, Row, Col, InputGroup, FormControl, Button, Alert} from 'react-bootstrap';
 import {ToggleButtonBar1} from './ToggleButtonBar';
 import {ToggleButtonBar2} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
@@ -18,6 +18,7 @@ class RegisterDeliveryRequest extends Component{
         super(props);
         let today = new Date().toISOString().slice(0, 10)
         this.state = {
+            show: false,
             what : "",
             sender: "",
             receiver: "",
@@ -93,6 +94,16 @@ class RegisterDeliveryRequest extends Component{
             return "Medium";
         } else {
             return "Heavy";
+        }
+    }
+
+    checkdata = (e) => {
+        
+        if( this.state.what === "") {
+            e.preventDefault();
+            this.setState({
+                show: true
+            });
         }
     }
       
@@ -178,15 +189,21 @@ class RegisterDeliveryRequest extends Component{
                 <div>
                 <p></p>
                 <Row>
-                    <Link
+                    <Link onClick={this.checkdata}
                     to={{
                         pathname: "/sendanythingconf",
                         data: this.state // your data array of objects
                     }}>
-                    <Button onClick={this.testdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
+                    <Button onClick={this.checkdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </Link>
                 </Row>
                  </div>
+                 <Alert show={this.state.show} variant="danger">
+                    <Alert.Heading>Warning!</Alert.Heading>
+                    <p>
+                        I think you forgot to enter some data!
+                    </p>
+                </Alert>
                 </Container>
             </Page>
         );
