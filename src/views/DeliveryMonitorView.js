@@ -18,7 +18,10 @@ export class DeliveryMonitorView extends React.Component {
         this.setState({
             loadingDone: false
         });
+        this.refreshDeliveryData()
+    }
 
+    refreshDeliveryData(){
         let id = this.props.match.params.id;
         UserService.getDeliveriesByUserId(id)
             .then((data) => {
@@ -27,7 +30,7 @@ export class DeliveryMonitorView extends React.Component {
                     loadingDone: true
                 });
             }).catch((e) => {
-                console.error(e);
+            console.error(e);
         });
     }
 
