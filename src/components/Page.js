@@ -5,7 +5,7 @@ import {PlainNavigationBar} from './NavigationBar';
 Source:https://github.com/sebischair/sebamaster-movie-frontend
  */
 
-export default class Page extends React.Component {
+export class Page extends React.Component {
 
     constructor(props) {
         super(props);
