@@ -8,6 +8,7 @@ import {RouteService} from "../services/RouteService";
 import Page from "../components/Page";
 import UserService from "../services/UserService";
 import styled from 'styled-components/macro';
+import Image from "react-bootstrap/Image";
 
 const StyledRow = styled(Row)`height:"350px"`;
 const StyledCard = styled(Card)`height:"350px"`;
