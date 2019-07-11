@@ -78,7 +78,7 @@ export class RoutesList extends React.Component {
                                     triggerUpdate={this.state.deleted}
                                     placeholder="Distance"
                                     triggerFilter={this.onInputChanged}
-                                    resolver={(row) => row.kilometers + " km"}
+                                    resolver={(row) => row.meters/1000 + " km"}
                                 />
                             </StyledCell>
                             <StyledCell>
@@ -94,7 +94,7 @@ export class RoutesList extends React.Component {
                                     triggerUpdate={this.state.deleted}
                                     placeholder="Start"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => row.items[0].origination.street}
+                                    resolver={(row) => row.collect[0].street}
                                 />
                             </StyledCell>
                             <StyledCell>
@@ -102,7 +102,7 @@ export class RoutesList extends React.Component {
                                     triggerUpdate={this.state.deleted}
                                     placeholder="End"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => row.items[row.items.length - 1].destination.street}
+                                    resolver={(row) => row.deliver[row.deliver.length - 1].street}
                                 />
                             </StyledCell>
                             <StyledCell>
