@@ -18,6 +18,8 @@ class RegisterDeliveryRequest extends Component{
         super(props);
         this.state = {
             what : "",
+            sender: "",
+            receiver: "",
             start : "",
             startnum : "",
             startcity: "",
@@ -33,6 +35,16 @@ class RegisterDeliveryRequest extends Component{
     changeHandlerWhat = event => {
         this.setState({
           what: event.target.value
+        });
+      }
+      changeHandlerSender = event => {
+        this.setState({
+          sender: event.target.value
+        });
+      }
+      changeHandlerReceiver = event => {
+        this.setState({
+          receiver: event.target.value
         });
       }
       changeHandlerStartNum = event => {
@@ -114,6 +126,24 @@ class RegisterDeliveryRequest extends Component{
                         </InputGroup>
                     </label>
                     </Col>
+                </Row>
+                </div>
+                <div>
+                <Row>
+                <label>
+                    <Col>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Sender</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl value = {this.state.sender} onChange={this.changeHandlerSender}/>
+                        <InputGroup.Prepend>
+                                <InputGroup.Text>Receiver</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl value = {this.state.reciever} onChange={this.changeHandlerReceiver}/>
+                        </InputGroup>
+                    </Col>
+                    </label>
                 </Row>
                 </div>
                 <div>

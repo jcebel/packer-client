@@ -14,6 +14,8 @@ class RegisterDeliveryRequestConf extends Component{
         if(this.props.datadr !== undefined) {
             this.state = {
                 what: this.props.datadr.what,
+                sender: this.props.datadr.sender,
+                receiver: this.props.datadr.receiver,
                 start: this.props.datadr.start,
                 startnum: this.props.datadr.startnum,
                 startcity: this.props.datadr.startcity,
@@ -22,7 +24,7 @@ class RegisterDeliveryRequestConf extends Component{
                 endcity: this.props.datadr.endcity,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
-                date: this.props.datadr.date.toLocaleDateString()
+                date: this.props.datadr.date
             };
         }
         
@@ -41,11 +43,11 @@ Large is 5$
 
    
     priceCalculation() {
-        var size = this.state.size;
-        var weight = this.state.weight;
+        /*var size = this.state.size;
+        var weight = this.state.weight;*/
 
         var price = 1;
-        if(size == "Small") {
+       /* if(size == "Small") {
             price = price + 1;
         } else if(size == "Medium") {
             price = price + 2;
@@ -58,38 +60,63 @@ Large is 5$
             price = price + 2;
         } else if (weight == "Heavy") {
             price = price + 5;
-        }
+        }*/
 
         return price;
       }
 
       submitRequest = () => {
-        let DeliveryRequest = {
-            "name": this.props.datadr.what,
-            "deliveryDate": this.props.datadr.date,
-            "weight": this.props.datadr.weight, //small, medium, large
-            "size": this.props.datadr.size,   //light, medium, heavy
+        let deliveryRequest = {
+            "name": this.state.what,
+            "deliveryDate": this.state.date,
+            "weight": this.state.weight, //small, medium, large
+            "size": this.state.size,   //light, medium, heavy
             "price": this.priceCalculation(),
             "deliveryState": "Waiting for Routing",
-            destination: {
-                "city": this.props.datadr.startcity,
-                "street": this.props.datadr.start,
-                "houseNumber": this.props.datadr.startnum,
+            "destination": {
+                "name": this.state.sender,
+                "city": this.state.startcity,
+                "street": this.state.start,
+                "houseNumber": this.state.startnum,
                 "postalCode": "80331"
               },
               "origination": {
-                "city": this.props.datadr.endcity,
-                "street": this.props.datadr.end,
-                "houseNumber": this.props.datadr.endnum,
+                "name": this.state.receiver,
+                "city": this.state.endcity,
+                "street": this.state.end,
+                "houseNumber": this.state.endnum,
                 "postalCode": "80331"
               }
-        };
-        /*
-        DeliveryGoodService.createDeliveryRequest(DeliveryRequest).then(() => {
+        };/*
+        let deliveryRequest = {
+            "name": "Smartphone123",
+            "deliveryDate": "2019-07-17T16:54:00.000Z",
+            "weight": "80",
+            "size": "3",
+            "price": 28,
+            "deliveryState": "Waiting for Routing",
+            "destination": {
+                    "name":"Max",
+              "city": "Muenchen",
+              "street": "Theresienstrasse",
+              "houseNumber": 5,
+              "postalCode": "84762"
+            },
+            "origination": {
+                    "name": "Jonas",
+              "city": "München",
+              "street": "Arcisstrasse",
+              "houseNumber": 28,
+              "postalCode": "86361"
+            }
+          };*/
+        
+        DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
+            console.log(data);
         }).catch((e) => {
             console.error(e);
-        });   */
-        console.log(DeliveryRequest);
+        });   
+        console.log(deliveryRequest);
     }
 
     render() {
@@ -129,6 +156,24 @@ Large is 5$
                         </InputGroup>
                     </label>
                     </Col>
+                </Row>
+                </div>
+                <div>
+                <Row>
+                <label>
+                    <Col>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Sender</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder = {this.state.sender}/>
+                        <InputGroup.Prepend>
+                                <InputGroup.Text>Receiver</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl readOnly placeholder = {this.state.receiver}/>
+                        </InputGroup>
+                    </Col>
+                    </label>
                 </Row>
                 </div>
                 <div>
