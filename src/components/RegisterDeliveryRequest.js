@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButtonGroup, ToggleButto } from 'react-bootstrap';
+import { Container, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
 import {ToggleButtonBar1} from './ToggleButtonBar';
 import {ToggleButtonBar2} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
@@ -78,18 +78,18 @@ class RegisterDeliveryRequest extends Component{
     }
 
     changeSize = (sizedr) => {
-        if(sizedr == 1) {
+        if(sizedr === 1) {
             return "Small";
-        } else if (sizedr == 2) {
+        } else if (sizedr === 2) {
             return "Medium";
         } else {
             return "Large";
         }
     }
     changeWeight = (weightdr) => {
-        if(weightdr == 1) {
+        if(weightdr === 1) {
             return "Light";
-        } else if (weightdr == 2) {
+        } else if (weightdr === 2) {
             return "Medium";
         } else {
             return "Heavy";
@@ -104,9 +104,10 @@ class RegisterDeliveryRequest extends Component{
               <Container>
                 <div>
                 <Row>
-                    Hello User, please enter the information for your package
+                    Hello User, please enter the information for your package:
                 </Row>
                 </div>
+                <p></p>
                 <div>
                 <Row>
                     <Col>

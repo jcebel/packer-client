@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Form, Container, Row, Col, InputGroup, FormControl, ButtonGroup, Button, OverlayTrigger, ToggleButton, ToggleButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import { Alert, Container, Row, Col, InputGroup, FormControl, Button, ButtonToolbar} from 'react-bootstrap';
 import Page from './Page';
-import {History} from "react-router-dom";
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {PriceService} from "../services/PriceService";
 
@@ -14,6 +13,7 @@ class RegisterDeliveryRequestConf extends Component{
         super(props);
         if(this.props.datadr !== undefined) {
             this.state = {
+                show: false,
                 what: this.props.datadr.what,
                 sender: this.props.datadr.sender,
                 receiver: this.props.datadr.receiver,
@@ -29,22 +29,28 @@ class RegisterDeliveryRequestConf extends Component{
                 date: this.props.datadr.date
             };
             this.priceCalculation();
-        }
-        
-    }
-/*  
-Price Calculation:
-Basic is 1$
-Small = 1$
-Medium = 2$
-Large = 5$
+        } else {
+            this.state = {
+                show: false,
+                what: "",
+                sender: "",
+                receiver: "",
+                start: "",
+                startnum: "",
+                startcity: "",
+                end: "",
+                price: 0,
+                endnum: "",
+                endcity: "",
+                size: "",
+                weight: "",
+                date: ""
+                    }
+                    
+                }
+            }
 
-Light = 1$
-Medium = 2$
-Large is 5$
-*/
-
-   
+    
     priceCalculation() {
 
         let parameters = {
@@ -54,32 +60,15 @@ Large is 5$
         };
 
         PriceService.createPriceCalculation(parameters).then((data) => {
-            console.log(data);
-            this.setState({
-                price : data.price
-            });
-        }).catch((e) => {
-            console.error(e);
-        });   
-        
-        /*var size = this.state.size;
-        var weight = this.state.weight;*/
-
-       /* if(size == "Small") {
-            price = price + 1;
-        } else if(size == "Medium") {
-            price = price + 2;
-        } else if(size == "Large") {
-            price = price + 5;
-        }
-        if(weight == "Light") {
-            price = price + 1;
-        } else if(weight == "Medium") {
-            price = price + 2;
-        } else if (weight == "Heavy") {
-            price = price + 5;
-        }*/
-      }
+                //console.log(data);
+                this.setState({
+                    price : data.price
+                });
+            }).catch((e) => {
+                console.error(e);
+            });   
+            
+          }
 
       submitRequest = () => {
         let deliveryRequest = {
@@ -128,17 +117,21 @@ Large is 5$
           };*/
         
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
-            console.log(data);
+            //console.log(data);
         }).catch((e) => {
             console.error(e);
         });   
-        console.log(deliveryRequest);
+        //console.log(deliveryRequest);
+
+        this.setState( {
+            show: true
+        });
     }
 
     render() {
         try{
         return (
-            <div class="text-dark">
+            <div className="text-dark">
             <Page activetab = "send">
                 <Container>
                 <div>
@@ -196,7 +189,7 @@ Large is 5$
                 <Row>
                     <Col>
                 <label>
-                    <div class="input-group input-group-lg">
+                    <div>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start</InputGroup.Text>
@@ -269,11 +262,18 @@ Large is 5$
                     </label>
                   </Row>
                 </div>
+                <Alert show={this.state.show} variant="success">
+                <Alert.Heading>Request sent</Alert.Heading>
+                <p>
+                    You can see your Request in My Deliveries!
+                </p>
+                </Alert>
                 </Container>
             </Page>
             </div>
         );
     }catch(e){
+        console.log(e);
         return(
             <div>
                 Fehler 404
