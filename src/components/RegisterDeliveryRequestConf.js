@@ -116,19 +116,20 @@ class RegisterDeliveryRequestConf extends Component{
               "postalCode": "86361"
             }
           };*/
-        if(this.state.sent === false) { //prevents double sending
-            console.log("Success");
+        if(this.state.show === false) { //prevents double sending
+           // console.log("Success");
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
             //console.log(data);
         }).catch((e) => {
             console.error(e);
         });   
         //console.log(deliveryRequest);
+
+        
         }
         console.log("Failed")
         this.setState( {
-            show: true,
-            sent: true
+            show: true
         });
     }
 
@@ -267,10 +268,10 @@ class RegisterDeliveryRequestConf extends Component{
                   </Row>
                 </div>
                 <Alert show={this.state.show} variant="success">
-                <Alert.Heading>Request sent</Alert.Heading>
-                <p>
-                    You can see your Request in My Deliveries!
-                </p>
+                    <Alert.Heading>Request sent</Alert.Heading>
+                    <p>
+                        You can see your Request in My Deliveries!
+                    </p>
                 </Alert>
                 </Container>
             </Page>
