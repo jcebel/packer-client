@@ -1,6 +1,7 @@
 import React from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import {InputGroup, FormControl} from "react-bootstrap";
 
 //https://react-day-picker.js.org/
 
@@ -8,8 +9,9 @@ export default class DatepickerClass extends React.Component {
   constructor(props) {
     super(props);
     this.handleDayChange = this.handleDayChange.bind(this);
+    let today = new Date();
     this.state = {
-      selectedDay: undefined,
+      selectedDay: today,
     };
   }
   handleDayChange(day) {
@@ -22,9 +24,12 @@ export default class DatepickerClass extends React.Component {
     //console.log(selectedDay);
     return (
       <div>
-        {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
-        {!selectedDay && <p>Choose a day</p>}
-        <DayPickerInput onDayChange={this.handleDayChange} />
+        <InputGroup className="mb-3">
+              <InputGroup.Prepend>
+              <InputGroup.Text>Select Date: {this.state.selectedDay.toLocaleDateString()}</InputGroup.Text>
+              <DayPickerInput onDayChange={this.handleDayChange}/>
+        </InputGroup.Prepend>
+        </InputGroup>
       </div>
     );
   }

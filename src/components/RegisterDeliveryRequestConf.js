@@ -26,7 +26,8 @@ class RegisterDeliveryRequestConf extends Component{
                 endcity: this.props.datadr.endcity,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
-                date: this.props.datadr.date
+                date: this.props.datadr.date,
+                sent: false
             };
             this.priceCalculation();
         } else {
@@ -115,16 +116,19 @@ class RegisterDeliveryRequestConf extends Component{
               "postalCode": "86361"
             }
           };*/
-        
+        if(this.state.sent === false) { //prevents double sending
+            console.log("Success");
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
             //console.log(data);
         }).catch((e) => {
             console.error(e);
         });   
         //console.log(deliveryRequest);
-
+        }
+        console.log("Failed")
         this.setState( {
-            show: true
+            show: true,
+            sent: true
         });
     }
 

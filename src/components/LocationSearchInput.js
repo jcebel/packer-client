@@ -4,6 +4,8 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import {FormControl} from "react-bootstrap";
 
+
+//https://www.npmjs.com/package/react-places-autocomplete
  
 class LocationSearchInput extends React.Component {
   constructor(props) {

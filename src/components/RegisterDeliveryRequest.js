@@ -16,7 +16,7 @@ class RegisterDeliveryRequest extends Component{
 
     constructor(props) {
         super(props);
-        let today = new Date().toISOString().slice(0, 10)
+        
         this.state = {
             show: false,
             what : "",
@@ -30,7 +30,6 @@ class RegisterDeliveryRequest extends Component{
             endcity: "",
             size: "",
             weight: "",
-            date: today
         };
     }
 
@@ -98,13 +97,21 @@ class RegisterDeliveryRequest extends Component{
     }
 
     checkdata = (e) => {
+        //console.log(this.state);
+            if(this.state.what === "" || this.state.sender === "" || this.state.receiver === "" || this.state.start === "" || this.state.startnum === ""
+            || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === "" 
+            || this.state.weight === "") {
+                this.setState({
+                    show: true
+                });
+                e.preventDefault();
+            }
         
-        if( this.state.what === "") {
-            e.preventDefault();
-            this.setState({
-                show: true
-            });
-        }
+    }
+    checkdata2 = (e) => {
+                this.setState({
+                    show: false
+                });
     }
       
 
@@ -203,6 +210,7 @@ class RegisterDeliveryRequest extends Component{
                     <p>
                         I think you forgot to enter some data!
                     </p>
+                    <Button onClick={this.checkdata2}>Ok</Button>
                 </Alert>
                 </Container>
             </Page>
