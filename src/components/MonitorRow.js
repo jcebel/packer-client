@@ -105,7 +105,9 @@ export class MonitorRow extends React.Component {
                                 </p>
                                 {this.props.deliverygood.deliveryState === "Waiting for Routing" ?
                                 <p>
-                                    <Button href="#" variant="danger" onClick={() => this.props.onDelete(this.props.deliverygood._id)} size="xs">Delete</Button>
+                                    <Button href="#" variant="danger" onClick={() => {
+                                        if(window.confirm("Are you sure you wish to delete this delivery request?"))
+                                        this.props.onDelete(this.props.deliverygood._id)}} size="xs">Delete</Button>
                                 </p> : <span/>}
                             </Col>
                         </Row>
