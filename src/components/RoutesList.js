@@ -20,47 +20,49 @@ export class RoutesList extends React.Component {
         this.state = {
             data: [],
             searchCriteria: {},
-            deleted:false
+            deleted: false
         };
         this.onInputChanged = this.onInputChanged.bind(this);
         this.deleteFilters = this.deleteFilters.bind(this);
     }
 
-    onInputChanged(identifier, newValue) {
+    filter(data, filterCriteria) {
         const doesAttributeMatch = (criteriaName, row) => {
             const attribute = filterCriteria[criteriaName].resolveAttribute(row);
             if (attribute) {
-                return attribute.startsWith(filterCriteria[criteriaName].inputValue);
+                return attribute.toLowerCase().startsWith(filterCriteria[criteriaName].inputValue.toLowerCase());
             }
             return false;
         };
-        const filter = (data) => {
-            return data.filter((row) => {
-                const array = Object.getOwnPropertyNames(filterCriteria).map((criteria) =>
-                    doesAttributeMatch(criteria, row));
-                return array.reduce((total, currentValue) => total && currentValue, true);
-            });
-        };
+        return data.filter((row) => {
+            const array = Object.getOwnPropertyNames(filterCriteria).map((criteria) =>
+                doesAttributeMatch(criteria, row));
+            return array.reduce((total, currentValue) => total && currentValue, true);
+        });
+    };
+
+    onInputChanged(identifier, newValue) {
         const filterCriteria = {...this.state.searchCriteria};
         filterCriteria[identifier] = newValue;
-        if (filterCriteria) {
-            const filteredData = filter(this.props.data);
-            this.setState({
-                data: filteredData,
-                searchCriteria: filterCriteria
-            });
-        }
+        const filteredData = this.filter(this.props.data, filterCriteria);
+        this.setState({
+            data: filteredData,
+            searchCriteria: filterCriteria
+        });
     }
 
     componentDidUpdate(prevProps) {
         if (!prevProps.loadingDone && this.props.loadingDone) {
             this.setState({data: this.props.data});
+        } else if (!prevProps.dirtyData && this.props.dirtyData) {
+            console.log('Should now rerender with filtering');
+            this.setState((state,props) => {return {data: this.filter(props.data, state.searchCriteria)}})
         }
     }
 
     deleteFilters() {
-        this.setState(function(state,props) {
-            return ({data: props.data, searchCriteria: {}, deleted: !state.deleted });
+        this.setState(function (state, props) {
+            return ({data: props.data, searchCriteria: {}, deleted: !state.deleted});
         })
     }
 
@@ -72,13 +74,14 @@ export class RoutesList extends React.Component {
                     <StyledTable>
                         <thead>
                         <tr>
-                            <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged} resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
+                            <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged}
+                                                         resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
                             <StyledCell>
                                 <FilterInput
                                     triggerUpdate={this.state.deleted}
                                     placeholder="Distance"
                                     triggerFilter={this.onInputChanged}
-                                    resolver={(row) => row.kilometers + " km"}
+                                    resolver={(row) => row.meters / 1000 + " km"}
                                 />
                             </StyledCell>
                             <StyledCell>
@@ -94,7 +97,7 @@ export class RoutesList extends React.Component {
                                     triggerUpdate={this.state.deleted}
                                     placeholder="Start"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => row.items[0].origination.street}
+                                    resolver={(row) => row.collect[0].street}
                                 />
                             </StyledCell>
                             <StyledCell>
@@ -102,7 +105,7 @@ export class RoutesList extends React.Component {
                                     triggerUpdate={this.state.deleted}
                                     placeholder="End"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => row.items[row.items.length - 1].destination.street}
+                                    resolver={(row) => row.deliver[row.deliver.length - 1].street}
                                 />
                             </StyledCell>
                             <StyledCell>
@@ -110,11 +113,12 @@ export class RoutesList extends React.Component {
                                     triggerUpdate={this.state.deleted}
                                     placeholder="Payment"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => row.minBid + ' €'}
+                                    resolver={(row) => row.currentBid + ' €'}
                                 />
                             </StyledCell>
                             <StyledCell>
-                                <StyledDeleteFilter variant="danger" onClick={this.deleteFilters}>Delete Filters</StyledDeleteFilter>
+                                <StyledDeleteFilter variant="danger" onClick={this.deleteFilters}>Delete
+                                    Filters</StyledDeleteFilter>
                             </StyledCell>
                         </tr>
                         </thead>

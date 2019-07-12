@@ -8,9 +8,7 @@ import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
 export class BiddingInformation extends React.Component{
 
     render() {
-        var lowestBid = this.props.route.auctionBids.reduce(function (a, b) {
-            return a.bid < b.bid ? a.bid : b.bid;
-        });
+        const lowestBid = this.props.route.currentBid;
 
         return (
             <div>
@@ -22,7 +20,7 @@ export class BiddingInformation extends React.Component{
                         <Col>
                             <div className="font-weight-bold">Current Bid</div>
                             <p>
-                                {this.props.route.auctionBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; })} €
+                                {this.props.route.currentBid} €
                             </p>
                         </Col>
 
