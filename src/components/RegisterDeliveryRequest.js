@@ -116,6 +116,7 @@ class RegisterDeliveryRequest extends Component{
       
 
     render() {
+        //console.log(getCurrentUser());
         try{
         return (
             <Page activetab = "send">

@@ -57,7 +57,8 @@ class RegisterDeliveryRequestConf extends Component{
         let parameters = {
             size: this.state.size,
             weight: this.state.weight,
-            distance: 10
+            orig: this.state.start + this.state.startnum + ", " + this.state.startcity,
+            dest: this.state.end + this.state.endnum + ", " + this.state.endcity
         };
 
         PriceService.createPriceCalculation(parameters).then((data) => {
@@ -144,6 +145,7 @@ class RegisterDeliveryRequestConf extends Component{
                     Hello User, here is a summary of your package
                 </Row>
                 </div>
+                <p></p>
                 <div>
                   <Row>
                     <Col>
@@ -152,7 +154,7 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Costs</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder = {this.state.price}/>
+                            <FormControl readOnly placeholder = {this.state.price + " €"}/>
                         </InputGroup>
                     </label>
                     </Col>
