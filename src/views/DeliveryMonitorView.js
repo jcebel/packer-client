@@ -34,6 +34,15 @@ export class DeliveryMonitorView extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.interval = setInterval(() => this.refreshDeliveryData(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+        this.setState({loadingDone: false})
+    }
+
     deleteDeliveryGood(id){
         this.setState({
             data: [...this.state.data],
