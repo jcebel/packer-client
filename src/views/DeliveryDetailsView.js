@@ -1,6 +1,9 @@
 import React from 'react';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {DeliveryDetails} from "../components/DeliveryDetails";
+import {Container} from "react-bootstrap";
+import {Page} from "../components/Page";
+
 
 export class DeliveryDetailsView extends React.Component {
 
@@ -45,7 +48,11 @@ export class DeliveryDetailsView extends React.Component {
         }
 
         return (
-            <DeliveryDetails loading={this.state.loading} data={this.state.data}/>
+            <Page activetab="delivery">
+                <Container>
+                    <DeliveryDetails loading={this.state.loading} data={this.state.data}/>
+                </Container>
+            </Page>
         );
     }
 }
