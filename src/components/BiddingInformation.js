@@ -20,7 +20,7 @@ export class BiddingInformation extends React.Component{
                         <Col>
                             <div className="font-weight-bold">Current Bid</div>
                             <p>
-                                {this.props.route.auctionBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; })} €
+                                {this.props.route.currentBid} €
                             </p>
                         </Col>
 
