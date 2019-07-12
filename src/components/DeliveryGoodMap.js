@@ -1,7 +1,3 @@
-//  Insert the following line in your code and adapt long lat information
-//  <DeliveryGoodMap markerLocation={{lat: 48.262235, lng: 11.670273}}/>
-
-
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
