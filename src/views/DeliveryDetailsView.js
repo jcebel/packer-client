@@ -31,13 +31,13 @@ export class DeliveryDetailsView extends React.Component {
         });
     }
 
-    // componentDidMount() {
-    //     this.interval = setInterval(() => this.refreshDelGoodData(), 5000);
-    // }
-    //
-    // componentWillUnmount() {
-    //     clearInterval(this.interval);
-    // }
+    componentDidMount() {
+        this.interval = setInterval(() => this.refreshDelGoodData(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     render() {
         if (this.state.loading) {
