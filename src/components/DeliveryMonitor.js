@@ -23,7 +23,7 @@ export class DeliveryMonitor extends Component {
     render() {
         return (
             <Page activetab="delivery">
-                {this.props.loadingDone !== []? this.state.data.map((deliverygood) =>
+                {this.props.data.length !== 0 ? this.state.data.map((deliverygood) =>
                         <MonitorRow key={deliverygood._id}
                                     deliverygood={deliverygood}
                                     onDelete={(id) => {this.props.onDelete(id)}}/>) :
