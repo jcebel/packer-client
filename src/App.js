@@ -7,6 +7,7 @@ import {RegistrationView} from "./views/RegistrationView";
 import {LoginView} from "./views/LoginView";
 import {AuthService} from "./services/AuthService";
 import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
+import {DeliveryDetailsView} from "./views/DeliveryDetailsView";
 
 export default class App extends React.Component {
 
@@ -41,6 +42,14 @@ export default class App extends React.Component {
                         return (<Redirect to={'/login'}/>)
                     }
                     }, path: '/deliverymonitor/:id', exact: true},
+                { render: (props) => {
+                        if(AuthService.isAuthenticated()){
+                            return(<DeliveryDetailsView{... props}/>)
+                        }
+                        else{
+                            return (<Redirect to={'/login'}/>)
+                        }
+                    }, path: '/deliverydetails/:id', exact: true},
                 { component: RegistrationView, path: '/register', exact:true},
                 { component: LoginView, path: '/login', exact:true}
 
