@@ -8,9 +8,7 @@ import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
 export class BiddingInformation extends React.Component{
 
     render() {
-        var lowestBid = this.props.route.auctionBids.reduce(function (a, b) {
-            return a.bid < b.bid ? a.bid : b.bid;
-        });
+        var lowestBid = this.props.route.currentBid;
 
         return (
             <div>

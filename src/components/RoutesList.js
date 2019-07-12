@@ -30,7 +30,7 @@ export class RoutesList extends React.Component {
         const doesAttributeMatch = (criteriaName, row) => {
             const attribute = filterCriteria[criteriaName].resolveAttribute(row);
             if (attribute) {
-                return attribute.startsWith(filterCriteria[criteriaName].inputValue);
+                return attribute.toLowerCase().startsWith(filterCriteria[criteriaName].inputValue.toLowerCase());
             }
             return false;
         };
@@ -110,7 +110,7 @@ export class RoutesList extends React.Component {
                                     triggerUpdate={this.state.deleted}
                                     placeholder="Payment"
                                     triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => row.minBid + ' €'}
+                                    resolver={(row) => row.currentBid + ' €'}
                                 />
                             </StyledCell>
                             <StyledCell>

@@ -8,12 +8,6 @@ export class RoutesRow extends React.Component {
 
     render() {
         const StyledInfoButton = styled(Button)`display:block`;
-        if(this.props.route.auctionBids.length > 1) {
-            this.props.route.minBid = this.props.route.auctionBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; })
-        } else{
-            this.props.route.minBid = this.props.route.auctionBids;
-
-        }
         return (
             <tr>
                 <StyledCell><VehicleImage vehicleType={this.props.route.vehicleType}/></StyledCell>
@@ -22,7 +16,7 @@ export class RoutesRow extends React.Component {
                 <StyledCell>{this.props.route.collect[0].street}</StyledCell>
                 <StyledCell>{this.props.route.deliver[this.props.route.deliver.length - 1].street}</StyledCell>
                 <StyledCell>
-                    {this.props.route.minBid} €
+                    {this.props.route.currentBid} €
                 </StyledCell>
                 <StyledCell><StyledInfoButton variant="success" href={`/route/${this.props.route._id}`}>More Info</StyledInfoButton>
                 </StyledCell>
