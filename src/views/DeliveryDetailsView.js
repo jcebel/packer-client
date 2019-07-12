@@ -1,5 +1,6 @@
 import React from 'react';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
+import {DeliveryDetails} from "../components/DeliveryDetails";
 
 export class DeliveryDetailsView extends React.Component {
 
@@ -7,7 +8,7 @@ export class DeliveryDetailsView extends React.Component {
         super(props);
         this.state = {
             loading: false,
-            delGood: {}
+            data: {}
         };
     };
 
@@ -20,10 +21,9 @@ export class DeliveryDetailsView extends React.Component {
 
     refreshDelGoodData(){
         let id = this.props.match.params.id;
-        id = "5d286e9fae02f13a9893801b";
         DeliveryGoodService.getDeliveryGood(id).then((data) => {
             this.setState({
-                delGood: data,
+                data: data,
                 loading: false
             });
         }).catch((e) => {
@@ -31,13 +31,13 @@ export class DeliveryDetailsView extends React.Component {
         });
     }
 
-    componentDidMount() {
-        this.interval = setInterval(() => this.refreshDelGoodData(), 5000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
+    // componentDidMount() {
+    //     this.interval = setInterval(() => this.refreshDelGoodData(), 5000);
+    // }
+    //
+    // componentWillUnmount() {
+    //     clearInterval(this.interval);
+    // }
 
     render() {
         if (this.state.loading) {
@@ -45,7 +45,7 @@ export class DeliveryDetailsView extends React.Component {
         }
 
         return (
-            <div>{JSON.stringify(this.state.delGood)}</div>
+            <DeliveryDetails loading={this.state.loading} data={this.state.data}/>
         );
     }
 }

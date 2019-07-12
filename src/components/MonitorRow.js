@@ -69,7 +69,7 @@ export class MonitorRow extends React.Component {
                             </Col>
                             <Col className="align-self-center text-center">
                                 <p>
-                                    <Button href="#" variant="secondary" size="xs">More Info</Button>
+                                    <Button href={`/deliverydetails/${this.props.deliverygood._id}`} variant="secondary" size="xs">More Info</Button>
                                 </p>
                                 {this.props.deliverygood.deliveryState === "Waiting for Routing" ?
                                 <p>
