@@ -1,7 +1,7 @@
 import React from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import {InputGroup, FormControl} from "react-bootstrap";
+import {InputGroup} from "react-bootstrap";
 
 //https://react-day-picker.js.org/
 
@@ -20,7 +20,7 @@ export default class DatepickerClass extends React.Component {
     this.props.onSelectDate(datedr);     
   }
   render() {
-    const { selectedDay } = this.state;
+    
     //console.log(selectedDay);
     return (
       <div>

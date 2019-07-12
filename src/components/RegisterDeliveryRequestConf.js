@@ -4,9 +4,11 @@ import {Page} from './Page';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {PriceService} from "../services/PriceService";
 
+    
 
 class RegisterDeliveryRequestConf extends Component{
 
+    
     
 
     constructor(props) {
@@ -26,7 +28,7 @@ class RegisterDeliveryRequestConf extends Component{
                 endcity: this.props.datadr.endcity,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
-                date: this.props.datadr.date,
+                date: this.props.datadr.date.toLocaleDateString(),
                 sent: false
             };
             this.priceCalculation();
@@ -85,38 +87,16 @@ class RegisterDeliveryRequestConf extends Component{
                 "city": this.state.startcity,
                 "street": this.state.start,
                 "houseNumber": this.state.startnum,
-                "postalCode": "80331"
+                "postalCode": ""
               },
               "origination": {
                 "name": this.state.receiver,
                 "city": this.state.endcity,
                 "street": this.state.end,
                 "houseNumber": this.state.endnum,
-                "postalCode": "80331"
+                "postalCode": ""
               }
-        };/*
-        let deliveryRequest = {
-            "name": "Smartphone123",
-            "deliveryDate": "2019-07-17T16:54:00.000Z",
-            "weight": "80",
-            "size": "3",
-            "price": 28,
-            "deliveryState": "Waiting for Routing",
-            "destination": {
-                    "name":"Max",
-              "city": "Muenchen",
-              "street": "Theresienstrasse",
-              "houseNumber": 5,
-              "postalCode": "84762"
-            },
-            "origination": {
-                    "name": "Jonas",
-              "city": "München",
-              "street": "Arcisstrasse",
-              "houseNumber": 28,
-              "postalCode": "86361"
-            }
-          };*/
+        };
         if(this.state.show === false) { //prevents double sending
            // console.log("Success");
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
@@ -128,7 +108,7 @@ class RegisterDeliveryRequestConf extends Component{
 
         
         }
-        console.log("Failed")
+        //console.log("Failed")
         this.setState( {
             show: true
         });
@@ -201,10 +181,10 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.state.start + " " + this.state.startnum + ", " + this.state.startcity}/>
+                            <FormControl bsPrefix="Test" readOnly placeholder={this.state.start + " " + this.state.startnum + ", " + this.state.startcity}/>
                         
                         <InputGroup.Prepend>
-                                <InputGroup.Text>End (Street. Number)</InputGroup.Text>
+                                <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl readOnly placeholder={this.state.end + " " + this.state.endnum + ", " + this.state.endcity}/>
                         </InputGroup>
@@ -262,7 +242,7 @@ class RegisterDeliveryRequestConf extends Component{
                   <Row>
                     <label>
                     <ButtonToolbar>
-                      <Button 
+                      <Button disabled={this.state.show} 
                       onClick={this.submitRequest} variant="success">Accept</Button>
                       <Button href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
