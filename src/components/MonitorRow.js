@@ -4,7 +4,6 @@ import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import styled from 'styled-components/macro';
 
 export class MonitorRow extends React.Component {
 
