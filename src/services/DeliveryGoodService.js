@@ -1,19 +1,16 @@
-import {HttpService} from './HttpService';
+import {HttpService} from "./HttpService";
 
-export class DeliveryGoodService {
+export class DeliveryGoodService{
 
-    static baseURL() {return "http://localhost:3000/DeliveryGoods" }
-    //static baseURL() {return "http://ec2-3-16-129-205.us-east-2.compute.amazonaws.com:3000/route" }
+    static baseURL() {return "http://localhost:3000/deliverygoods" }
 
-
-    static createDeliveryGood(deliverygood) {
+    static deleteDeliveryGood(id) {
         return new Promise((resolve, reject) => {
-            HttpService.post(`${this.baseURL()}/`, deliverygood, function(data) {
+            HttpService.remove(`${this.baseURL()}/${id}`, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
             });
         });
     }
-
 }

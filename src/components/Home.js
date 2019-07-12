@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel, Jumbotron, Container, Button} from 'react-bootstrap';
-import Page from './Page';
+import {Page} from './Page';
 
 export class Home extends Component {
   

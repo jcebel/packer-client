@@ -5,8 +5,8 @@ import {RouteDetails} from "../components/RouteDetails";
 import {PackageList} from "../components/PackageList";
 import {BiddingInformation} from "../components/BiddingInformation";
 import {RouteService} from "../services/RouteService";
-import Page from "../components/Page";
-import UserService from "../services/UserService";
+import {Page} from "../components/Page";
+import {AuthService} from "../services/AuthService";
 import styled from 'styled-components/macro';
 
 const StyledRow = styled(Row)`height:"350px"`;
@@ -82,9 +82,10 @@ export class BiddingProcessView extends React.Component{
     }
 
     submitBidByID(id, newBid) {
-        console.log(UserService.getCurrentUser());
+        console.log(AuthService.getCurrentUser());
         let route = {
             "_id": id,
+            //TODO: This is still hardcoded!
             "owner": "5d19fdb047ec6c05280c8541",
             "bid": newBid
         };

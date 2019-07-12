@@ -1,5 +1,4 @@
 import React from 'react';
-import UserService from  '../services/UserService';
 import { withRouter } from 'react-router-dom';
 import {NavDropdown} from 'react-bootstrap';
 
@@ -8,16 +7,12 @@ class UserMenu extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
-        }
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
-    logout() {
-        UserService.logout();
-        this.setState({
-            user: UserService.isAuthenticated() ? UserService.getCurrentUser() : undefined
-        });
+    
+    handleLogout(){
+        this.props.handleLogout();
         if(this.props.location.pathname !== '/') {
             this.props.history.push('/');
         }
@@ -39,8 +34,8 @@ class UserMenu extends React.Component {
                                  />
                              </div>
                          }>
-                {this.state.user ?[
-                    <NavDropdown.Item key={1} onClick={() => this.logout()}>Logout</NavDropdown.Item>
+                {this.props.user ?[
+                    <NavDropdown.Item key={1} onClick={this.handleLogout}>Logout</NavDropdown.Item>
             ]: [<NavDropdown.Item key={1} onClick={()=> this.props.history.push('/login')}>Login</NavDropdown.Item>,
                 <NavDropdown.Item key={2} onClick={()=> this.props.history.push('/register')}>Register</NavDropdown.Item>
                 ]}
