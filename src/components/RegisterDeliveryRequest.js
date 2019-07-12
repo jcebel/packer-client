@@ -4,7 +4,7 @@ import {ToggleButtonBar1} from './ToggleButtonBar';
 import {ToggleButtonBar2} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
 import LocationSearchInput from './LocationSearchInput';
-import Page from "./Page";
+import {Page} from './Page';
 import {Link} from "react-router-dom";
 
 
@@ -217,7 +217,7 @@ class RegisterDeliveryRequest extends Component{
         );
     }catch(e){
         console.log('error', e);        
-    }
+        }
     };
 
 }

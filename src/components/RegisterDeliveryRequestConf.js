@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, Container, Row, Col, InputGroup, FormControl, Button, ButtonToolbar} from 'react-bootstrap';
-import Page from './Page';
+import {Page} from './Page';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {PriceService} from "../services/PriceService";
 
