@@ -20,13 +20,13 @@ export class RoutesList extends React.Component {
         this.state = {
             data: [],
             searchCriteria: {},
-            deleted:false
+            deleted: false
         };
         this.onInputChanged = this.onInputChanged.bind(this);
         this.deleteFilters = this.deleteFilters.bind(this);
     }
 
-    onInputChanged(identifier, newValue) {
+    filter(data, filterCriteria) {
         const doesAttributeMatch = (criteriaName, row) => {
             const attribute = filterCriteria[criteriaName].resolveAttribute(row);
             if (attribute) {
@@ -34,33 +34,35 @@ export class RoutesList extends React.Component {
             }
             return false;
         };
-        const filter = (data) => {
-            return data.filter((row) => {
-                const array = Object.getOwnPropertyNames(filterCriteria).map((criteria) =>
-                    doesAttributeMatch(criteria, row));
-                return array.reduce((total, currentValue) => total && currentValue, true);
-            });
-        };
+        return data.filter((row) => {
+            const array = Object.getOwnPropertyNames(filterCriteria).map((criteria) =>
+                doesAttributeMatch(criteria, row));
+            return array.reduce((total, currentValue) => total && currentValue, true);
+        });
+    };
+
+    onInputChanged(identifier, newValue) {
         const filterCriteria = {...this.state.searchCriteria};
         filterCriteria[identifier] = newValue;
-        if (filterCriteria) {
-            const filteredData = filter(this.props.data);
-            this.setState({
-                data: filteredData,
-                searchCriteria: filterCriteria
-            });
-        }
+        const filteredData = this.filter(this.props.data, filterCriteria);
+        this.setState({
+            data: filteredData,
+            searchCriteria: filterCriteria
+        });
     }
 
     componentDidUpdate(prevProps) {
         if (!prevProps.loadingDone && this.props.loadingDone) {
             this.setState({data: this.props.data});
+        } else if (!prevProps.dirtyData && this.props.dirtyData) {
+            console.log('Should now rerender with filtering');
+            this.setState((state,props) => {return {data: this.filter(props.data, state.searchCriteria)}})
         }
     }
 
     deleteFilters() {
-        this.setState(function(state,props) {
-            return ({data: props.data, searchCriteria: {}, deleted: !state.deleted });
+        this.setState(function (state, props) {
+            return ({data: props.data, searchCriteria: {}, deleted: !state.deleted});
         })
     }
 
@@ -72,13 +74,14 @@ export class RoutesList extends React.Component {
                     <StyledTable>
                         <thead>
                         <tr>
-                            <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged} resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
+                            <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged}
+                                                         resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
                             <StyledCell>
                                 <FilterInput
                                     triggerUpdate={this.state.deleted}
                                     placeholder="Distance"
                                     triggerFilter={this.onInputChanged}
-                                    resolver={(row) => row.meters/1000 + " km"}
+                                    resolver={(row) => row.meters / 1000 + " km"}
                                 />
                             </StyledCell>
                             <StyledCell>
@@ -114,7 +117,8 @@ export class RoutesList extends React.Component {
                                 />
                             </StyledCell>
                             <StyledCell>
-                                <StyledDeleteFilter variant="danger" onClick={this.deleteFilters}>Delete Filters</StyledDeleteFilter>
+                                <StyledDeleteFilter variant="danger" onClick={this.deleteFilters}>Delete
+                                    Filters</StyledDeleteFilter>
                             </StyledCell>
                         </tr>
                         </thead>
