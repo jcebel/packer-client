@@ -1,8 +1,17 @@
 import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import {Formik, Field, Form, ErrorMessage, FieldArray} from 'formik';
 import {Container} from 'react-bootstrap';
 import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
+import styled from 'styled-components/macro';
+
+const Warning = styled.div`
+    color: red;`;
+
+const checkboxes = [
+    { id: "deliveryClient", name: "Delivery Client" },
+    { id: "driver", name: "Driver" },
+];
 
 class Registration extends React.Component {
 
@@ -36,13 +45,8 @@ class Registration extends React.Component {
                         name: '',
                         email: '',
                         password: '',
-                        confirmPassword: ''/*,
-                        homeAddress:{
-                            city: '',
-                            street: '',
-                            houseNumber: '',
-                            postalCode: ''
-                        }*/
+                        confirmPassword: '',
+                        checkboxIds: ["deliveryClient"]
                     }}
                     validationSchema={Yup.object().shape({
                         firstName: Yup.string()
@@ -57,23 +61,12 @@ class Registration extends React.Component {
                             .required('Password is required'),
                         confirmPassword:  Yup.string()
                             .oneOf([Yup.ref('password'), null], 'Passwords must match')
-                            .required('Confirm Password is required')/*,
-                        homeAddress: Yup.array()
-                            .of(
-                                Yup.object().shape({
-                                    city: Yup.string()
-                                        .required('City is required'),
-                                    street: Yup.string()
-                                        .required('Street is required'),
-                                    houseNumber: Yup.number()
-                                        .required('House number is required'),
-                                    postalCode: Yup.string()
-                                        .required('Postal Code is required')
-                                })
-                            )*/
+                            .required('Confirm Password is required'),
+                        checkboxIds: Yup.array()
+                            .required('At least one checkbox is required')
                     })}
                     onSubmit={this.handleSubmit}
-                    render={({ errors, touched }) => (
+                    render={({ errors, touched, values }) => (
                         <Form>
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>
@@ -99,6 +92,35 @@ class Registration extends React.Component {
                                 <label htmlFor="confirmPassword">Confirm Password</label>
                                 <Field name="confirmPassword" type="password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
                                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
+                            </div>
+                            Register as:
+                            <div className="form-group">
+                                <FieldArray name="checkboxIds"
+                                            render={arrayHelpers => (
+                                                <div>
+                                                    {checkboxes.map(category => (
+                                                        <div key={category.id}>
+                                                            <label>
+                                                                <input
+                                                                    name="checkboxIds"
+                                                                    type="checkbox"
+                                                                    value={category.id}
+                                                                    checked={values.checkboxIds.includes(category.id)}
+                                                                    onChange={e => {
+                                                                        if(e.target.checked) arrayHelpers.push(category.id);
+                                                                        else{
+                                                                            const idx = values.checkboxIds.indexOf(category.id);
+                                                                            arrayHelpers.remove(idx);
+                                                                        }
+                                                                    }}
+                                                                />{" "}
+                                                            {category.name}
+                                                            </label>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}/>
+                                <Warning>{errors["checkboxIds"]}</Warning>
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary mr-2">Register</button>
