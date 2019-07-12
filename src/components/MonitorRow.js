@@ -1,29 +1,11 @@
 import React from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import {StatusBadge} from "./StatusBadge";
 
 export class MonitorRow extends React.Component {
-
-    statusButtonVariant(){
-        if(this.props.deliverygood.deliveryState === "In Delivery"){
-            return "info";
-        }
-        else if(this.props.deliverygood.deliveryState === "Delivered"){
-            return "success";
-        }
-        else if(this.props.deliverygood.deliveryState === "Waiting for Routing"){
-            return "warning";
-        }
-        else if(this.props.deliverygood.deliveryState === "Waiting for Pickup"){
-            return "primary";
-        }
-        else{
-            return "dark";
-        }
-    }
 
     render(){
         return (
@@ -47,7 +29,7 @@ export class MonitorRow extends React.Component {
                                 <p className="h3 font-weight-bold">
                                     {this.props.deliverygood.name}
                                 </p>
-                                <Badge variant={this.statusButtonVariant()}>{this.props.deliverygood.deliveryState}</Badge>
+                                <StatusBadge deliveryState={this.props.deliverygood.deliveryState}/>
                             </Col>
                             <Col>
                                 <div className="font-weight-bold">Sender</div>
