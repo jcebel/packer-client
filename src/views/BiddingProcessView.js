@@ -6,9 +6,8 @@ import {PackageList} from "../components/PackageList";
 import {BiddingInformation} from "../components/BiddingInformation";
 import {RouteService} from "../services/RouteService";
 import {Page} from "../components/Page";
-import {AuthService} from "../services/AuthService";
 import styled from 'styled-components/macro';
-import Image from "react-bootstrap/Image";
+import {UserService} from "../services/UserService";
 
 const StyledRow = styled(Row)`height:"350px"`;
 const StyledCard = styled(Card)`height:"350px"`;
@@ -18,10 +17,15 @@ export class BiddingProcessView extends React.Component{
     constructor(props) {
         super(props);
 
-        this.state = {
-            loading: false,
-            route: {}
-        };
+        UserService.getDriverId().then((data) => {
+            this.state = {
+                loading: false,
+                route: {},
+                driverID: data
+            };
+        }).catch((e) => {
+            console.error(e);
+        });
     }
 
     componentWillMount(){
@@ -29,7 +33,6 @@ export class BiddingProcessView extends React.Component{
             loading: true
         });
         this.refreshRouteData();
-
     }
 
     refreshRouteData(){
@@ -37,7 +40,8 @@ export class BiddingProcessView extends React.Component{
         RouteService.getRoute(id).then((data) => {
             this.setState({
                 route: data,
-                loading: false
+                loading: false,
+                driverID: this.state.driverID
             });
         }).catch((e) => {
             console.error(e);
@@ -50,6 +54,48 @@ export class BiddingProcessView extends React.Component{
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    getBiddingStatusImage(){
+        const currentBid = this.state.route.currentBid;
+        const ownBids = this.state.route.auctionBids.filter(bid => bid.owner === this.state.driverID);
+        let lowestBid;
+        if (ownBids.length === 0){
+            lowestBid = currentBid + 1;
+        } else{
+            lowestBid = ownBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; }).bid;
+        }
+        const auctionOver = this.state.route.auctionOver;
+
+        if(auctionOver && (currentBid === lowestBid)){
+            return <img
+                src="/Images/Winner.jpg"
+                width="80%"
+                height="80%"
+                alt="Winner"
+            />;
+        } else if(!auctionOver && (currentBid === lowestBid)){
+            return <img
+                src="/Images/Green Checkmark.png"
+                width="80%"
+                height="80%"
+                alt="CheckBox"
+            />;
+        } else if(auctionOver && (currentBid < lowestBid)){
+            return <img
+                src="/Images/Thumps down.svg"
+                width="80%"
+                height="80%"
+                alt="Thumps down"
+            />;
+        } else if(!auctionOver && (currentBid < lowestBid)){
+            return <img
+                src="/Images/Red Cross.png"
+                width="60%"
+                height="80%"
+                alt="Red Cross"
+            />;
+        }
     }
 
 
@@ -76,6 +122,9 @@ export class BiddingProcessView extends React.Component{
                         <Col sm={8}>
                             <BiddingInformation route={this.state.route} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
                         </Col>
+                        <Col>
+                            {this.getBiddingStatusImage()}
+                        </Col>
                     </Row>
                 </Container>
             </Page>
@@ -83,7 +132,6 @@ export class BiddingProcessView extends React.Component{
     }
 
     submitBidByID(id, newBid) {
-        console.log(AuthService.getCurrentUser());
         let route = {
             "_id": id,
             "bid": newBid
@@ -92,7 +140,8 @@ export class BiddingProcessView extends React.Component{
             RouteService.getRoute(id).then((data) => {
                 this.setState({
                     route: data,
-                    loading: false
+                    loading: false,
+                    driverID: this.state.driverID
                 });
             }).catch((e) => {
                 console.error(e);

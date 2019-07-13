@@ -21,13 +21,6 @@ export class BiddingInformation extends React.Component{
                             <div className="font-weight-bold">Current Bid</div>
                             <p>
                                 {`${this.props.route.currentBid} €`}
-
-                                <img
-                                    src="https://www.iconsdb.com/icons/preview/green/check-mark-3-xxl.png"
-                                    width="8%"
-                                    height="8%"
-                                    alt="Company Logo"
-                                    />
                             </p>
                         </Col>
 
