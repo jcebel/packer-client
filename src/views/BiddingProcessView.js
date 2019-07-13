@@ -85,8 +85,6 @@ export class BiddingProcessView extends React.Component{
         console.log(AuthService.getCurrentUser());
         let route = {
             "_id": id,
-            //TODO: This is still hardcoded!
-            "owner": "5d19fdb047ec6c05280c8541",
             "bid": newBid
         };
         RouteService.updateRoute(route).then(() => {
