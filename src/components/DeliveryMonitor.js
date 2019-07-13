@@ -26,7 +26,7 @@ export class DeliveryMonitor extends Component {
                 {this.props.data.length !== 0 ? this.state.data.map((deliverygood) =>
                         <MonitorRow key={deliverygood._id}
                                     deliverygood={deliverygood}
-                                    onDelete={(id) => {this.props.onDelete(id)}}/>) :
+                                    deleteitem={(id) => {this.props.deleteitem(id)}}/>) :
                     <Container>
                         You've got no deliveries yet... Start by Clicking on "Send anything"! ;)
                     </Container>}

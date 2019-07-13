@@ -65,7 +65,7 @@ export class DeliveryMonitorView extends React.Component {
 
     render(){
         return (
-            <DeliveryMonitor loadingDone={this.state.loadingDone} data={this.state.data} onDelete={(id) => this.deleteDeliveryGood(id)}/>
+            <DeliveryMonitor loadingDone={this.state.loadingDone} data={this.state.data} deleteitem={(id) => this.deleteDeliveryGood(id)}/>
         );
     }
 }

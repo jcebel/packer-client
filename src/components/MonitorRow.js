@@ -4,10 +4,17 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import {StatusBadge} from "./StatusBadge";
+import {ConfirmPopup} from "./ConfirmPopup";
 
 export class MonitorRow extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {popupShow: false}
+    };
+
     render(){
+        let popupClose = () => this.setState({ popupShow: false });
         return (
             <Container>
                 <p/>
@@ -58,8 +65,17 @@ export class MonitorRow extends React.Component {
                                 {this.props.deliverygood.deliveryState === "Waiting for Routing" ?
                                 <p>
                                     <Button href="#" variant="danger" onClick={() => {
-                                        if(window.confirm("Are you sure you wish to delete this delivery request?"))
-                                        this.props.onDelete(this.props.deliverygood._id)}} size="xs">Delete</Button>
+                                        this.setState({popupShow: true})}
+                                    } size="xs">Delete</Button>
+                                    <ConfirmPopup
+                                        show={this.state.popupShow}
+                                        onHide={popupClose}
+                                        id={this.props.deliverygood._id}
+                                        onSubmit={() => {
+                                            popupClose();
+                                            this.props.deleteitem(this.props.deliverygood._id);
+                                        }}
+                                    />
                                 </p> : <span/>}
                             </Col>
                         </Row>
