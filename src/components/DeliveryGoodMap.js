@@ -1,10 +1,6 @@
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
-
-const mapStyle = {
-    height: '350px',
-};
 class DeliveryGoodMap extends React.Component{
 
     constructor(props) {
@@ -38,12 +34,11 @@ class DeliveryGoodMap extends React.Component{
             <Map
                 google={this.props.google}
                 zoom={15}
-                style={mapStyle}
                 initialCenter={this.props.markerLocation}
             >
                 <Marker
                     onClick={this.onMarkerClick}
-                    name={'Delivery Good information...'}
+                    name={'Current Position'}
                 />
                 <InfoWindow
                     marker={this.state.activeMarker}

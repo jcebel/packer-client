@@ -1,15 +1,10 @@
 import React from 'react';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {DeliveryDetails} from "../components/DeliveryDetails";
-import {Card, Col, Container} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {Page} from "../components/Page";
 import DeliveryGoodMap from "../components/DeliveryGoodMap";
-import Row from "react-bootstrap/Row";
-import styled from 'styled-components/macro';
 import {StatusBadge} from "../components/StatusBadge";
-
-const StyledRow = styled(Row)`height:"350px"`;
-const StyledCard = styled(Card)`height:"350px"`;
 
 
 export class DeliveryDetailsView extends React.Component {
@@ -24,7 +19,7 @@ export class DeliveryDetailsView extends React.Component {
 
     componentWillMount() {
         this.setState({
-            loadingDone: false
+            loading: true
         });
         this.refreshDelGoodData();
     }
@@ -58,23 +53,19 @@ export class DeliveryDetailsView extends React.Component {
             <Page activetab="delivery">
                 <Container>
                     <span className="h2">
-                        {this.state.data.name}
+                        {this.state.data.deliveryGood.name}
                         {" "}
-                        <StatusBadge deliveryState={this.state.data.deliveryState}/>
+                        <StatusBadge deliveryState={this.state.data.deliveryGood.deliveryState}/>
                     </span>
                     <p/>
-                    <StyledRow>
-                        <Col sm={8}>
-                            <StyledCard>
-                                <DeliveryGoodMap markerLocation={{lat: 48.262235, lng: 11.670273}}/>
-                            </StyledCard>
-
+                    <Row>
+                        <Col className="d-flex flex-column">
+                            <DeliveryGoodMap markerLocation={{lat: 48.262235, lng: 11.670273}}/>
                         </Col>
-                        <Col>
+                        <Col sm={4} className="d-flex ml-2">
                             <DeliveryDetails loading={this.state.loading} data={this.state.data}/>
                         </Col>
-                    </StyledRow>
-                    {/*<Row>{JSON.stringify(this.state.data)}</Row>*/}
+                    </Row>
                 </Container>
             </Page>
         );
