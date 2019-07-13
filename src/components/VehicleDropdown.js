@@ -3,7 +3,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Image from "react-bootstrap/Image";
 
-export default class RoutesList extends React.Component {
+export class VehicleDropdown extends React.Component {
 
     constructor(props) {
         super(props);

@@ -30,7 +30,7 @@ export class FilterInput extends React.Component {
         return (
             <Form.Control type="text"
                    value={this.state.value}
-                   name={this.props.identifier}
+                   name={this.props.placeholder}
                    placeholder={this.props.placeholder}
                    onChange={this.handleInputChange}></Form.Control>
         )
