@@ -35,7 +35,8 @@ export class MonitorRow extends React.Component {
                                 <div className="font-weight-bold">Sender</div>
                                 <p>
                                     {this.props.deliverygood.origination.name}<br/>
-                                    {this.props.deliverygood.origination.street}<br/>
+                                    {this.props.deliverygood.origination.street}
+                                    {" "}{this.props.deliverygood.origination.houseNumber}<br/>
                                     {this.props.deliverygood.origination.postalCode}
                                     <span> </span>
                                     {this.props.deliverygood.origination.city}<br/>
@@ -43,7 +44,8 @@ export class MonitorRow extends React.Component {
                                 <div className="font-weight-bold">Recipient</div>
                                 <p>
                                     {this.props.deliverygood.destination.name}<br/>
-                                    {this.props.deliverygood.destination.street}<br/>
+                                    {this.props.deliverygood.destination.street}
+                                    {" "}{this.props.deliverygood.destination.houseNumber}<br/>
                                     {this.props.deliverygood.destination.postalCode}
                                     <span> </span>
                                     {this.props.deliverygood.destination.city}<br/>

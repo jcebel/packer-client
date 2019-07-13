@@ -43,11 +43,11 @@ export class DeliveryDetails extends React.Component{
                     </Card.Title>
                         <Row>
                             <Col>Size:</Col>
-                            <Col>{this.capFirst(this.props.data.deliveryGood.size)}</Col>
+                            <Col>{this.capFirst(this.props.data.deliverygood.size)}</Col>
                         </Row>
                         <Row>
                             <Col>Weight:</Col>
-                            <Col>{this.capFirst(this.props.data.deliveryGood.weight)}</Col>
+                            <Col>{this.capFirst(this.props.data.deliverygood.weight)}</Col>
                         </Row>
                         <Row>
                             <Col>Distance:</Col>
@@ -55,7 +55,7 @@ export class DeliveryDetails extends React.Component{
                         </Row>
                         <Row>
                             <Col>Price:</Col>
-                            <Col>{this.props.data.deliveryGood.price} €</Col>
+                            <Col>{this.props.data.deliverygood.price} €</Col>
                         </Row>
                     </Card.Body>
                 </Card>

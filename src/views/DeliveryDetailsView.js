@@ -53,9 +53,9 @@ export class DeliveryDetailsView extends React.Component {
             <Page activetab="delivery">
                 <Container>
                     <span className="h2">
-                        {this.state.data.deliveryGood.name}
+                        {this.state.data.deliverygood.name}
                         {" "}
-                        <StatusBadge deliveryState={this.state.data.deliveryGood.deliveryState}/>
+                        <StatusBadge deliveryState={this.state.data.deliverygood.deliveryState}/>
                     </span>
                     <p/>
                     <Row>
