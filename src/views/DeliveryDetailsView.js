@@ -35,6 +35,17 @@ export class DeliveryDetailsView extends React.Component {
         this.refreshDelGoodData();
     }
 
+    refreshDelState(){
+        let id = this.props.match.params.id;
+        DeliveryGoodService.getDeliveryState(id).then((deliveryState) => {
+            this.setState({
+                deliveryState: deliveryState.deliveryState
+            });
+        }).catch((e) => {
+            console.error(e);
+        });
+    }
+
     refreshDelGoodData(){
         let id = this.props.match.params.id;
         DeliveryGoodService.getDeliveryGood(id).then((data) => {
@@ -79,7 +90,7 @@ export class DeliveryDetailsView extends React.Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.refreshDelGoodData(), 10000);
+        this.interval = setInterval(() => this.refreshDelState(), 1000);
     }
 
     componentWillUnmount() {
@@ -100,7 +111,7 @@ export class DeliveryDetailsView extends React.Component {
                     <span className="h2">
                         {this.state.data.deliverygood.name}
                         {" "}
-                        <StatusBadge deliveryState={this.state.data.deliverygood.deliveryState}/>
+                        <StatusBadge deliveryState={this.state.deliveryState}/>
                     </span>
                     <p/>
                     <Row>
