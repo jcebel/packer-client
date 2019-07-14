@@ -1,6 +1,6 @@
 import React from 'react';
 import {Formik, Field, Form, ErrorMessage, FieldArray} from 'formik';
-import {Container} from 'react-bootstrap';
+import {Col, Container} from 'react-bootstrap';
 import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
 import styled from 'styled-components/macro';
@@ -38,8 +38,10 @@ class Registration extends React.Component {
 
     render() {
         return (
-            <Container>
-                <Formik
+            <Container className="p-3">
+                <Col sm={6}>
+                    <h3>Join the Packer community!</h3>
+                    <Formik
                     initialValues={{
                         firstName: '',
                         name: '',
@@ -107,7 +109,8 @@ class Registration extends React.Component {
                                                                     value={category.id}
                                                                     checked={values.checkboxIds.includes(category.id)}
                                                                     onChange={e => {
-                                                                        if(e.target.checked) arrayHelpers.push(category.id);
+                                                                        if(e.target.checked){
+                                                                            arrayHelpers.push(category.id);}
                                                                         else{
                                                                             const idx = values.checkboxIds.indexOf(category.id);
                                                                             arrayHelpers.remove(idx);
@@ -131,6 +134,7 @@ class Registration extends React.Component {
                         </Form>
                     )}
                 />
+                </Col>
             </Container>
         )
     }

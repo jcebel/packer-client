@@ -2,6 +2,15 @@ import React from 'react';
 
 import Registration from '../components/Registration'
 import {AuthService} from '../services/AuthService';
+import styled from 'styled-components/macro';
+
+const Content = styled.div`
+    height: 100%; 
+    background-image: url(/Images/registrationBackground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
 
 export class RegistrationView extends React.Component{
 
@@ -23,7 +32,9 @@ export class RegistrationView extends React.Component{
 
     render() {
         return (
-            <Registration onSubmit={(fields) => this.register(fields)} error={this.state.error}></Registration>
+            <Content>
+                <Registration onSubmit={(fields) => this.register(fields)} error={this.state.error}></Registration>
+            </Content>
         );
     }
 }
