@@ -5,11 +5,12 @@ export class AuthService {
 
     static baseURL() {return HttpService.apiURL() + "/auth"; }
 
+
     static register(fields) {
         return new Promise((resolve, reject) => {
-            HttpService.post(`${AuthService.baseURL()}/register`, fields, function(data) {
+            HttpService.post(`${AuthService.baseURL()}/register`, fields, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -20,9 +21,9 @@ export class AuthService {
             HttpService.post(`${AuthService.baseURL()}/login`, {
                 email: email,
                 password: password
-            }, function(data) {
+            }, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -39,12 +40,36 @@ export class AuthService {
         let base64Url = token.split('.')[1];
         let base64 = base64Url.replace('-', '+').replace('_', '/');
         return {
-            id : JSON.parse(window.atob(base64)).id,
+            id: JSON.parse(window.atob(base64)).id,
             email: JSON.parse(window.atob(base64)).email
         };
     }
 
-    static logout(){
+    static getCurrentUserFromDB() {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${AuthService.baseURL()}/user`,
+                function (data) {
+                    resolve(data);
+                }, function (textStatus) {
+                    reject(textStatus);
+                });
+        });
+    }
+
+    static updateUserType(driver, deliveryClient) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${AuthService.baseURL()}/updateType`, {
+                "driver": !!driver,
+                "deliveryClient": !!deliveryClient
+            }, function (data) {
+                resolve(data);
+            }, function (status) {
+                reject(status);
+            })
+        });
+    }
+
+    static logout() {
         window.localStorage.removeItem('jwtToken');
     }
 }
