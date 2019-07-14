@@ -2,6 +2,7 @@ import React from 'react';
 import {RoutesList} from '../components/RoutesList';
 import {RouteService} from '../services/RouteService';
 import {UserService} from "../services/UserService";
+import {AuctionStatusImage} from "../components/AuctionStatusImage";
 
 export class RoutesListView extends React.Component {
 
@@ -23,7 +24,7 @@ export class RoutesListView extends React.Component {
                 driverID: id
             });
             this.loadRoutes();
-            this.interval = setInterval(() => this.loadRoutes(true), 5000);
+            this.interval = setInterval(() => this.loadRoutes(true), 1000);
         }).catch((e) => {
             console.error(e);
         });
@@ -40,7 +41,8 @@ export class RoutesListView extends React.Component {
                     } else {
                         dirty = this.state.data.reduce(
                             (total, route, i) =>
-                                total || route._id !== data[i]._id || route.currentBid !== data[i].currentBid,
+                                total || route._id !== data[i]._id || route.currentBid !== data[i].currentBid ||
+                                AuctionStatusImage.getBidStatus(route, this.state.driverID) !== AuctionStatusImage.getBidStatus(data[i], this.state.driverID),
                             false);
                     }
                 }

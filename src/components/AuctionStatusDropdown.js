@@ -21,7 +21,7 @@ export class AuctionStatusDropdown extends React.Component {
                 <Dropdown.Item as="button" eventKey="winner" onSelect={this.handleClick}><Image src="Images/winner.png" height={imageSize}/></Dropdown.Item>
                 <Dropdown.Item as="button" eventKey="looser" onSelect={this.handleClick}><Image src="Images/looser.png" height={imageSize}/></Dropdown.Item>
                 <Dropdown.Item as="button" eventKey="leader" onSelect={this.handleClick}><Image src="Images/leader.png" height={imageSize}/></Dropdown.Item>
-                <Dropdown.Item as="button" eventKey="nonLeader" onSelect={this.handleClick}><Image src="Images/nonLeader.png" height={imageSize}/></Dropdown.Item>
+                <Dropdown.Item as="button" eventKey="nonleader" onSelect={this.handleClick}><Image src="Images/nonleader.png" height={imageSize}/></Dropdown.Item>
             </DropdownButton>
         )
     }

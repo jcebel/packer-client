@@ -16,13 +16,13 @@ export class AuctionStatusImage extends React.Component {
         const auctionOver = route.auctionOver;
 
         if(auctionOver && (currentBid === lowestBid)){
-            return "Winner";
+            return "winner";
         } else if(!auctionOver && (currentBid === lowestBid)){
-            return "Leader";
+            return "leader";
         } else if(auctionOver && (currentBid < lowestBid)){
-            return "Looser";
+            return "looser";
         } else if(!auctionOver && (currentBid < lowestBid)) {
-            return "NoLeader";
+            return "nonleader";
         }
     }
     render() {
@@ -33,30 +33,30 @@ export class AuctionStatusImage extends React.Component {
             auctionStatus = this.props.biddingState;
         }
 
-        if(auctionStatus === "Winner"){
+        if(auctionStatus === "winner"){
             return <img
                 src="/Images/winner.png"
                 height={this.props.scale}
                 alt="Winner"
                 title="Auction Winner"
             />;
-        } else if(auctionStatus === "Leader"){
+        } else if(auctionStatus === "leader"){
             return <img
                 src="/Images/leader.png"
                 height={this.props.scale}
                 alt="CheckBox"
                 title="Current Auction Leader"
             />;
-        } else if(auctionStatus === "Looser"){
+        } else if(auctionStatus === "looser"){
             return <img
                 src="/Images/looser.png"
                 height={this.props.scale}
                 alt="Thumps down"
                 title="Auction Lost"
             />;
-        } else if(auctionStatus === "NoLeader") {
+        } else if(auctionStatus === "nonleader") {
             return <img
-                src="/Images/nonLeader.png"
+                src="/Images/nonleader.png"
                 height={this.props.scale}
                 alt="Red Cross"
                 title="Not Auction Leader"
