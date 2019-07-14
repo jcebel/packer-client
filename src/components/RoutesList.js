@@ -134,7 +134,7 @@ export class RoutesList extends React.Component {
                                 return <RoutesRow key={route._id}
                                                   route={route}
                                                   scale={this.props.scale}
-                                                  biddingState={route.biddingState}
+                                                  biddingState={route.auctionState}
                                                   driverID={this.props.driverID}/>;
                             }) :
                             <EmptyRow/>}

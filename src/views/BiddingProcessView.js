@@ -79,7 +79,7 @@ export class BiddingProcessView extends React.Component{
                     </StyledRow>
                     <Row>
                         <Col sm={8}>
-                            <BiddingInformation route={this.state.route} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
+                            <BiddingInformation route={this.state.route} driverID={this.state.driverID} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
                         </Col>
                         <Col>
                             <AuctionStatusImage route={this.state.route} driverID={this.state.driverID} scale={"200px"}/>

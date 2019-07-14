@@ -7,9 +7,18 @@ import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
 
 export class BiddingInformation extends React.Component{
 
-    render() {
-        const lowestBid = this.props.route.currentBid;
+    getPersonalLowestBid(route, driverID){
+        const ownBids = route.auctionBids.filter(bid => bid.owner === driverID);
+        if (ownBids.length === 0){
+            return "No bids submitted";
+        } if(ownBids.length === 1){
+            return ownBids[0].bid;
+        } else{
+            return ownBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; });
+        }
+    }
 
+    render() {
         return (
             <div>
                 <h4>
@@ -18,7 +27,7 @@ export class BiddingInformation extends React.Component{
                 <Container>
                     <Row>
                         <Col>
-                            <div className="font-weight-bold">Current Bid</div>
+                            <div className="font-weight-bold">Global Lowest Bid</div>
                             <p>
                                 {`${this.props.route.currentBid} €`}
                             </p>
@@ -45,7 +54,7 @@ export class BiddingInformation extends React.Component{
                                 validationSchema={Yup.object().shape({
                                     Bid: Yup.number()
                                         .required('Please enter a Bid.')
-                                        .lessThan(lowestBid, `Bid must be lower than ${lowestBid} €.`)
+                                        .lessThan(this.props.route.currentBid, `Bid must be lower than ${this.props.route.currentBid} €.`)
                                         .moreThan(0,"Your are not allowed to drive for free.")
                                         .typeError('Bid must be a number.')
                                 })}
@@ -57,10 +66,13 @@ export class BiddingInformation extends React.Component{
                                     <Form autoComplete="off">
                                         <div className="form-group">
                                             <label htmlFor="Bid"><b>Your Bid</b></label>
-                                            <div className="form-inline">
+                                            <div className="form-inline" hidden={this.props.route.auctionOver}>
                                                 <BiddingConfirmationPopup disabled={(!touched.Bid && errors.Bid === undefined) || (errors.Bid !== undefined) } />
                                                 <Field name="Bid" type="text" className={'form-control' + (errors.Bid && touched.Bid ? ' is-invalid' : '')} />
                                                 <ErrorMessage name="Bid" component="div" className="invalid-feedback" />
+                                            </div>
+                                            <div className="form-inline" hidden={!this.props.route.auctionOver}>
+                                                {`${this.getPersonalLowestBid(this.props.route,this.props.driverID)} €`}
                                             </div>
                                         </div>
                                     </Form>
