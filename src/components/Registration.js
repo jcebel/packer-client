@@ -25,8 +25,7 @@ class Registration extends React.Component {
             name: '',
             email: '',
             password: '',
-            confirmPassword: '',
-
+            confirmPassword: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
