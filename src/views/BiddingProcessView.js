@@ -8,6 +8,7 @@ import {RouteService} from "../services/RouteService";
 import {Page} from "../components/Page";
 import styled from 'styled-components/macro';
 import {UserService} from "../services/UserService";
+import {AuctionStatusImage} from "../components/AuctionStatusImage";
 
 const StyledRow = styled(Row)`height:"350px"`;
 const StyledCard = styled(Card)`height:"350px"`;
@@ -56,48 +57,6 @@ export class BiddingProcessView extends React.Component{
         clearInterval(this.interval);
     }
 
-    getBiddingStatusImage(){
-        const currentBid = this.state.route.currentBid;
-        const ownBids = this.state.route.auctionBids.filter(bid => bid.owner === this.state.driverID);
-        let lowestBid;
-        if (ownBids.length === 0){
-            lowestBid = currentBid + 1;
-        } else{
-            lowestBid = ownBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; }).bid;
-        }
-        const auctionOver = this.state.route.auctionOver;
-
-        if(auctionOver && (currentBid === lowestBid)){
-            return <img
-                src="/Images/Winner.jpg"
-                width="80%"
-                height="80%"
-                alt="Winner"
-            />;
-        } else if(!auctionOver && (currentBid === lowestBid)){
-            return <img
-                src="/Images/Green Checkmark.png"
-                width="80%"
-                height="80%"
-                alt="CheckBox"
-            />;
-        } else if(auctionOver && (currentBid < lowestBid)){
-            return <img
-                src="/Images/Thumps down.svg"
-                width="80%"
-                height="80%"
-                alt="Thumps down"
-            />;
-        } else if(!auctionOver && (currentBid < lowestBid)){
-            return <img
-                src="/Images/Red Cross.png"
-                width="60%"
-                height="80%"
-                alt="Red Cross"
-            />;
-        }
-    }
-
 
     render() {
         if (this.state.loading) {
@@ -123,7 +82,7 @@ export class BiddingProcessView extends React.Component{
                             <BiddingInformation route={this.state.route} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
                         </Col>
                         <Col>
-                            {this.getBiddingStatusImage()}
+                            <AuctionStatusImage route={this.state.route} driverID={this.state.driverID} scale={"200px"}/>
                         </Col>
                     </Row>
                 </Container>

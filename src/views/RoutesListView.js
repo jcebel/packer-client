@@ -1,6 +1,7 @@
 import React from 'react';
 import {RoutesList} from '../components/RoutesList';
 import {RouteService} from '../services/RouteService';
+import {UserService} from "../services/UserService";
 
 export class RoutesListView extends React.Component {
 
@@ -9,13 +10,23 @@ export class RoutesListView extends React.Component {
 
         this.state = {
             loadingDone: false,
-            data: []
+            data: [],
+            driverID: ''
         };
     }
 
     componentDidMount() {
-        this.loadRoutes();
-        this.interval = setInterval(() => this.loadRoutes(true), 5000);
+        UserService.getDriverId().then((id) => {
+            this.setState( {
+                loadingDone: false,
+                data: [],
+                driverID: id
+            });
+            this.loadRoutes();
+            this.interval = setInterval(() => this.loadRoutes(true), 5000);
+        }).catch((e) => {
+            console.error(e);
+        });
     }
 
     loadRoutes(interval) {
@@ -37,7 +48,8 @@ export class RoutesListView extends React.Component {
                 this.setState({
                     data: [...data],
                     loadingDone: true,
-                    dirtyData: dirty
+                    dirtyData: dirty,
+                    driverID: this.state.driverID
                 });
             }).catch((e) => {
             console.log(e);
@@ -51,7 +63,8 @@ export class RoutesListView extends React.Component {
     render() {
         return (
             <RoutesList loadingDone={this.state.loadingDone} data={this.state.data}
-                        dirtyData={this.state.dirtyData}/>
+                        dirtyData={this.state.dirtyData} driverID={this.state.driverID}
+                        scale={"68px"}/>
         );
     }
 }

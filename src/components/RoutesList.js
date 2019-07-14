@@ -67,13 +67,13 @@ export class RoutesList extends React.Component {
     }
 
     render() {
-
         return (
             <Page activetab="driver">
                 <Container>
                     <StyledTable>
                         <thead>
                         <tr>
+                            <StyledCell>Auction Status</StyledCell>
                             <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged}
                                                          resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
                             <StyledCell>
@@ -125,7 +125,9 @@ export class RoutesList extends React.Component {
                         <tbody>
 
                         {this.props.loadingDone ? this.state.data.map((route, i) => <RoutesRow key={route._id}
-                                                                                               route={route}/>) :
+                                                                                               route={route}
+                                                                                               scale={this.props.scale}
+                                                                                               driverID={this.props.driverID}/>) :
                             <EmptyRow/>}
                         </tbody>
                     </StyledTable>
