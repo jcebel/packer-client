@@ -14,10 +14,12 @@ export class DeliveryGoodService{
         });
     }
     static createDeliveryGood(deliveryGood) {
+        console.log(deliveryGood);
         return new Promise((resolve, reject) => {
             HttpService.post(`${this.baseURL()}`, deliveryGood, function(data) {
                 resolve(data);
             }, function(textStatus) {
+                console.log(textStatus);
                 reject(textStatus);
             });
         });

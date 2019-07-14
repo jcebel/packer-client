@@ -20,8 +20,14 @@ export default class App extends React.Component {
             routes: [
                 { component: HomeView , path: '/', exact: true},
                 //{ component: RegisterDeliveryRequestView , path: '/sendanything'},
-                { render: (props) => {return (<RegisterDeliveryRequestView {... props} />)} , path: '/sendanything'},
-                { render: (props) => {return (<RegisterDeliveryRequestConfView {... props} />)} , path: '/sendanythingconf'},
+                { render: (props) => {
+                    if(AuthService.isAuthenticated()){ 
+                    return (<RegisterDeliveryRequestView{... props}/>)
+                } else {
+                    return (<Redirect to={'/login'}/>)
+                }
+                }, path: '/sendanything', exact:true},
+                { render: (props) => {return (<RegisterDeliveryRequestConfView{... props} />)} , path: '/sendanythingconf', exact:true},
                 { component: BiddingProcessView , path: '/route/:id', exact: true},
                 { component: RoutesListView, path: '/beAdriver', exact:true},
                 { render: (props) => {

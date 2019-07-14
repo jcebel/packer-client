@@ -29,7 +29,6 @@ class RegisterDeliveryRequestConf extends Component{
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
                 date: this.props.datadr.date.toLocaleDateString(),
-                sent: false
             };
             this.priceCalculation();
         } else {
@@ -80,7 +79,7 @@ class RegisterDeliveryRequestConf extends Component{
             "deliveryDate": this.state.date,
             "weight": this.state.weight, //small, medium, large
             "size": this.state.size,   //light, medium, heavy
-            "price": this.priceCalculation(),
+            "price": this.state.price,
             "deliveryState": "Waiting for Routing",
             "destination": {
                 "name": this.state.sender,
@@ -97,18 +96,15 @@ class RegisterDeliveryRequestConf extends Component{
                 "postalCode": ""
               }
         };
-        if(this.state.show === false) { //prevents double sending
+         //prevents double sending
            // console.log("Success");
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
-            //console.log(data);
+            console.log(data);
         }).catch((e) => {
             console.error(e);
         });   
-        //console.log(deliveryRequest);
 
         
-        }
-        //console.log("Failed")
         this.setState( {
             show: true
         });
@@ -181,7 +177,7 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl bsPrefix="Test" readOnly placeholder={this.state.start + " " + this.state.startnum + ", " + this.state.startcity}/>
+                            <FormControl readOnly placeholder={this.state.start + " " + this.state.startnum + ", " + this.state.startcity}/>
                         
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End</InputGroup.Text>
