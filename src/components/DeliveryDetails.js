@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 
 export class DeliveryDetails extends React.Component{
 
-    capFirst(string)    {
+    capFirst(string){
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
