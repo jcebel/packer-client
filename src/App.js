@@ -8,7 +8,9 @@ import RegisterDeliveryRequestConfView from "./views/RegisterDeliveryRequestConf
 import {RegistrationView} from "./views/RegistrationView";
 import {LoginView} from "./views/LoginView";
 import {AuthService} from "./services/AuthService";
-import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
+import {DeliveryMonitorView} from "./views/DeliveryMonitorView";
+import Error500View from "./views/Error500View";
+import Error404View from "./views/Error404View";
 
 export default class App extends React.Component {
 
@@ -19,7 +21,6 @@ export default class App extends React.Component {
             title: 'Packer',
             routes: [
                 { component: HomeView , path: '/', exact: true},
-                //{ component: RegisterDeliveryRequestView , path: '/sendanything'},
                 { render: (props) => {
                     if(AuthService.isAuthenticated()){ 
                     return (<RegisterDeliveryRequestView{... props}/>)
@@ -55,7 +56,9 @@ export default class App extends React.Component {
                     }
                     }, path: '/deliverymonitor/:id', exact: true},
                 { component: RegistrationView, path: '/register', exact:true},
-                { component: LoginView, path: '/login', exact:true}
+                { component: LoginView, path: '/login', exact:true},
+                { component: Error500View, path: '/error500', exact:true},
+                { component: Error404View, path: '/error404', exact:true}
 
             ]
         };

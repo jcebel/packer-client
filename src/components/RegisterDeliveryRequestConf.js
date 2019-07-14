@@ -279,7 +279,7 @@ class RegisterDeliveryRequestConf extends Component{
             </Page>
         );
     }catch(e){
-        console.log(e);
+        this.props.navigation.navigate('error404')
         return(
             <div>
                 Fehler 404
