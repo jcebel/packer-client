@@ -98,7 +98,6 @@ class RegisterDeliveryRequest extends Component{
     }
 
     checkdata = (e) => {
-        //console.log(this.state);
             if(this.state.what === ""|| this.state.date === "" || this.state.sender === "" || this.state.receiver === "" || this.state.start === "" || this.state.startnum === ""
             || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === "" 
             || this.state.weight === "") {
@@ -106,10 +105,9 @@ class RegisterDeliveryRequest extends Component{
                     show: true
                 });
                 e.preventDefault();
-            }
-        
+            } 
     }
-    checkdata2 = (e) => {
+    checkdataalert = (e) => {
                 this.setState({
                     show: false
                 });
@@ -117,7 +115,6 @@ class RegisterDeliveryRequest extends Component{
       
 
     render() {
-        //console.log(getCurrentUser());
         try{
         return (
             <Page activetab = "send">
@@ -185,7 +182,7 @@ class RegisterDeliveryRequest extends Component{
                 </div>
                 <p></p>
                 <div>
-                        <ToggleButtonBar1  onSelectWeight={this.changeHandlerWeight}/>
+                        <ToggleButtonBar1 onSelectWeight={this.changeHandlerWeight}/>
                 </div>
                 
                 <div>
@@ -205,6 +202,8 @@ class RegisterDeliveryRequest extends Component{
                     }}>
                     <Button onClick={this.checkdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </Link>
+                   
+                    
                 </Row>
                  </div>
                  <Alert show={this.state.show} variant="danger">
@@ -212,7 +211,7 @@ class RegisterDeliveryRequest extends Component{
                     <p>
                         I think you forgot to enter some data!
                     </p>
-                    <Button onClick={this.checkdata2}>Ok</Button>
+                    <Button onClick={this.checkdataalert}>Ok</Button>
                 </Alert>
                 </Container>
             </Page>
