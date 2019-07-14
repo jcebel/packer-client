@@ -31,8 +31,8 @@ export default class App extends React.Component {
                 {
                     render: function (props) {
                         if (AuthService.isAuthenticated()) {
-                            return (<AsyncUserTypeRouting {...props} component={RoutesListView} missingCheckbox="driver"
-                                                           query={UserService.isUserADriver}/>)
+                            return <AsyncUserTypeRouting {...props} component={RoutesListView} path={'/beAdriver'} missingCheckbox="driver"
+                                                           query={UserService.isUserADriver}/>;
                         } else {
                             return (<Redirect to={'/login'}/>)
                         }

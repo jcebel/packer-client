@@ -34,7 +34,7 @@ class Registration extends React.Component {
 
     componentDidMount() {
         if (this.props.missingCheckbox) {
-            AuthService.getCurrentUserFromDB().then((data) =>  {
+            AuthService.getCurrentUserFromDB().then((data) => {
                 this.setState({
                     firstName: data.firstName || '',
                     name: data.name || '',
@@ -91,41 +91,41 @@ class Registration extends React.Component {
                                 <label htmlFor="firstName">First Name</label>
                                 <Field name="firstName" type="text"
                                        className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')}
-                                       disabled={this.props.missingCheckbox? true : false}/>
+                                       disabled={this.props.missingCheckbox ? true : false}/>
                                 <ErrorMessage name="firstName" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="name">Last Name</label>
                                 <Field name="name" type="text"
                                        className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')}
-                                       disabled={this.props.missingCheckbox? true : false}/>
+                                       disabled={this.props.missingCheckbox ? true : false}/>
                                 <ErrorMessage name="name" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <Field name="email" type="text"
                                        className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')}
-                                       disabled={this.props.missingCheckbox? true : false}/>
+                                       disabled={this.props.missingCheckbox ? true : false}/>
                                 <ErrorMessage name="email" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
                                 <Field name="password" type="password"
                                        className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')}
-                                       disabled={this.props.missingCheckbox? true : false}/>
+                                       disabled={this.props.missingCheckbox ? true : false}/>
                                 <ErrorMessage name="password" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
                                 <Field name="confirmPassword" type="password"
                                        className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')}
-                                       disabled={this.props.missingCheckbox? true : false}/>
+                                       disabled={this.props.missingCheckbox ? true : false}/>
                                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback"/>
                             </div>
 
-                            {this.props.missingCheckbox ? <Alert variant="success">Select the
-                                checkbox {checkboxes.find((value) => value.id === this.props.missingCheckbox).name} to activate
-                                your user for this action</Alert> : <div/>}
+                            {this.props.missingCheckbox ? <Alert
+                                variant="success">Select <b>{checkboxes.find((value) => value.id === this.props.missingCheckbox).name} </b>to
+                                activate your user for this action</Alert> : <div/>}
 
                             Register as:
                             <div className="form-group">
@@ -157,11 +157,14 @@ class Registration extends React.Component {
                                 <Warning>{errors["checkboxIds"]}</Warning>
                             </div>
                             <div className="form-group">
-                                <button type="submit" className="btn btn-primary mr-2">Register</button>
-                                <button type="reset" className="btn btn-secondary mr-2">Reset</button>
-                                <button type="button" className="btn btn-secondary"
-                                        onClick={() => this.props.history.push('/login')}>Login
+                                <button type="submit"
+                                        className="btn btn-primary mr-2">{this.props.missingCheckbox ? "Update User" : "Register"}</button>
+                                {!this.props.missingCheckbox &&
+                                < button type="reset" className="btn btn-secondary mr-2">Reset</button>}
+                                {!this.props.missingCheckbox && <button type="button" className="btn btn-secondary"
+                                                                        onClick={() => this.props.history.push('/login')}>Login
                                 </button>
+                                }
                             </div>
                         </Form>
                     )}

@@ -57,6 +57,19 @@ export class AuthService {
         });
     }
 
+    static updateUserType(driver, deliveryClient) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${AuthService.baseURL()}/updateType`, {
+                "driver": !!driver,
+                "deliveryClient": !!deliveryClient
+            }, function (data) {
+                resolve(data);
+            }, function (status) {
+                reject(status);
+            })
+        });
+    }
+
     static logout() {
         window.localStorage.removeItem('jwtToken');
     }
