@@ -1,11 +1,20 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import {NavDropdown} from 'react-bootstrap';
+import {AuthService} from '../services/AuthService'
+import styled from 'styled-components/macro'
+
+const StyledDiv = styled.div`
+    color: grey;
+`;
 
 class UserMenu extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            user: AuthService.isAuthenticated() ? AuthService.getCurrentUser() : undefined
+        };
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -30,8 +39,11 @@ class UserMenu extends React.Component {
                                      alt="Account Icon"
                                  />
                          }>
-                {this.props.user ?[
-                    <NavDropdown.Item className="text-center" key={1} onClick={this.handleLogout}>Logout</NavDropdown.Item>
+                {this.state.user ?[
+                    <NavDropdown.Item className="text-center" key={1} onClick={this.handleLogout}>
+                        <div>Logout</div>
+                        <StyledDiv>({this.state.user.email})</StyledDiv>
+                    </NavDropdown.Item>
             ]: [<NavDropdown.Item className="text-center" key={1} onClick={()=> this.props.history.push('/login')}>Login</NavDropdown.Item>,
                 <NavDropdown.Item className="text-center" key={2} onClick={()=> this.props.history.push('/register')}>Register</NavDropdown.Item>
                 ]}
