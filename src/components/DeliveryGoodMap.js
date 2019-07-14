@@ -42,8 +42,8 @@ class DeliveryGoodMap extends React.Component{
             >
                 <Marker
                     onClick={this.onMarkerClick}
-                    title={'Current Delivery Location'}
-                    name={'Current Delivery Location'}
+                    title={'Current Delivery Good Location'}
+                    name={'Current Delivery Good Location'}
                     position={this.props.currentLoc}
                 />
                 <Marker

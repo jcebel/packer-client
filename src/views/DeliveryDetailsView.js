@@ -21,9 +21,9 @@ export class DeliveryDetailsView extends React.Component {
         this.state = {
             loading: false,
             data: {},
-            senderAddress: "",
-            recipientAddress: "",
-            currentLocation: ""
+            senderAddress: {},
+            recipientAddress: {},
+            currentLocation: {}
         };
         Geocode.setApiKey("AIzaSyAf7aIGVns1ktVf5sw__NGaygucuRsqCiw");
     };
