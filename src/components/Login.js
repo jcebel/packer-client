@@ -4,6 +4,10 @@ import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
 import {Col, Container, Row} from "react-bootstrap";
 import Image from "react-bootstrap/Image";
+import styled from 'styled-components/macro';
+
+const Warning = styled.div`
+    color: red;`;
 
 class Login extends React.Component {
 
@@ -62,6 +66,7 @@ class Login extends React.Component {
                                         <label htmlFor="password">Password</label>
                                         <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                                         <ErrorMessage name="password" component="div" className="invalid-feedback" />
+                                        {this.props.error !== undefined ? <Warning>Wrong Email or Password</Warning>:""}
                                     </div>
                                     <div className="form-group">
                                         <button type="submit" className="btn btn-primary mr-2">Login</button>
