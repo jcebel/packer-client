@@ -2,7 +2,7 @@ import {HttpService} from "./HttpService";
 
 export class DeliveryGoodService{
 
-    static baseURL() {return "http://localhost:3000/deliverygoods" }
+    static baseURL() {return HttpService.apiURL() + "/deliverygoods"; }
 
     static getDeliveryGoods(){
         return new Promise((resolve, reject) => {

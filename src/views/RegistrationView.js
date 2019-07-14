@@ -2,6 +2,7 @@ import React from 'react';
 
 import Registration from '../components/Registration'
 import {AuthService} from '../services/AuthService';
+import {withRouter} from "react-router-dom";
 import styled from 'styled-components/macro';
 import Image from "react-bootstrap/Image";
 
@@ -13,22 +14,40 @@ const Content = styled.div`
     background-size: cover;
 `;
 
-export class RegistrationView extends React.Component{
+class RegistrationViewComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {};
+        if(!this.props.location.state) {
+            this.props.location.state = {};
+        }
     }
 
     register(fields) {
-        AuthService.register(fields).then(() => {
-            this.props.history.push('/');
-        }).catch((e) => {
-            console.error(e);
-            this.setState({
-                error: e
-            });
-        })
+
+        if (this.props.location.state.missingCheckbox) {
+            AuthService.updateUserType(fields.checkboxIds.includes('driver'),
+                fields.checkboxIds.includes('deliveryClient'))
+                .then(() => {
+                    this.props.history.push(this.props.location.state.redirectTo);
+                })
+                .catch((e) => {
+                    console.error(e);
+                    this.setState({
+                        error: e
+                    });
+                });
+        } else {
+            AuthService.register(fields).then(() => {
+                this.props.history.push('/');
+            }).catch((e) => {
+                console.error(e);
+                this.setState({
+                    error: e
+                });
+            })
+        }
     }
 
     render() {
@@ -40,8 +59,11 @@ export class RegistrationView extends React.Component{
                            height="50x"
                            alt="Company Logo"/>
                 </a>
-                <Registration onSubmit={(fields) => this.register(fields)} error={this.state.error}></Registration>
+                <Registration missingCheckbox={this.props.location.state.missingCheckbox} onSubmit={(fields) => this.register(fields)}
+                      error={this.state.error}/>
             </Content>
         );
     }
 }
+
+export const RegistrationView = withRouter(RegistrationViewComponent);
