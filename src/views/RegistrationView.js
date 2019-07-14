@@ -9,6 +9,9 @@ class RegistrationViewComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        if(!this.props.location.state) {
+            this.props.location.state = {};
+        }
     }
 
     register(fields) {
