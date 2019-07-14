@@ -2,40 +2,62 @@ import React from 'react';
 
 export class AuctionStatusImage extends React.Component {
 
-    render() {
-        const currentBid = this.props.route.currentBid;
-        const ownBids = this.props.route.auctionBids.filter(bid => bid.owner === this.props.driverID);
+     static getBidStatus(route, driverID){
+        const currentBid = route.currentBid;
+        const ownBids = route.auctionBids.filter(bid => bid.owner === driverID);
         let lowestBid;
         if (ownBids.length === 0){
             lowestBid = currentBid + 1;
         } else{
             lowestBid = ownBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; });
         }
-        const auctionOver = this.props.route.auctionOver;
+        const auctionOver = route.auctionOver;
 
         if(auctionOver && (currentBid === lowestBid)){
+            return "Winner";
+        } else if(!auctionOver && (currentBid === lowestBid)){
+            return "Leader";
+        } else if(auctionOver && (currentBid < lowestBid)){
+            return "Looser";
+        } else if(!auctionOver && (currentBid < lowestBid)) {
+            return "NoLeader";
+        }
+    }
+    render() {
+        let auctionStatus;
+        if(this.props.biddingState === undefined) {
+            auctionStatus = AuctionStatusImage.getBidStatus(this.props.route, this.props.driverID);
+        } else{
+            auctionStatus = this.props.biddingState;
+        }
+
+        if(auctionStatus === "Winner"){
             return <img
-                src="/Images/Winner.jpg"
+                src="/Images/winner.png"
                 height={this.props.scale}
                 alt="Winner"
+                title="Auction Winner"
             />;
-        } else if(!auctionOver && (currentBid === lowestBid)){
+        } else if(auctionStatus === "Leader"){
             return <img
-                src="/Images/Green Checkmark.png"
+                src="/Images/leader.png"
                 height={this.props.scale}
                 alt="CheckBox"
+                title="Current Auction Leader"
             />;
-        } else if(auctionOver && (currentBid < lowestBid)){
+        } else if(auctionStatus === "Looser"){
             return <img
-                src="/Images/Thumps down.png"
+                src="/Images/looser.png"
                 height={this.props.scale}
                 alt="Thumps down"
+                title="Auction Lost"
             />;
-        } else if(!auctionOver && (currentBid < lowestBid)) {
+        } else if(auctionStatus === "NoLeader") {
             return <img
-                src="/Images/Red Cross.jpg"
+                src="/Images/nonLeader.png"
                 height={this.props.scale}
                 alt="Red Cross"
+                title="Not Auction Leader"
             />;
         }
     }

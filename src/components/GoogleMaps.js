@@ -83,7 +83,7 @@ const GoogleMaps = compose(
         {props.directions && <DirectionsRenderer directions={props.directions} />}
         <Marker
             position={new google.maps.LatLng(props.latitude,props.longitude)}
-            icon={'https://icon-icons.com/icons2/1369/PNG/32/-home_90315.png'}
+            icon={'/Images/Home.png'}
             visible={props.latitude !== undefined}
         />
     </GoogleMap>
