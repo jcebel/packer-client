@@ -3,13 +3,11 @@ import { Alert, Container, Row, Col, InputGroup, FormControl, Button, ButtonTool
 import {Page} from './Page';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {PriceService} from "../services/PriceService";
-
+import {AuthService} from "../services/AuthService";
     
 
 class RegisterDeliveryRequestConf extends Component{
 
-    
-    
 
     constructor(props) {
         super(props);
@@ -17,6 +15,8 @@ class RegisterDeliveryRequestConf extends Component{
             this.state = {
                 show: false,
                 noData: false,
+                emailstate: false,
+                mail: "",
                 what: this.props.datadr.what,
                 sender: this.props.datadr.sender,
                 receiver: this.props.datadr.receiver,
@@ -37,6 +37,8 @@ class RegisterDeliveryRequestConf extends Component{
             this.state = {
                 noData: true,
                 show: false,
+                emailstate: false,
+                mail: "",
                 what: "",
                 sender: "",
                 receiver: "",
@@ -55,9 +57,14 @@ class RegisterDeliveryRequestConf extends Component{
                 }
             }
 
+    changeHandlerMail = event => {
+                this.setState({
+                  mail: event.target.value
+                });
+              }
+
     
     priceCalculation() {
-
         let parameters = {
             size: this.state.size,
             weight: this.state.weight,
@@ -66,7 +73,6 @@ class RegisterDeliveryRequestConf extends Component{
         };
 
         PriceService.createPriceCalculation(parameters).then((data) => {
-                //console.log(data);
                 this.setState({
                     price : data.price
                 });
@@ -99,18 +105,25 @@ class RegisterDeliveryRequestConf extends Component{
                 "postalCode": ""
               }
         };
-         //prevents double sending
-           // console.log("Success");
+
+        let mail = AuthService.getCurrentUser().email;
+        
+        if(this.state.mail !== mail.toString()) {
+            this.setState({
+                emailstate: true
+            })
+        } else {
+
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
-            console.log(data);
         }).catch((e) => {
             console.error(e);
-        });   
+        }); 
 
-        
         this.setState( {
+            emailstate: false,
             show: true
-        });
+            });
+        }
     }
 
     render() {
@@ -232,8 +245,11 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Enter your e-mail for confirmation</InputGroup.Text>
                             </InputGroup.Prepend>
-                        <FormControl/>
+                        <FormControl value = {this.state.email} onChange={this.changeHandlerMail}/>
                         </InputGroup>
+                        <Alert show={this.state.emailstate} variant="danger">
+                            <Alert.Heading>Mail doesn`t match</Alert.Heading>
+                        </Alert>
                     </label>
                 </Row>
                 </div>
