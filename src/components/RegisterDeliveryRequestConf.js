@@ -129,7 +129,6 @@ class RegisterDeliveryRequestConf extends Component{
     render() {
         try{
         return (
-            <div className="text-dark">
             <Page activetab = "send">
                 <Container>
                 <div>
@@ -278,7 +277,6 @@ class RegisterDeliveryRequestConf extends Component{
                 </Alert>
                 </Container>
             </Page>
-            </div>
         );
     }catch(e){
         console.log(e);
