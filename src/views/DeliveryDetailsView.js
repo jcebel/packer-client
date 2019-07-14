@@ -59,10 +59,10 @@ export class DeliveryDetailsView extends React.Component {
                     </span>
                     <p/>
                     <Row>
-                        <Col className="d-flex flex-column">
+                        <Col sm={8} className="d-flex">
                             <DeliveryGoodMap markerLocation={{lat: 48.262235, lng: 11.670273}}/>
                         </Col>
-                        <Col sm={4} className="d-flex ml-2">
+                        <Col className="d-flex ml-2 ">
                             <DeliveryDetails loading={this.state.loading} data={this.state.data}/>
                         </Col>
                     </Row>

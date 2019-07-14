@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import {NavDropdown} from 'react-bootstrap';
 
-
 class UserMenu extends React.Component {
 
     constructor(props) {
@@ -23,16 +22,13 @@ class UserMenu extends React.Component {
 
     render(){
         return(
-            <NavDropdown title={
-                             <div>
+            <NavDropdown alignRight title={
                                  <img
                                      src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                                      width="50px"
                                      height="50x"
                                      alt="Account Icon"
-                                     // style={{marginLeft: '10px'}}
                                  />
-                             </div>
                          }>
                 {this.props.user ?[
                     <NavDropdown.Item key={1} onClick={this.handleLogout}>Logout</NavDropdown.Item>
