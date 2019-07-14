@@ -18,9 +18,11 @@ class UserMenu extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    
-    handleLogout(){
-        this.props.handleLogout();
+    handleLogout() {
+        AuthService.logout();
+        this.setState({
+            user: AuthService.isAuthenticated() ? AuthService.getCurrentUser() : undefined
+        });
         if(this.props.location.pathname !== '/') {
             this.props.history.push('/');
         }

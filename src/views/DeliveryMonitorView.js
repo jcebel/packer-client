@@ -1,6 +1,5 @@
 import React from 'react';
 import {DeliveryMonitor} from "../components/DeliveryMonitor";
-import {UserService} from "../services/UserService";
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 
 
@@ -22,8 +21,7 @@ export class DeliveryMonitorView extends React.Component {
     }
 
     refreshDeliveryData(){
-        let id = this.props.match.params.id;
-        UserService.getDeliveriesByUserId(id)
+        DeliveryGoodService.getDeliveryGoods()
             .then((data) => {
                 this.setState({
                     data: data,

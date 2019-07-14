@@ -41,7 +41,7 @@ export default class App extends React.Component {
                     else{
                         return (<Redirect to={{pathname: '/login', prevPath: '/deliverymonitor'}}/>)
                     }
-                    }, path: '/deliverymonitor/:id', exact: true},
+                    }, path: '/deliverymonitor', exact: true},
                 { render: (props) => {
                         if(AuthService.isAuthenticated()){
                             return(<DeliveryDetailsView{... props}/>)
