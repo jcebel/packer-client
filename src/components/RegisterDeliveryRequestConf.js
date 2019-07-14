@@ -25,6 +25,7 @@ class RegisterDeliveryRequestConf extends Component{
                 startcity: this.props.datadr.startcity,
                 end: this.props.datadr.end,
                 price: 0,
+                distance: 0,
                 endnum: this.props.datadr.endnum,
                 endcity: this.props.datadr.endcity,
                 size: this.props.datadr.size,
@@ -74,7 +75,8 @@ class RegisterDeliveryRequestConf extends Component{
 
         PriceService.createPriceCalculation(parameters).then((data) => {
                 this.setState({
-                    price : data.price
+                    price : data.price,
+                    distance: data.distance
                 });
             }).catch((e) => {
                 console.error(e);
@@ -89,6 +91,7 @@ class RegisterDeliveryRequestConf extends Component{
             "weight": this.state.weight, //small, medium, large
             "size": this.state.size,   //light, medium, heavy
             "price": this.state.price,
+            "distance": this.state.distance,
             "deliveryState": "Waiting for Routing",
             "destination": {
                 "name": this.state.sender,
