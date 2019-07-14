@@ -4,6 +4,7 @@ import {Container, Alert} from 'react-bootstrap';
 import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
 import styled from 'styled-components/macro';
+import {AuthService} from "../services/AuthService";
 
 
 const Warning = styled.div`
@@ -24,9 +25,25 @@ class Registration extends React.Component {
             name: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+
         };
+
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.missingCheckbox) {
+            AuthService.getCurrentUserFromDB().then((data) =>  {
+                this.setState({
+                    firstName: data.firstName || '',
+                    name: data.name || '',
+                    email: data.email || '',
+                    password: '*************',
+                    confirmPassword: '*************'
+                })
+            })
+        }
     }
 
     handleSubmit(event) {
@@ -36,20 +53,18 @@ class Registration extends React.Component {
         this.props.onSubmit(fields);
     }
 
-
     render() {
         return (
             <Container>
-                {this.props.missingCheckbox ? <Alert variant="success">Select the
-                    checkbox {checkboxes.find((value) => value.id === this.props.missingCheckbox).name} to activate
-                    your user for this action</Alert> : <div/>}
+
                 <Formik
+                    enableReinitialize={true}
                     initialValues={{
-                        firstName: '',
-                        name: '',
-                        email: '',
-                        password: '',
-                        confirmPassword: '',
+                        firstName: this.state.firstName,
+                        name: this.state.name,
+                        email: this.state.email,
+                        password: this.state.password,
+                        confirmPassword: this.state.confirmPassword,
                         checkboxIds: ["deliveryClient"]
                     }}
                     validationSchema={Yup.object().shape({
@@ -75,33 +90,43 @@ class Registration extends React.Component {
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>
                                 <Field name="firstName" type="text"
-                                       className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')}/>
+                                       className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')}
+                                       disabled={this.props.missingCheckbox? true : false}/>
                                 <ErrorMessage name="firstName" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="name">Last Name</label>
                                 <Field name="name" type="text"
-                                       className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')}/>
+                                       className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')}
+                                       disabled={this.props.missingCheckbox? true : false}/>
                                 <ErrorMessage name="name" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <Field name="email" type="text"
-                                       className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')}/>
+                                       className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')}
+                                       disabled={this.props.missingCheckbox? true : false}/>
                                 <ErrorMessage name="email" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
                                 <Field name="password" type="password"
-                                       className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')}/>
+                                       className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')}
+                                       disabled={this.props.missingCheckbox? true : false}/>
                                 <ErrorMessage name="password" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
                                 <Field name="confirmPassword" type="password"
-                                       className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')}/>
+                                       className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')}
+                                       disabled={this.props.missingCheckbox? true : false}/>
                                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback"/>
                             </div>
+
+                            {this.props.missingCheckbox ? <Alert variant="success">Select the
+                                checkbox {checkboxes.find((value) => value.id === this.props.missingCheckbox).name} to activate
+                                your user for this action</Alert> : <div/>}
+
                             Register as:
                             <div className="form-group">
                                 <FieldArray name="checkboxIds"
