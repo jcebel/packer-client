@@ -23,11 +23,6 @@ export class DeliveryDetails extends React.Component{
                                 <Col>Driver Name:</Col>
                                 <Col>{this.props.data.driverName}</Col>
                             </Row>
-                        {this.props.data.vehicleType.toLowerCase() !== "bike" ?
-                            <Row>
-                                <Col>Licence Plate:</Col>
-                            <Col>{this.props.data.driverLicenseNumber}</Col>
-                        </Row>:""}
                             <Row>
                                 <Col>Vehicle Type: </Col>
                                 <Col>{this.capFirst(this.props.data.vehicleType)}</Col>
