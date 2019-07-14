@@ -22,7 +22,7 @@ export default class Error404View extends React.Component {
                     <Alert variant="danger">
                         <Alert.Heading>Error 404!</Alert.Heading>
                         <p>
-                            Something went wrong
+                            Page not found!
                         </p>
                         <Button href = "/">Go to Home</Button>
                     </Alert>

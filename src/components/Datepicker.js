@@ -20,14 +20,12 @@ export default class DatepickerClass extends React.Component {
     this.props.onSelectDate(datedr);     
   }
   render() {
-    
-    //console.log(selectedDay);
     return (
       <div>
         <InputGroup className="mb-3">
               <InputGroup.Prepend>
               <InputGroup.Text>Select Date: {this.state.selectedDay.toLocaleDateString()}</InputGroup.Text>
-              <DayPickerInput onDayChange={this.handleDayChange}/>
+              <InputGroup.Text><DayPickerInput onDayChange={this.handleDayChange}/></InputGroup.Text>
         </InputGroup.Prepend>
         </InputGroup>
       </div>

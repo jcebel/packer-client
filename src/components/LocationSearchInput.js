@@ -3,8 +3,6 @@ import PlacesAutocomplete, {
   geocodeByAddress
 } from 'react-places-autocomplete';
 import {FormControl} from "react-bootstrap";
-
-
 //https://www.npmjs.com/package/react-places-autocomplete
  
 class LocationSearchInput extends React.Component {
@@ -25,15 +23,8 @@ class LocationSearchInput extends React.Component {
   };
  
   handleSelect = address => {
-
-   /* geocodeByAddress(address)
-      .then(results => console.log(results))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error));
-    */
     geocodeByAddress(address)
       .then(results => this.handleChange(results[0].address_components[0].long_name, results[0].address_components[2].long_name))
-      //.then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error));
   };
  

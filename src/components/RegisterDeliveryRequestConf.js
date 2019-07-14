@@ -136,7 +136,7 @@ class RegisterDeliveryRequestConf extends Component{
                 <Container>
                 <div>
                 <Row>
-                    Hello User, here is a summary of your package
+                    Hello User, here is a summary of your package.
                 </Row>
                 </div>
                 <p></p>

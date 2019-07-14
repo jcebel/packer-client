@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, InputGroup, FormControl, Button, Alert} from 'react-bootstrap';
-import {ToggleButtonBar1} from './ToggleButtonBar';
-import {ToggleButtonBar2} from './ToggleButtonBar';
+import {ToggleButtonBarWeight} from './ToggleButtonBar';
+import {ToggleButtonBarSize} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
 import LocationSearchInput from './LocationSearchInput';
 import {Page} from './Page';
 import {Link} from "react-router-dom";
 
-
-
-
-
 class RegisterDeliveryRequest extends Component{
-
-    
 
     constructor(props) {
         super(props);
@@ -114,7 +108,6 @@ class RegisterDeliveryRequest extends Component{
                 });
     }
       
-
     render() {
         try{
         return (
@@ -179,13 +172,13 @@ class RegisterDeliveryRequest extends Component{
                 </Row>
                 </div>
                 <div>
-                        <ToggleButtonBar2 onSelectSize={this.changeHandlerSize}/>
+                        <ToggleButtonBarSize onSelectSize={this.changeHandlerSize}/>
                 </div>
                 <p></p>
                 <div>
-                        <ToggleButtonBar1 onSelectWeight={this.changeHandlerWeight}/>
+                        <ToggleButtonBarWeight onSelectWeight={this.changeHandlerWeight}/>
                 </div>
-                
+                <p></p>
                 <div>
                     <Row>
                         <Col>

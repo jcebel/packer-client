@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Row, OverlayTrigger, ToggleButtonGroup, ToggleButton, Col, Button} from 'react-bootstrap';
 
-
 const renderTooltipSize = props => (
    
    <div
@@ -38,7 +37,7 @@ const renderTooltipSize = props => (
   );
   
 
-class ToggleButtonBar1 extends Component{
+class ToggleButtonBarWeight extends Component{
 
     
 
@@ -60,15 +59,12 @@ class ToggleButtonBar1 extends Component{
       var weight = value;
       this.props.onSelectWeight(weight);            
   }
-
-
-
     render() {
-        return (
-          <div>
-            <Row>
-            <Col>
-                          <OverlayTrigger
+            return (
+              <div>
+                <Row>
+                <Col>
+                    <OverlayTrigger
                             placement={"top"}
                             overlay={renderTooltipWeight}
                             >
@@ -82,17 +78,14 @@ class ToggleButtonBar1 extends Component{
                                     <ToggleButton type="radio" value = {2}>Medium</ToggleButton>
                                     <ToggleButton type="radio" value = {3}>Heavy</ToggleButton>
                           </ToggleButtonGroup>
-                          <p></p>
-                          </Col>
-                          </Row>
-                        </div>
+                         </Col>
+                    </Row>
+                </div>
         );
     };
 
 }
-class ToggleButtonBar2 extends Component{
-
-    
+class ToggleButtonBarSize extends Component{
 
   constructor(props) {
       super(props);
@@ -139,6 +132,6 @@ class ToggleButtonBar2 extends Component{
 
 }
 export {
-  ToggleButtonBar1,
-  ToggleButtonBar2,
+  ToggleButtonBarWeight,
+  ToggleButtonBarSize,
 }

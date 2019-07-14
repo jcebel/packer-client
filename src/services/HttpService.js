@@ -73,7 +73,6 @@ export class HttpService {
 
     static post(url, data, onSuccess, onError) {
         let token = window.localStorage['jwtToken'];
-        //console.log(token);
         let header = new Headers();
         if(token) {
             header.append('Authorization', token);
