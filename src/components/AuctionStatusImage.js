@@ -8,6 +8,8 @@ export class AuctionStatusImage extends React.Component {
         let lowestBid;
         if (ownBids.length === 0){
             lowestBid = currentBid + 1;
+        } else if (ownBids.length === 1){
+            lowestBid = ownBids[0].bid;
         } else{
             lowestBid = ownBids.reduce(function (a, b) { return a.bid < b.bid ? a.bid : b.bid; });
         }
