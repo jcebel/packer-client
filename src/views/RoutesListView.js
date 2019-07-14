@@ -19,8 +19,6 @@ export class RoutesListView extends React.Component {
     componentDidMount() {
         UserService.getDriverId().then((id) => {
             this.setState( {
-                loadingDone: false,
-                data: [],
                 driverID: id
             });
             this.loadRoutes();
@@ -50,8 +48,7 @@ export class RoutesListView extends React.Component {
                 this.setState({
                     data: [...data],
                     loadingDone: true,
-                    dirtyData: dirty,
-                    driverID: this.state.driverID
+                    dirtyData: dirty
                 });
             }).catch((e) => {
             console.log(e);

@@ -18,20 +18,24 @@ export class BiddingProcessView extends React.Component{
     constructor(props) {
         super(props);
 
-        UserService.getDriverId().then((data) => {
-            this.state = {
-                loading: false,
-                route: {},
-                driverID: data
-            };
-        }).catch((e) => {
-            console.error(e);
-        });
+        this.state = {
+            loading: false,
+            route: {},
+            driverID: undefined
+        };
+
     }
 
     componentWillMount(){
         this.setState({
             loading: true
+        });
+        UserService.getDriverId().then((data) => {
+            this.setState({
+                driverID: data
+            });
+        }).catch((e) => {
+            console.error(e);
         });
         this.refreshRouteData();
     }
@@ -41,8 +45,7 @@ export class BiddingProcessView extends React.Component{
         RouteService.getRoute(id).then((data) => {
             this.setState({
                 route: data,
-                loading: false,
-                driverID: this.state.driverID
+                loading: false
             });
         }).catch((e) => {
             console.error(e);
@@ -99,8 +102,7 @@ export class BiddingProcessView extends React.Component{
             RouteService.getRoute(id).then((data) => {
                 this.setState({
                     route: data,
-                    loading: false,
-                    driverID: this.state.driverID
+                    loading: false
                 });
             }).catch((e) => {
                 console.error(e);
