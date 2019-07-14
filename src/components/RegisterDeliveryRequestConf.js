@@ -28,10 +28,11 @@ class RegisterDeliveryRequestConf extends Component{
                 endcity: this.props.datadr.endcity,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
-                date: this.props.datadr.date.toLocaleDateString(),
+                date: this.props.datadr.date,
             };
             this.priceCalculation();
         } else {
+            let today = new Date();
             this.state = {
                 show: false,
                 what: "",
@@ -46,7 +47,7 @@ class RegisterDeliveryRequestConf extends Component{
                 endcity: "",
                 size: "",
                 weight: "",
-                date: ""
+                date: today
                     }
                     
                 }
@@ -216,7 +217,7 @@ class RegisterDeliveryRequestConf extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Date</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl readOnly placeholder={this.state.date}/>
+                            <FormControl readOnly placeholder={this.state.date.toLocaleDateString()}/>
                         </InputGroup>
                         </label>
                         </Col>

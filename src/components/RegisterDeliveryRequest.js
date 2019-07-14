@@ -26,6 +26,7 @@ class RegisterDeliveryRequest extends Component{
             startnum : "",
             startcity: "",
             end: "",
+            date: "",
             endnum: "",
             endcity: "",
             size: "",
@@ -98,7 +99,7 @@ class RegisterDeliveryRequest extends Component{
 
     checkdata = (e) => {
         //console.log(this.state);
-            if(this.state.what === "" || this.state.sender === "" || this.state.receiver === "" || this.state.start === "" || this.state.startnum === ""
+            if(this.state.what === ""|| this.state.date === "" || this.state.sender === "" || this.state.receiver === "" || this.state.start === "" || this.state.startnum === ""
             || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === "" 
             || this.state.weight === "") {
                 this.setState({
