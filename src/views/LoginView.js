@@ -20,7 +20,11 @@ export class LoginView extends React.Component {
 
     login(user) {
         AuthService.login(user.email, user.password).then(() => {
-            this.props.history.push('/');
+            if(this.props.location.prevPath !== undefined){
+                this.props.history.push(this.props.location.prevPath)
+            } else{
+                this.props.history.push('/');
+            }
         }).catch((e) => {
             console.error(e);
             this.setState({

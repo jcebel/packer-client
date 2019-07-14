@@ -23,7 +23,7 @@ export default class App extends React.Component {
                         return (<BiddingProcessView {... props} />)
                     }
                     else{
-                        return (<Redirect to={'/login'}/>)
+                        return (<Redirect to={{pathname: '/login', prevPath: '/beAdriver'}}/>)
                     }
                     }, path: '/route/:id', exact: true},
                 { render: (props) => {
@@ -31,7 +31,7 @@ export default class App extends React.Component {
                         return (<RoutesListView{... props}/>)
                     }
                     else{
-                        return (<Redirect to={'/login'}/>)
+                        return (<Redirect to={{pathname: '/login', prevPath: '/beAdriver'}}/>)
                     }
                     }, path: '/beAdriver', exact:true},
                 { render: (props) => {
@@ -39,7 +39,7 @@ export default class App extends React.Component {
                         return(<DeliveryMonitorView{... props}/>)
                     }
                     else{
-                        return (<Redirect to={'/login'}/>)
+                        return (<Redirect to={{pathname: '/login', prevPath: '/deliverymonitor'}}/>)
                     }
                     }, path: '/deliverymonitor/:id', exact: true},
                 { render: (props) => {
@@ -47,7 +47,7 @@ export default class App extends React.Component {
                             return(<DeliveryDetailsView{... props}/>)
                         }
                         else{
-                            return (<Redirect to={'/login'}/>)
+                            return (<Redirect to={{pathname: '/login', prevPath: '/deliverymonitor'}}/>)
                         }
                     }, path: '/deliverydetails/:id', exact: true},
                 { component: RegistrationView, path: '/register', exact:true},
