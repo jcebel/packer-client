@@ -19,7 +19,6 @@ export class UserService {
         });
     }
 
-<<<<<<< HEAD
     static isUserADriver() {
         let token = window.localStorage['jwtToken'];
         if (!token) return {};
@@ -37,7 +36,7 @@ export class UserService {
             });
         });
     }
-=======
+
     static getDriverId() {
         return new Promise((resolve, reject) => {
             HttpService.get(`${this.baseURL()}/driverID`, function (data) {
@@ -53,7 +52,4 @@ export class UserService {
             });
         });
     }
-
-
->>>>>>> origin/master
 }
