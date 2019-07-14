@@ -5,7 +5,14 @@ import {Col, Container, Row} from "react-bootstrap";
 import {Page} from "../components/Page";
 import DeliveryGoodMap from "../components/DeliveryGoodMap";
 import {StatusBadge} from "../components/StatusBadge";
+import Geocode from "react-geocode";
 
+const currentLocation = {
+    street: "Ludwigstraße",
+    houseNumber: "27",
+    postalCode: "80539",
+    city: "München"
+};
 
 export class DeliveryDetailsView extends React.Component {
 
@@ -13,8 +20,12 @@ export class DeliveryDetailsView extends React.Component {
         super(props);
         this.state = {
             loading: false,
-            data: {}
+            data: {},
+            senderAddress: "",
+            recipientAddress: "",
+            currentLocation: ""
         };
+        Geocode.setApiKey("AIzaSyAf7aIGVns1ktVf5sw__NGaygucuRsqCiw");
     };
 
     componentWillMount() {
@@ -27,6 +38,7 @@ export class DeliveryDetailsView extends React.Component {
     refreshDelGoodData(){
         let id = this.props.match.params.id;
         DeliveryGoodService.getDeliveryGood(id).then((data) => {
+            this.getCoordinates(data);
             this.setState({
                 data: data,
                 loading: false
@@ -36,19 +48,52 @@ export class DeliveryDetailsView extends React.Component {
         });
     }
 
+    getCoordinates(data){
+        Geocode.fromAddress(this.createAddress(data.deliverygood.origination)).then(resp => {
+            const { lat, lng } = resp.results[0].geometry.location;
+            this.setState({
+                senderAddress: {
+                    lat: lat,
+                    lng: lng
+                }
+            })
+        });
+        Geocode.fromAddress(this.createAddress(data.deliverygood.destination)).then(resp => {
+            const { lat, lng } = resp.results[0].geometry.location;
+            this.setState({
+                recipientAddress: {
+                    lat: lat,
+                    lng: lng
+                }
+            })
+        });
+        Geocode.fromAddress(this.createAddress(currentLocation)).then(resp => {
+            const { lat, lng } = resp.results[0].geometry.location;
+            this.setState({
+                currentLocation: {
+                    lat: lat,
+                    lng: lng
+                }
+            })
+        });
+    }
+
     componentDidMount() {
-        this.interval = setInterval(() => this.refreshDelGoodData(), 1000);
+        this.interval = setInterval(() => this.refreshDelGoodData(), 10000);
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
+    createAddress(element) {
+        return element.street + " " + element.houseNumber + ", " + element.postalCode + " " + element.city;
+    }
+
     render() {
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
-
         return (
             <Page activetab="delivery">
                 <Container>
@@ -60,7 +105,9 @@ export class DeliveryDetailsView extends React.Component {
                     <p/>
                     <Row>
                         <Col sm={8} className="d-flex">
-                            <DeliveryGoodMap markerLocation={{lat: 48.262235, lng: 11.670273}}/>
+                            <DeliveryGoodMap sender={this.state.senderAddress}
+                                             recipient={this.state.recipientAddress}
+                                            currentLoc={this.state.currentLocation}/>
                         </Col>
                         <Col className="d-flex ml-2">
                             <DeliveryDetails loading={this.state.loading} data={this.state.data}/>

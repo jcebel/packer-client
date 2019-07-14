@@ -7,6 +7,7 @@ class DeliveryGoodMap extends React.Component{
         super(props);
 
         this.state = {
+            loading: false,
             showingInfoWindow: false,  //Hides or the shows the infoWindow
             activeMarker: {},          //Shows the active marker upon click
             selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
@@ -30,15 +31,32 @@ class DeliveryGoodMap extends React.Component{
     };
 
     render() {
+        if (this.state.loading) {
+            return (<h2>Loading...</h2>);
+        }
         return (
             <Map
                 google={this.props.google}
                 zoom={15}
-                initialCenter={this.props.markerLocation}
+                initialCenter={this.props.currentLoc}
             >
                 <Marker
                     onClick={this.onMarkerClick}
-                    name={'Current Position'}
+                    title={'Current Delivery Location'}
+                    name={'Current Delivery Location'}
+                    position={this.props.currentLoc}
+                />
+                <Marker
+                    onClick={this.onMarkerClick}
+                    title={'Sender Address'}
+                    name={'Sender Address'}
+                    position={this.props.sender}
+                />
+                <Marker
+                    onClick={this.onMarkerClick}
+                    title={'Recipient Address'}
+                    name={'Recipient Address'}
+                    position={this.props.recipient}
                 />
                 <InfoWindow
                     marker={this.state.activeMarker}
