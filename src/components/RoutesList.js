@@ -9,6 +9,8 @@ import Container from "react-bootstrap/Container";
 import {StyledCell} from './StyledCell';
 import styled from 'styled-components/macro';
 import {FilterInput} from './FilterInput';
+import {AuctionStatusDropdown} from "./AuctionStatusDropdown";
+import {AuctionStatusImage} from "./AuctionStatusImage";
 
 const StyledDeleteFilter = styled(Button)`width:max-content`;
 const StyledTable = styled(Table)`vertical-align:middle;`;
@@ -44,7 +46,7 @@ export class RoutesList extends React.Component {
     onInputChanged(identifier, newValue) {
         const filterCriteria = {...this.state.searchCriteria};
         filterCriteria[identifier] = newValue;
-        const filteredData = this.filter(this.props.data, filterCriteria);
+        const filteredData = this.filter(this.state.data, filterCriteria);
         this.setState({
             data: filteredData,
             searchCriteria: filterCriteria
@@ -56,7 +58,9 @@ export class RoutesList extends React.Component {
             this.setState({data: this.props.data});
         } else if (!prevProps.dirtyData && this.props.dirtyData) {
             console.log('Should now rerender with filtering');
-            this.setState((state,props) => {return {data: this.filter(props.data, state.searchCriteria)}})
+            this.setState((state, props) => {
+                return {data: this.filter(props.data, state.searchCriteria)}
+            })
         }
     }
 
@@ -67,13 +71,14 @@ export class RoutesList extends React.Component {
     }
 
     render() {
-
         return (
             <Page activetab="driver">
                 <Container>
                     <StyledTable>
                         <thead>
                         <tr>
+                            <StyledCell><AuctionStatusDropdown triggerFilter={this.onInputChanged}
+                                                               resolver={(row) => row.auctionState + ".png"}/></StyledCell>
                             <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged}
                                                          resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
                             <StyledCell>
@@ -124,8 +129,14 @@ export class RoutesList extends React.Component {
                         </thead>
                         <tbody>
 
-                        {this.props.loadingDone ? this.state.data.map((route, i) => <RoutesRow key={route._id}
-                                                                                               route={route}/>) :
+                        {this.props.loadingDone ? this.state.data.map((route, i) => {
+                                route.auctionState = AuctionStatusImage.getBidStatus(route, this.props.driverID);
+                                return <RoutesRow key={route._id}
+                                                  route={route}
+                                                  scale={this.props.scale}
+                                                  biddingState={route.auctionState}
+                                                  driverID={this.props.driverID}/>;
+                            }) :
                             <EmptyRow/>}
                         </tbody>
                     </StyledTable>

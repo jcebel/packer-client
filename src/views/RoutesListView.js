@@ -1,6 +1,8 @@
 import React from 'react';
 import {RoutesList} from '../components/RoutesList';
 import {RouteService} from '../services/RouteService';
+import {UserService} from "../services/UserService";
+import {AuctionStatusImage} from "../components/AuctionStatusImage";
 
 export class RoutesListView extends React.Component {
 
@@ -9,13 +11,21 @@ export class RoutesListView extends React.Component {
 
         this.state = {
             loadingDone: false,
-            data: []
+            data: [],
+            driverID: ''
         };
     }
 
     componentDidMount() {
-        this.loadRoutes();
-        this.interval = setInterval(() => this.loadRoutes(true), 5000);
+        UserService.getDriverId().then((id) => {
+            this.setState( {
+                driverID: id
+            });
+            this.loadRoutes();
+            this.interval = setInterval(() => this.loadRoutes(true), 1000);
+        }).catch((e) => {
+            console.error(e);
+        });
     }
 
     loadRoutes(interval) {
@@ -29,7 +39,8 @@ export class RoutesListView extends React.Component {
                     } else {
                         dirty = this.state.data.reduce(
                             (total, route, i) =>
-                                total || route._id !== data[i]._id || route.currentBid !== data[i].currentBid,
+                                total || route._id !== data[i]._id || route.currentBid !== data[i].currentBid ||
+                                AuctionStatusImage.getBidStatus(route, this.state.driverID) !== AuctionStatusImage.getBidStatus(data[i], this.state.driverID),
                             false);
                     }
                 }
@@ -51,7 +62,8 @@ export class RoutesListView extends React.Component {
     render() {
         return (
             <RoutesList loadingDone={this.state.loadingDone} data={this.state.data}
-                        dirtyData={this.state.dirtyData}/>
+                        dirtyData={this.state.dirtyData} driverID={this.state.driverID}
+                        scale={"65px"}/>
         );
     }
 }
