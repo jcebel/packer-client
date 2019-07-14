@@ -2,8 +2,7 @@ import {HttpService} from './HttpService';
 
 export class RouteService {
 
-    static baseURL() {return "http://localhost:3000/route" }
-    //static baseURL() {return "http://ec2-3-16-129-205.us-east-2.compute.amazonaws.com:3000/route" }
+    static baseURL() {return HttpService.apiURL() + "/route"; }
 
 
     static getRoutesByDate(date){

@@ -6,8 +6,9 @@ import {PackageList} from "../components/PackageList";
 import {BiddingInformation} from "../components/BiddingInformation";
 import {RouteService} from "../services/RouteService";
 import {Page} from "../components/Page";
-import {AuthService} from "../services/AuthService";
 import styled from 'styled-components/macro';
+import {UserService} from "../services/UserService";
+import {AuctionStatusImage} from "../components/AuctionStatusImage";
 
 const StyledRow = styled(Row)`height:"350px"`;
 const StyledCard = styled(Card)`height:"350px"`;
@@ -19,16 +20,24 @@ export class BiddingProcessView extends React.Component{
 
         this.state = {
             loading: false,
-            route: {}
+            route: {},
+            driverID: undefined
         };
+
     }
 
     componentWillMount(){
         this.setState({
             loading: true
         });
+        UserService.getDriverId().then((data) => {
+            this.setState({
+                driverID: data
+            });
+        }).catch((e) => {
+            console.error(e);
+        });
         this.refreshRouteData();
-
     }
 
     refreshRouteData(){
@@ -73,7 +82,10 @@ export class BiddingProcessView extends React.Component{
                     </StyledRow>
                     <Row>
                         <Col sm={8}>
-                            <BiddingInformation route={this.state.route} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
+                            <BiddingInformation route={this.state.route} driverID={this.state.driverID} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
+                        </Col>
+                        <Col>
+                            <AuctionStatusImage route={this.state.route} driverID={this.state.driverID} scale={"200px"}/>
                         </Col>
                     </Row>
                 </Container>
@@ -82,11 +94,8 @@ export class BiddingProcessView extends React.Component{
     }
 
     submitBidByID(id, newBid) {
-        console.log(AuthService.getCurrentUser());
         let route = {
             "_id": id,
-            //TODO: This is still hardcoded!
-            "owner": "5d19fdb047ec6c05280c8541",
             "bid": newBid
         };
         RouteService.updateRoute(route).then(() => {

@@ -3,9 +3,8 @@ import {HttpService} from "./HttpService";
 
 export class AuthService {
 
-    static baseURL() {
-        return "http://localhost:3000/auth";
-    }
+    static baseURL() {return HttpService.apiURL() + "/auth"; }
+
 
     static register(fields) {
         return new Promise((resolve, reject) => {
