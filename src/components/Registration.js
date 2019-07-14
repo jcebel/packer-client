@@ -1,16 +1,17 @@
 import React from 'react';
 import {Formik, Field, Form, ErrorMessage, FieldArray} from 'formik';
-import {Container} from 'react-bootstrap';
+import {Container, Alert} from 'react-bootstrap';
 import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
 import styled from 'styled-components/macro';
+
 
 const Warning = styled.div`
     color: red;`;
 
 const checkboxes = [
-    { id: "deliveryClient", name: "Delivery Client" },
-    { id: "driver", name: "Driver" },
+    {id: "deliveryClient", name: "Delivery Client"},
+    {id: "driver", name: "Driver"},
 ];
 
 class Registration extends React.Component {
@@ -28,7 +29,7 @@ class Registration extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         this.setState(event);
         let fields = this.state;
         delete fields.confirmPassword;
@@ -39,6 +40,9 @@ class Registration extends React.Component {
     render() {
         return (
             <Container>
+                {this.props.missingCheckbox ? <Alert variant="success">Select the
+                    checkbox {checkboxes.find((value) => value.id === this.props.missingCheckbox).name} to activate
+                    your user for this action</Alert> : <div/>}
                 <Formik
                     initialValues={{
                         firstName: '',
@@ -59,39 +63,44 @@ class Registration extends React.Component {
                         password: Yup.string()
                             .min(6, 'Password must be at least 6 characters')
                             .required('Password is required'),
-                        confirmPassword:  Yup.string()
+                        confirmPassword: Yup.string()
                             .oneOf([Yup.ref('password'), null], 'Passwords must match')
                             .required('Confirm Password is required'),
                         checkboxIds: Yup.array()
                             .required('At least one checkbox is required')
                     })}
                     onSubmit={this.handleSubmit}
-                    render={({ errors, touched, values }) => (
+                    render={({errors, touched, values}) => (
                         <Form>
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>
-                                <Field name="firstName" type="text" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
-                                <ErrorMessage name="firstName" component="div" className="invalid-feedback" />
+                                <Field name="firstName" type="text"
+                                       className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')}/>
+                                <ErrorMessage name="firstName" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="name">Last Name</label>
-                                <Field name="name" type="text" className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')} />
-                                <ErrorMessage name="name" component="div" className="invalid-feedback" />
+                                <Field name="name" type="text"
+                                       className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')}/>
+                                <ErrorMessage name="name" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
-                                <Field name="email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
-                                <ErrorMessage name="email" component="div" className="invalid-feedback" />
+                                <Field name="email" type="text"
+                                       className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')}/>
+                                <ErrorMessage name="email" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
-                                <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
-                                <ErrorMessage name="password" component="div" className="invalid-feedback" />
+                                <Field name="password" type="password"
+                                       className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')}/>
+                                <ErrorMessage name="password" component="div" className="invalid-feedback"/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="confirmPassword">Confirm Password</label>
-                                <Field name="confirmPassword" type="password" className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')} />
-                                <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
+                                <Field name="confirmPassword" type="password"
+                                       className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')}/>
+                                <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback"/>
                             </div>
                             Register as:
                             <div className="form-group">
@@ -107,14 +116,14 @@ class Registration extends React.Component {
                                                                     value={category.id}
                                                                     checked={values.checkboxIds.includes(category.id)}
                                                                     onChange={e => {
-                                                                        if(e.target.checked) arrayHelpers.push(category.id);
-                                                                        else{
+                                                                        if (e.target.checked) arrayHelpers.push(category.id);
+                                                                        else {
                                                                             const idx = values.checkboxIds.indexOf(category.id);
                                                                             arrayHelpers.remove(idx);
                                                                         }
                                                                     }}
                                                                 />{" "}
-                                                            {category.name}
+                                                                {category.name}
                                                             </label>
                                                         </div>
                                                     ))}
@@ -126,7 +135,8 @@ class Registration extends React.Component {
                                 <button type="submit" className="btn btn-primary mr-2">Register</button>
                                 <button type="reset" className="btn btn-secondary mr-2">Reset</button>
                                 <button type="button" className="btn btn-secondary"
-                                        onClick={()=> this.props.history.push('/login')}>Login</button>
+                                        onClick={() => this.props.history.push('/login')}>Login
+                                </button>
                             </div>
                         </Form>
                     )}

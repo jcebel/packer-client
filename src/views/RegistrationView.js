@@ -23,7 +23,7 @@ export class RegistrationView extends React.Component{
 
     render() {
         return (
-            <Registration onSubmit={(fields) => this.register(fields)} error={this.state.error}></Registration>
+            <Registration missingCheckbox={this.props.missingCheckbox} onSubmit={(fields) => this.register(fields)} error={this.state.error}></Registration>
         );
     }
 }
