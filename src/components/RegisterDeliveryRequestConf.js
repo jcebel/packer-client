@@ -16,6 +16,7 @@ class RegisterDeliveryRequestConf extends Component{
         if(this.props.datadr !== undefined) {
             this.state = {
                 show: false,
+                noData: false,
                 what: this.props.datadr.what,
                 sender: this.props.datadr.sender,
                 receiver: this.props.datadr.receiver,
@@ -34,6 +35,7 @@ class RegisterDeliveryRequestConf extends Component{
         } else {
             let today = new Date();
             this.state = {
+                noData: true,
                 show: false,
                 what: "",
                 sender: "",
@@ -239,7 +241,7 @@ class RegisterDeliveryRequestConf extends Component{
                   <Row>
                     <label>
                     <ButtonToolbar>
-                      <Button disabled={this.state.show} 
+                      <Button disabled={this.state.show || this.state.noData} 
                       onClick={this.submitRequest} variant="success">Accept</Button>
                       <Button href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
@@ -250,6 +252,12 @@ class RegisterDeliveryRequestConf extends Component{
                     <Alert.Heading>Request sent</Alert.Heading>
                     <p>
                         You can see your Request in My Deliveries!
+                    </p>
+                </Alert>
+                <Alert show={this.state.noData} variant="danger">
+                    <Alert.Heading>No Data to send</Alert.Heading>
+                    <p>
+                        You can´t send no data!
                     </p>
                 </Alert>
                 </Container>
