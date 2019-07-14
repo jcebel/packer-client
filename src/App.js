@@ -34,7 +34,7 @@ export default class App extends React.Component {
                         if (AuthService.isAuthenticated()) {
                             return <AsyncUserTypeRouting {...props} component={RoutesListView} path={'/beAdriver'}
                                                          missingCheckbox="driver"
-                                                         query={UserService.isUserADriver}/>;
+                                                         query={AuthService.isUserADriver}/>;
                         } else {
                             return (<Redirect to={{pathname: '/login', prevPath: '/beAdriver'}}/>)
                         }
@@ -43,7 +43,9 @@ export default class App extends React.Component {
                 {
                     render: (props) => {
                         if (AuthService.isAuthenticated()) {
-                            return (<DeliveryMonitorView{...props}/>)
+                            return <AsyncUserTypeRouting {...props} component={DeliveryMonitorView} path={'/deliverymonitor'}
+                                                         missingCheckbox="deliveryClient"
+                                                         query={AuthService.isUserADeliveryClient}/>;
                         } else {
                             return (<Redirect to={{pathname: '/login', prevPath: '/deliverymonitor'}}/>)
                         }

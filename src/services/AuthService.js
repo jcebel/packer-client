@@ -56,6 +56,24 @@ export class AuthService {
         });
     }
 
+    static isUserADriver() {
+        return new Promise((resolve, reject) => {
+            (async function() {
+                const user = await AuthService.getCurrentUserFromDB();
+                return user.driver;
+            })().then(resolve).catch(reject);
+        });
+    }
+
+    static isUserADeliveryClient() {
+        return new Promise((resolve, reject) => {
+            (async function() {
+                const user = await AuthService.getCurrentUserFromDB();
+                return user.deliveryClient;
+            })().then(resolve).catch(reject);
+        });
+    }
+
     static updateUserType(driver, deliveryClient) {
         return new Promise((resolve, reject) => {
             HttpService.put(`${AuthService.baseURL()}/updateType`, {
