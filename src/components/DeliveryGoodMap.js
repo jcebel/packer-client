@@ -37,7 +37,7 @@ class DeliveryGoodMap extends React.Component{
         return (
             <Map
                 google={this.props.google}
-                zoom={15}
+                zoom={13}
                 initialCenter={this.props.currentLoc}
             >
                 <Marker
@@ -45,18 +45,27 @@ class DeliveryGoodMap extends React.Component{
                     title={'Current Delivery Good Location'}
                     name={'Current Delivery Good Location'}
                     position={this.props.currentLoc}
+                    icon={{
+                        url: "/Images/box.png"
+                    }}
                 />
                 <Marker
                     onClick={this.onMarkerClick}
                     title={'Sender Address'}
                     name={'Sender Address'}
                     position={this.props.sender}
+                    icon={{
+                        url: "/Images/start.png"
+                    }}
                 />
                 <Marker
                     onClick={this.onMarkerClick}
                     title={'Recipient Address'}
                     name={'Recipient Address'}
                     position={this.props.recipient}
+                    icon={{
+                        url: "/Images/finish.png"
+                    }}
                 />
                 <InfoWindow
                     marker={this.state.activeMarker}

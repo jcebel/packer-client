@@ -33,11 +33,23 @@ export class DeliveryDetailsView extends React.Component {
             loading: true
         });
         this.refreshDelGoodData();
+        this.refreshDelState();
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.refreshDelState(), 5000);
+        this.interval2 = setInterval(() => this.refreshDelGoodData(), 30000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+        clearInterval(this.interval2)
     }
 
     refreshDelState(){
         let id = this.props.match.params.id;
         DeliveryGoodService.getDeliveryState(id).then((deliveryState) => {
+            if(this.state.deliveryState !== deliveryState)
             this.setState({
                 deliveryState: deliveryState.deliveryState
             });
@@ -87,14 +99,6 @@ export class DeliveryDetailsView extends React.Component {
                 }
             })
         });
-    }
-
-    componentDidMount() {
-        this.interval = setInterval(() => this.refreshDelState(), 1000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
     }
 
     createAddress(element) {
