@@ -31,9 +31,9 @@ class UserMenu extends React.Component {
                                  />
                          }>
                 {this.props.user ?[
-                    <NavDropdown.Item key={1} onClick={this.handleLogout}>Logout</NavDropdown.Item>
-            ]: [<NavDropdown.Item key={1} onClick={()=> this.props.history.push('/login')}>Login</NavDropdown.Item>,
-                <NavDropdown.Item key={2} onClick={()=> this.props.history.push('/register')}>Register</NavDropdown.Item>
+                    <NavDropdown.Item className="text-center" key={1} onClick={this.handleLogout}>Logout</NavDropdown.Item>
+            ]: [<NavDropdown.Item className="text-center" key={1} onClick={()=> this.props.history.push('/login')}>Login</NavDropdown.Item>,
+                <NavDropdown.Item className="text-center" key={2} onClick={()=> this.props.history.push('/register')}>Register</NavDropdown.Item>
                 ]}
 
             </NavDropdown>
