@@ -261,7 +261,7 @@ class RegisterDeliveryRequestConf extends Component{
                     <ButtonToolbar>
                       <Button disabled={this.state.show || this.state.noData} 
                       onClick={this.submitRequest} variant="success">Accept</Button>
-                      <Button href = "/sendanything" variant="danger">Reject</Button>
+                      <Button disabled={this.state.show} href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
                     </label>
                   </Row>
@@ -271,6 +271,7 @@ class RegisterDeliveryRequestConf extends Component{
                     <p>
                         You can see your Request in My Deliveries!
                     </p>
+                    <Button href = '/'>Go to My Deliveries</Button>
                 </Alert>
                 <Alert show={this.state.noData} variant="danger">
                     <Alert.Heading>No Data to send</Alert.Heading>

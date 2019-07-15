@@ -14,6 +14,7 @@ class RegisterDeliveryRequest extends Component{
         
         this.state = {
             show: false,
+            showCity: false,
             what : "",
             sender: "",
             receiver: "",
@@ -100,11 +101,18 @@ class RegisterDeliveryRequest extends Component{
                     show: true
                 });
                 e.preventDefault();
+                } 
+                if(this.state.startcity !== "München" || this.state.endcity !== "München") {
+                    this.setState({
+                        showCity: true
+                    });
+                    e.preventDefault();
             } 
     }
     checkdataalert = (e) => {
                 this.setState({
-                    show: false
+                    show: false,
+                    showCity: false
                 });
     }
       
@@ -157,12 +165,12 @@ class RegisterDeliveryRequest extends Component{
                     <Col>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text>Start</InputGroup.Text>
+                                <InputGroup.Text>Start street</InputGroup.Text>
                             </InputGroup.Prepend>
                             <LocationSearchInput onSelectAdd={this.changeHandlerStartAdd}/>
                             <FormControl placeholder={"Number"} value = {this.state.startnum} onChange={this.changeHandlerStartNum}/>
                         <InputGroup.Prepend>
-                                <InputGroup.Text>End</InputGroup.Text>
+                                <InputGroup.Text>End street</InputGroup.Text>
                             </InputGroup.Prepend>
                             <LocationSearchInput onSelectAdd={this.changeHandlerEndAdd}/>
                             <FormControl placeholder={"Number"} value = {this.state.endnum} onChange={this.changeHandlerEndNum}/>
@@ -196,14 +204,19 @@ class RegisterDeliveryRequest extends Component{
                     }}>
                     <Button onClick={this.checkdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </Link>
-                   
-                    
                 </Row>
                  </div>
                  <Alert show={this.state.show} variant="danger">
                     <Alert.Heading>Warning!</Alert.Heading>
                     <p>
                         I think you forgot to enter some data!
+                    </p>
+                    <Button onClick={this.checkdataalert}>Ok</Button>
+                </Alert>
+                <Alert show={this.state.showCity} variant="danger">
+                    <Alert.Heading>Warning!</Alert.Heading>
+                    <p>
+                        Please enter a street in Munich!
                     </p>
                     <Button onClick={this.checkdataalert}>Ok</Button>
                 </Alert>

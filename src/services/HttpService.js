@@ -98,7 +98,6 @@ export class HttpService {
             else {
                 if(resp.hasOwnProperty('token')) {
                     window.localStorage['jwtToken'] = resp.token;
-                    console.log(resp.token);
                 }
                 onSuccess(resp);
             }
