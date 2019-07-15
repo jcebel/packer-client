@@ -112,11 +112,24 @@ export class DeliveryDetailsView extends React.Component {
         return (
             <Page activetab="delivery">
                 <Container>
-                    <span className="h2">
-                        {this.state.data.deliverygood.name}
-                        {" "}
-                        <StatusBadge deliveryState={this.state.deliveryState}/>
-                    </span>
+                    <Row>
+                        <Col>
+                            <span className="h2">
+                                {this.state.data.deliverygood.name}
+                                {" "}
+                                <StatusBadge deliveryState={this.state.deliveryState}/>
+                            </span>
+                        </Col>
+                        <Col className="text-right">
+                            <div>
+                                <b>Delivery Date:</b> {new Intl.DateTimeFormat('en-GB', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: '2-digit'
+                            }).format(new Date(this.state.data.deliverygood.deliveryDate))}
+                            </div>
+                        </Col>
+                    </Row>
                     <p/>
                     <Row>
                         <Col sm={8} className="d-flex">

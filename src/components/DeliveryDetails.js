@@ -46,7 +46,7 @@ export class DeliveryDetails extends React.Component{
                         </Row>
                         <Row>
                             <Col>Distance:</Col>
-                            <Col>TODO</Col>
+                            <Col>{this.props.data.deliverygood.distance} km</Col>
                         </Row>
                         <Row>
                             <Col>Price:</Col>

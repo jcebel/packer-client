@@ -4,17 +4,21 @@ import Badge from "react-bootstrap/Badge";
 export class StatusBadge extends React.Component{
 
     statusBadgeVariant(){
-        if(this.props.deliveryState === "In Delivery"){
-            return "info";
-        }
-        else if(this.props.deliveryState === "Delivered"){
+        const deliveryState = this.props.deliveryState;
+        if(deliveryState === "Delivered"){
             return "success";
         }
-        else if(this.props.deliveryState === "Waiting for Routing"){
+        else if(deliveryState === "In Delivery"){
+            return "info";
+        }
+        else if(deliveryState === "Waiting for Routing"){
             return "warning";
         }
-        else if(this.props.deliveryState === "Waiting for Pickup"){
-            return "primary";
+        else if(deliveryState === "Waiting for Pickup"){
+            return "dark"
+        }
+        else if(deliveryState === "In Bidding Process"){
+            return "secondary"
         }
         else{
             return "dark";
