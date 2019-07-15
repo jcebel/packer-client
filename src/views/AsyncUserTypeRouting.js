@@ -30,7 +30,13 @@ export class AsyncUserTypeRouting extends React.Component {
                     state: {redirectTo: this.props.path, missingCheckbox: this.props.missingCheckbox}
                 }}/>;
         } else {
-            return (<Page><Container><Alert variant={"secondary"}>Authorization needs to be checked... Please Wait.</Alert></Container></Page>)
+            return (
+                <Page>
+                    <Container>
+                        <Alert variant={"secondary"}>Authorization needs to be checked... Please Wait.
+                        </Alert>
+                    </Container>
+                </Page>)
         }
     }
 }
