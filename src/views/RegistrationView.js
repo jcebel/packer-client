@@ -55,7 +55,6 @@ class RegistrationViewComponent extends React.Component {
             <Content className="p-3">
                 <a href="/">
                     <Image src="/Images/packer.png"
-                           width="110px"
                            height="50x"
                            alt="Company Logo"/>
                 </a>

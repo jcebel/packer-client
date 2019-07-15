@@ -13,7 +13,6 @@ export class PlainNavigationBar extends React.Component{
                     <a href="/">
                         <img
                         src="/Images/Packer.png"
-                        width="110px"
                         height="50x"
                         alt="Company Logo"
                         />

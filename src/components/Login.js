@@ -34,7 +34,6 @@ class Login extends React.Component {
                 <Row className="justify-content-sm-center pt-5">
                     <a href="/">
                     <Image src="/Images/packer.png"
-                           width="154px"
                            height="70x"
                            alt="Company Logo"/>
                     </a>

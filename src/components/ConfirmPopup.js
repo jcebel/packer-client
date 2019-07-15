@@ -17,7 +17,7 @@ export class ConfirmPopup extends React.Component {
                 </Modal.Header>
                 <Modal.Body>
                     <p>
-                        Are you sure you want to delete this delivery request?
+                        {"Are you sure you want to delete this delivery request?"}
                     </p>
                 </Modal.Body>
                 <Modal.Footer>
