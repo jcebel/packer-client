@@ -23,11 +23,13 @@ class RegisterDeliveryRequestConf extends Component{
                 start: this.props.datadr.start,
                 startnum: this.props.datadr.startnum,
                 startcity: this.props.datadr.startcity,
+                startpostalcode: this.props.datadr.startpostalcode,
                 end: this.props.datadr.end,
                 price: 0,
                 distance: 0,
                 endnum: this.props.datadr.endnum,
                 endcity: this.props.datadr.endcity,
+                endpostalcode: this.props.datadr.endpostalcode, 
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
                 date: this.props.datadr.date,
@@ -46,10 +48,12 @@ class RegisterDeliveryRequestConf extends Component{
                 start: "",
                 startnum: "",
                 startcity: "",
+                startpostalcode: "",
                 end: "",
                 price: 0,
                 endnum: "",
                 endcity: "",
+                endpostalcode: "",
                 size: "",
                 weight: "",
                 date: today
@@ -98,14 +102,14 @@ class RegisterDeliveryRequestConf extends Component{
                 "city": this.state.startcity,
                 "street": this.state.start,
                 "houseNumber": this.state.startnum,
-                "postalCode": ""
+                "postalCode": this.state.startpostalcode
               },
               "origination": {
                 "name": this.state.receiver,
                 "city": this.state.endcity,
                 "street": this.state.end,
                 "houseNumber": this.state.endnum,
-                "postalCode": ""
+                "postalCode": this.state.endpostalcode
               }
         };
 

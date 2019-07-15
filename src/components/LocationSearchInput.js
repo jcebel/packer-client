@@ -9,7 +9,8 @@ class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = { address: '',
-                  city : ''
+                  city : '',
+                  postalcode: ''
                     };
   }
  
@@ -24,8 +25,12 @@ class LocationSearchInput extends React.Component {
  
   handleSelect = address => {
     geocodeByAddress(address)
-      .then(results => this.handleChange(results[0].address_components[0].long_name, results[0].address_components[2].long_name))
-      .catch(error => console.error('Error', error));
+      .then(results => this.handleChange(results[0].address_components.find((item) => { 
+          return item.types.includes("route");
+      }).long_name,results[0].address_components.find((item) => { 
+        return item.types.includes("locality");
+    }).long_name))
+      .catch();
   };
  
   render() {
