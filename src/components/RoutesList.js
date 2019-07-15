@@ -68,7 +68,7 @@ export class RoutesList extends React.Component {
     onInputChanged(identifier, newValue) {
         const filterCriteria = {...this.state.searchCriteria};
         filterCriteria[identifier] = newValue;
-        const filteredData = this.filter(this.state.data, filterCriteria);
+        const filteredData = this.filter(this.props.data, filterCriteria);
         this.setState({
             data: filteredData,
             searchCriteria: filterCriteria
@@ -79,7 +79,6 @@ export class RoutesList extends React.Component {
         if (!prevProps.loadingDone && this.props.loadingDone) {
             this.setState({data: this.props.data});
         } else if (!prevProps.dirtyData && this.props.dirtyData) {
-            console.log('Should now rerender with filtering');
             this.setState((state, props) => {
                 return {data: this.filter(props.data, state.searchCriteria)}
             })
@@ -100,7 +99,7 @@ export class RoutesList extends React.Component {
                         <thead>
                         <tr>
                             <StyledCell>
-                                <DropdownFilter items={auctionFilterItems} identifer="auctionStatus"
+                                <DropdownFilter items={auctionFilterItems} identifier="auctionStatus"
                                                 title="Auction Status"
                                                 resolver={(row) => row.auctionState + ".png"}
                                                 compareTo={() => {
@@ -108,7 +107,7 @@ export class RoutesList extends React.Component {
                                                 triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
-                                <DropdownFilter items={vehicleTypeItems} identifer="vehicleType" title="Vehicle Type"
+                                <DropdownFilter items={vehicleTypeItems} identifier="vehicleType" title="Vehicle Type"
                                                 resolver={(row) => row.vehicleType + ".svg"}
                                                 compareTo={() => {
                                                 }}
