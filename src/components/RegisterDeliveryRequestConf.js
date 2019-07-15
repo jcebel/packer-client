@@ -275,7 +275,7 @@ class RegisterDeliveryRequestConf extends Component{
                     <p>
                         You can see your Request in My Deliveries!
                     </p>
-                    <Button href = '/'>Go to My Deliveries</Button>
+                    <Button href = '/deliverymonitor'>Go to My Deliveries</Button>
                 </Alert>
                 <Alert show={this.state.noData} variant="danger">
                     <Alert.Heading>No Data to send</Alert.Heading>
