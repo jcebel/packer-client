@@ -48,11 +48,41 @@ distanceFilterItems.push(
     dropDown("low20", "15 - 20 km", (attrValue) => {
         return (attrValue >= 15 && attrValue < 20)
     }),
-    dropDown("upp20", "> 20 km", (attrValue) => {
+    dropDown("upp20", "more than 20 km", (attrValue) => {
         return (attrValue >= 20)
     })
 );
+const numberFilterItems = [];
+numberFilterItems.push(
+    dropDown("low05", "0 - 5 Items", (attrValue) => {
+        return (attrValue >= 0 && attrValue < 5)
+    }),
+    dropDown("low10", "5 - 10 Items", (attrValue) => {
+        return (attrValue >= 5 && attrValue < 10)
+    }),
+    dropDown("low15", "10 - 15 Items", (attrValue) => {
+        return (attrValue >= 10 && attrValue < 15)
+    }),
+    dropDown("upp15", "more than 15 Items", (attrValue) => {
+        return (attrValue >= 15)
+    })
+);
 
+const paymentFilterItems = [];
+paymentFilterItems.push(
+    dropDown("low20", "0 - 20 €", (attrValue) => {
+        return (attrValue >= 0 && attrValue < 20)
+    }),
+    dropDown("low10", "20 - 40 €", (attrValue) => {
+        return (attrValue >= 20 && attrValue < 40)
+    }),
+    dropDown("low15", "40 - 60 €", (attrValue) => {
+        return (attrValue >= 40 && attrValue < 60)
+    }),
+    dropDown("upp15", "more than 60 €", (attrValue) => {
+        return (attrValue >= 60)
+    })
+);
 
 export class RoutesList extends React.Component {
 
@@ -147,12 +177,16 @@ export class RoutesList extends React.Component {
                                                 triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
-                                <FilterInput
-                                    triggerUpdate={this.state.deleted}
-                                    placeholder="Items"
-                                    triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => String(row.items.length)}
-                                />
+                                <DropdownFilter items={numberFilterItems}
+                                                identifier="items"
+                                                title="Items"
+                                                resolver={(row) => String(row.items.length)}
+                                                compareTo={(attribute, inputValue) => {
+                                                    return numberFilterItems.find((item) => {
+                                                        return (item.eventKey === inputValue)
+                                                    }).compareItemBased(attribute);
+                                                }}
+                                                triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
@@ -171,12 +205,16 @@ export class RoutesList extends React.Component {
                                 />
                             </StyledCell>
                             <StyledCell>
-                                <FilterInput
-                                    triggerUpdate={this.state.deleted}
-                                    placeholder="Payment"
-                                    triggerFilter={(identifier, searchCriteria) => this.onInputChanged(identifier, searchCriteria)}
-                                    resolver={(row) => row.currentBid + ' €'}
-                                />
+                                <DropdownFilter items={paymentFilterItems}
+                                                identifier="payment"
+                                                title="Payment"
+                                                resolver={(row) => row.currentBid}
+                                                compareTo={(attribute, inputValue) => {
+                                                    return paymentFilterItems.find((item) => {
+                                                        return (item.eventKey === inputValue)
+                                                    }).compareItemBased(attribute);
+                                                }}
+                                                triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
                                 <StyledDeleteFilter variant="danger" onClick={this.deleteFilters}>Delete
