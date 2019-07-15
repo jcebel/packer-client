@@ -1,9 +1,15 @@
 import React from 'react';
-
 import Login from '../components/Login';
-
 import {AuthService} from '../services/AuthService';
+import styled from 'styled-components/macro';
 
+const Content = styled.div`
+    height: 100%; 
+    background-image: url(/Images/registrationBackground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
 
 export class LoginView extends React.Component {
 
@@ -14,7 +20,11 @@ export class LoginView extends React.Component {
 
     login(user) {
         AuthService.login(user.email, user.password).then(() => {
-            this.props.history.push('/');
+            if(this.props.location.prevPath !== undefined){
+                this.props.history.push(this.props.location.prevPath)
+            } else{
+                this.props.history.push('/');
+            }
         }).catch((e) => {
             console.error(e);
             this.setState({
@@ -25,7 +35,9 @@ export class LoginView extends React.Component {
 
     render() {
         return (
-            <Login onSubmit={(user) => this.login(user)} error={this.state.error}></Login>
+            <Content>
+                <Login onSubmit={(user) => this.login(user)} error={this.state.error}></Login>
+            </Content>
         );
     }
 }
