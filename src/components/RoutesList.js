@@ -40,7 +40,6 @@ export class RoutesList extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             data: [],
             searchCriteria: {},
@@ -101,7 +100,7 @@ export class RoutesList extends React.Component {
                             <StyledCell>
                                 <DropdownFilter items={auctionFilterItems} identifier="auctionStatus"
                                                 title="Auction Status"
-                                                resolver={(row) => row.auctionState + ".png"}
+                                                resolver={(row) =>  AuctionStatusImage.getBidStatus(row, this.props.driverID) + ".png"}
                                                 compareTo={() => {
                                                 }}
                                                 triggerFilter={this.onInputChanged}/>
@@ -162,7 +161,6 @@ export class RoutesList extends React.Component {
                         <tbody>
 
                         {this.props.loadingDone ? this.state.data.map((route) => {
-                                route.auctionState = AuctionStatusImage.getBidStatus(route, this.props.driverID);
                                 return <RoutesRow key={route._id}
                                                   route={route}
                                                   scale={imageSize}
