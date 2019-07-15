@@ -62,8 +62,7 @@ export class RoutesListView extends React.Component {
     render() {
         return (
             <RoutesList loadingDone={this.state.loadingDone} data={this.state.data}
-                        dirtyData={this.state.dirtyData} driverID={this.state.driverID}
-                        scale={"65px"}/>
+                        dirtyData={this.state.dirtyData} driverID={this.state.driverID}/>
         );
     }
 }
