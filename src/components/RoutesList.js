@@ -11,11 +11,33 @@ import styled from 'styled-components/macro';
 import {FilterInput} from './FilterInput';
 import {AuctionStatusDropdown} from "./AuctionStatusDropdown";
 import {AuctionStatusImage} from "./AuctionStatusImage";
+import Image from "react-bootstrap/Image";
+import {DropdownFilter} from "./DropdownFilter";
 
 const StyledDeleteFilter = styled(Button)`width:max-content`;
 const StyledTable = styled(Table)`vertical-align:middle;`;
 
+const imageSize = "65px";
+
+function dropDown(eventKey, child) {
+    return {eventKey: eventKey, child: child};
+}
+
+const vehicleTypeItems = [];
+vehicleTypeItems.push(dropDown("bike", <Image src="Images/bike.svg"/>), dropDown("car", <Image
+    src="Images/car.svg"/>), dropDown("van", <Image src="Images/van.svg"/>));
+
+
+const auctionFilterItems = [];
+auctionFilterItems.push(
+    dropDown("winner", <Image src="Images/winner.png" height={imageSize}/>),
+    dropDown("looser", <Image src="Images/looser.png" height={imageSize}/>),
+    dropDown("leader", <Image src="Images/leader.png" height={imageSize}/>),
+    dropDown("nonleader", <Image src="Images/nonleader.png" height={imageSize}/>));
+
+
 export class RoutesList extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -77,10 +99,21 @@ export class RoutesList extends React.Component {
                     <StyledTable>
                         <thead>
                         <tr>
-                            <StyledCell><AuctionStatusDropdown triggerFilter={this.onInputChanged}
-                                                               resolver={(row) => row.auctionState + ".png"}/></StyledCell>
-                            <StyledCell><VehicleDropdown triggerFilter={this.onInputChanged}
-                                                         resolver={(row) => row.vehicleType + ".svg"}/></StyledCell>
+                            <StyledCell>
+                                <DropdownFilter items={auctionFilterItems} identifer="auctionStatus"
+                                                title="Auction Status"
+                                                resolver={(row) => row.auctionState + ".png"}
+                                                compareTo={() => {
+                                                }}
+                                                triggerFilter={this.onInputChanged}/>
+                            </StyledCell>
+                            <StyledCell>
+                                <DropdownFilter items={vehicleTypeItems} identifer="vehicleType" title="Vehicle Type"
+                                                resolver={(row) => row.vehicleType + ".svg"}
+                                                compareTo={() => {
+                                                }}
+                                                triggerFilter={this.onInputChanged}/>
+                            </StyledCell>
                             <StyledCell>
                                 <FilterInput
                                     triggerUpdate={this.state.deleted}
@@ -129,11 +162,11 @@ export class RoutesList extends React.Component {
                         </thead>
                         <tbody>
 
-                        {this.props.loadingDone ? this.state.data.map((route, i) => {
+                        {this.props.loadingDone ? this.state.data.map((route) => {
                                 route.auctionState = AuctionStatusImage.getBidStatus(route, this.props.driverID);
                                 return <RoutesRow key={route._id}
                                                   route={route}
-                                                  scale={this.props.scale}
+                                                  scale={imageSize}
                                                   biddingState={route.auctionState}
                                                   driverID={this.props.driverID}/>;
                             }) :
