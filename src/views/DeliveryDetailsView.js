@@ -23,7 +23,8 @@ export class DeliveryDetailsView extends React.Component {
             data: {},
             senderAddress: {},
             recipientAddress: {},
-            currentLocation: {}
+            currentLocation: {},
+            noDriver: true
         };
         Geocode.setApiKey("AIzaSyAf7aIGVns1ktVf5sw__NGaygucuRsqCiw");
     };
@@ -49,10 +50,20 @@ export class DeliveryDetailsView extends React.Component {
     refreshDelState(){
         let id = this.props.match.params.id;
         DeliveryGoodService.getDeliveryState(id).then((deliveryState) => {
-            if(this.state.deliveryState !== deliveryState)
-            this.setState({
-                deliveryState: deliveryState.deliveryState
-            });
+            if(this.state.deliveryState !== deliveryState.deliveryState) {
+                this.setState({
+                    deliveryState: deliveryState.deliveryState
+                });
+            }
+            if(deliveryState.deliveryState === "Waiting for Routing" || deliveryState.deliveryState === "In Bidding Process"){
+                this.setState({
+                    noDriver: true
+                });
+            } else{
+                this.setState({
+                    noDriver: false
+                });
+            }
         }).catch((e) => {
             console.error(e);
         });
@@ -138,7 +149,9 @@ export class DeliveryDetailsView extends React.Component {
                                             currentLoc={this.state.currentLocation}/>
                         </Col>
                         <Col className="d-flex ml-2">
-                            <DeliveryDetails loading={this.state.loading} data={this.state.data}/>
+                            <DeliveryDetails loading={this.state.loading}
+                                             data={this.state.data}
+                                             noDriver={this.state.noDriver}/>
                         </Col>
                     </Row>
                 </Container>

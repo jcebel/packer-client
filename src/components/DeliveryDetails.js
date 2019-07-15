@@ -21,11 +21,11 @@ export class DeliveryDetails extends React.Component{
                         </Card.Title>
                             <Row>
                                 <Col>Driver Name:</Col>
-                                <Col>{this.props.data.driverName}</Col>
+                                <Col>{this.props.noDriver ? <i>Coming soon...</i> : this.props.data.driverName}</Col>
                             </Row>
                             <Row>
                                 <Col>Vehicle Type: </Col>
-                                <Col>{this.capFirst(this.props.data.vehicleType)}</Col>
+                                <Col>{this.props.noDriver ? <i>Coming soon...</i> : this.capFirst(this.props.data.vehicleType)}</Col>
                             </Row>
                     </Card.Body>
                 </Card>
