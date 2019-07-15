@@ -11,8 +11,15 @@ export class FilterInput extends React.Component {
     }
 
     createFilterCriteria(event) {
-        return {inputValue: event.target.value, resolveAttribute: this.props.resolver}
+        return {
+            inputValue: event.target.value,
+            resolveAttribute: this.props.resolver,
+            compareTo: (attribute, inputValue) => {
+                return attribute.toLowerCase().startsWith(inputValue.toLowerCase());
+            }
+        }
     }
+
     handleInputChange(event) {
         this.setState({
             value: event.target.value
@@ -21,7 +28,7 @@ export class FilterInput extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.triggerUpdate !== this.props.triggerUpdate) {
+        if (prevProps.triggerUpdate !== this.props.triggerUpdate) {
             this.setState({value: ''});
         }
     }
@@ -29,10 +36,10 @@ export class FilterInput extends React.Component {
     render() {
         return (
             <Form.Control type="text"
-                   value={this.state.value}
-                   name={this.props.placeholder}
-                   placeholder={this.props.placeholder}
-                   onChange={this.handleInputChange}></Form.Control>
+                          value={this.state.value}
+                          name={this.props.placeholder}
+                          placeholder={this.props.placeholder}
+                          onChange={this.handleInputChange}></Form.Control>
         )
     }
 }
