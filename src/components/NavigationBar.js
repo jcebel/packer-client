@@ -22,7 +22,7 @@ export class PlainNavigationBar extends React.Component{
                     <StyledTab href="/" isactivetab={this.props.activetab === "home" ? "true" : undefined}>Home</StyledTab>
                     <StyledTab href={"/deliverymonitor"} isactivetab={this.props.activetab === "delivery" ? "true" : undefined}>My Deliveries</StyledTab>
                     <StyledTab href="/beAdriver" isactivetab={this.props.activetab === "driver" ? "true" : undefined}>Be A Driver</StyledTab>
-                    <StyledTab isactivetab={this.props.activetab === "send" ? "true" : undefined}>Send anything</StyledTab>
+                    <StyledTab href="/sendanything" isactivetab={this.props.activetab === "send" ? "true" : undefined}>Send anything</StyledTab>
                 </Nav>
                 <Nav>
                     <UserMenu/>
