@@ -18,7 +18,7 @@ export class RoutesListView extends React.Component {
 
     componentDidMount() {
         UserService.getDriverId().then((id) => {
-            this.setState( {
+            this.setState({
                 driverID: id
             });
             this.loadRoutes();

@@ -1,5 +1,8 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
+import {Page} from "../components/Page";
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
 
 /**
  * Renders a redirect to the RegistrationView, if the given async query returns a false value.
@@ -27,7 +30,13 @@ export class AsyncUserTypeRouting extends React.Component {
                     state: {redirectTo: this.props.path, missingCheckbox: this.props.missingCheckbox}
                 }}/>;
         } else {
-            return (<h1>Authorization needs to be checked... Please Wait.</h1>)
+            return (
+                <Page>
+                    <Container>
+                        <Alert variant={"secondary"}>Authorization needs to be checked... Please Wait.
+                        </Alert>
+                    </Container>
+                </Page>)
         }
     }
 }
