@@ -97,14 +97,14 @@ class RegisterDeliveryRequestConf extends Component{
             "price": this.state.price,
             "distance": this.state.distance,
             "deliveryState": "Waiting for Routing",
-            "destination": {
+            "origination": {
                 "name": this.state.sender,
                 "city": this.state.startcity,
                 "street": this.state.start,
                 "houseNumber": this.state.startnum,
                 "postalCode": this.state.startpostalcode
               },
-              "origination": {
+              "destination": {
                 "name": this.state.receiver,
                 "city": this.state.endcity,
                 "street": this.state.end,
