@@ -3,6 +3,16 @@ import React from 'react';
 import Registration from '../components/Registration'
 import {AuthService} from '../services/AuthService';
 import {withRouter} from "react-router-dom";
+import styled from 'styled-components/macro';
+import Image from "react-bootstrap/Image";
+
+const Content = styled.div`
+    height: 100%; 
+    background-image: url(/Images/registrationBackground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
 
 class RegistrationViewComponent extends React.Component {
 
@@ -42,8 +52,15 @@ class RegistrationViewComponent extends React.Component {
 
     render() {
         return (
-            <Registration missingCheckbox={this.props.location.state.missingCheckbox} onSubmit={(fields) => this.register(fields)}
-                          error={this.state.error}/>
+            <Content className="p-3">
+                <a href="/">
+                    <Image src="/Images/packer.png"
+                           height="50x"
+                           alt="Company Logo"/>
+                </a>
+                <Registration missingCheckbox={this.props.location.state.missingCheckbox} onSubmit={(fields) => this.register(fields)}
+                      error={this.state.error}/>
+            </Content>
         );
     }
 }

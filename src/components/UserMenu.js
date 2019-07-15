@@ -1,18 +1,28 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import {NavDropdown} from 'react-bootstrap';
+import {AuthService} from '../services/AuthService'
+import styled from 'styled-components/macro'
 
+const StyledDiv = styled.div`
+    color: grey;
+`;
 
 class UserMenu extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            user: AuthService.isAuthenticated() ? AuthService.getCurrentUser() : undefined
+        };
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    
-    handleLogout(){
-        this.props.handleLogout();
+    handleLogout() {
+        AuthService.logout();
+        this.setState({
+            user: AuthService.isAuthenticated() ? AuthService.getCurrentUser() : undefined
+        });
         if(this.props.location.pathname !== '/') {
             this.props.history.push('/');
         }
@@ -23,21 +33,21 @@ class UserMenu extends React.Component {
 
     render(){
         return(
-            <NavDropdown title={
-                             <div>
+            <NavDropdown alignRight title={
                                  <img
                                      src="/Images/Account Icon.png"
                                      width="50px"
                                      height="50x"
                                      alt="Account Icon"
-                                     // style={{marginLeft: '10px'}}
                                  />
-                             </div>
                          }>
-                {this.props.user ?[
-                    <NavDropdown.Item key={1} onClick={this.handleLogout}>Logout</NavDropdown.Item>
-            ]: [<NavDropdown.Item key={1} onClick={()=> this.props.history.push('/login')}>Login</NavDropdown.Item>,
-                <NavDropdown.Item key={2} onClick={()=> this.props.history.push('/register')}>Register</NavDropdown.Item>
+                {this.state.user ?[
+                    <NavDropdown.Item className="text-center" key={1} onClick={this.handleLogout}>
+                        <div>Logout</div>
+                        <StyledDiv>({this.state.user.email})</StyledDiv>
+                    </NavDropdown.Item>
+            ]: [<NavDropdown.Item className="text-center" key={1} onClick={()=> this.props.history.push('/login')}>Login</NavDropdown.Item>,
+                <NavDropdown.Item className="text-center" key={2} onClick={()=> this.props.history.push('/register')}>Register</NavDropdown.Item>
                 ]}
 
             </NavDropdown>

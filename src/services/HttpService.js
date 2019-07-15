@@ -85,8 +85,9 @@ export class HttpService {
             body: JSON.stringify(data)
         }).then((resp) => {
             if(this.checkIfUnauthorized(resp)) {
-                window.location = "/#login";
-                return;
+                // window.location = "/#login";
+                resp.error = resp.status;
+                return resp;
             }
             else {
                 return resp.json();
