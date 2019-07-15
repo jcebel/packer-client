@@ -14,7 +14,6 @@ class RegisterDeliveryRequest extends Component{
         
         this.state = {
             show: false,
-            showCity: false,
             what : "",
             sender: "",
             receiver: "",
@@ -104,17 +103,10 @@ class RegisterDeliveryRequest extends Component{
                 });
                 e.preventDefault();
                 } 
-                if(this.state.startcity !== "München" || this.state.endcity !== "München") {
-                    this.setState({
-                        showCity: true
-                    });
-                    e.preventDefault();
-            } 
     }
     checkdataalert = (e) => {
                 this.setState({
-                    show: false,
-                    showCity: false
+                    show: false
                 });
     }
       
@@ -212,13 +204,6 @@ class RegisterDeliveryRequest extends Component{
                     <Alert.Heading>Warning!</Alert.Heading>
                     <p>
                         I think you forgot to enter some data!
-                    </p>
-                    <Button onClick={this.checkdataalert}>Ok</Button>
-                </Alert>
-                <Alert show={this.state.showCity} variant="danger">
-                    <Alert.Heading>Warning!</Alert.Heading>
-                    <p>
-                        Please enter a street in Munich!
                     </p>
                     <Button onClick={this.checkdataalert}>Ok</Button>
                 </Alert>
