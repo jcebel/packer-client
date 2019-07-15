@@ -17,8 +17,8 @@ const StyledTable = styled(Table)`vertical-align:middle;`;
 
 const imageSize = "65px";
 
-function dropDown(eventKey, child, itemResolver) {
-    return {eventKey: eventKey, child: child, itemResolver: itemResolver};
+function dropDown(eventKey, child, itemComparer) {
+    return {eventKey: eventKey, child: child, compareItemBased: itemComparer};
 }
 
 const vehicleTypeItems = [];
@@ -125,7 +125,9 @@ export class RoutesList extends React.Component {
                                                 triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
-                                <DropdownFilter items={vehicleTypeItems} identifier="vehicleType" title="Vehicle Type"
+                                <DropdownFilter items={vehicleTypeItems}
+                                                identifier="vehicleType"
+                                                title="Vehicle Type"
                                                 resolver={(row) => row.vehicleType + ".svg"}
                                                 compareTo={(attribute, inputValue) => {
                                                     return attribute.toLowerCase().startsWith(inputValue.toLowerCase());
@@ -133,12 +135,16 @@ export class RoutesList extends React.Component {
                                                 triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
-                                <FilterInput
-                                    triggerUpdate={this.state.deleted}
-                                    placeholder="Distance"
-                                    triggerFilter={this.onInputChanged}
-                                    resolver={(row) => row.meters / 1000 + " km"}
-                                />
+                                <DropdownFilter items={distanceFilterItems}
+                                                identifier="distance"
+                                                title="Distance"
+                                                resolver={(row) => row.meters / 1000}
+                                                compareTo={(attribute, inputValue) => {
+                                                    return distanceFilterItems.find((item) => {
+                                                        return (item.eventKey === inputValue)
+                                                    }).compareItemBased(attribute);
+                                                }}
+                                                triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
                                 <FilterInput
@@ -195,3 +201,5 @@ export class RoutesList extends React.Component {
         );
     }
 }
+
+
