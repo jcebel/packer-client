@@ -1,7 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import {VehicleDropdown} from './VehicleDropdown';
 import {RoutesRow} from './RoutesRow';
 import {Page} from './Page';
 import {EmptyRow} from './EmptyRow'
@@ -9,7 +8,6 @@ import Container from "react-bootstrap/Container";
 import {StyledCell} from './StyledCell';
 import styled from 'styled-components/macro';
 import {FilterInput} from './FilterInput';
-import {AuctionStatusDropdown} from "./AuctionStatusDropdown";
 import {AuctionStatusImage} from "./AuctionStatusImage";
 import Image from "react-bootstrap/Image";
 import {DropdownFilter} from "./DropdownFilter";
@@ -24,9 +22,10 @@ function dropDown(eventKey, child) {
 }
 
 const vehicleTypeItems = [];
-vehicleTypeItems.push(dropDown("bike", <Image src="Images/bike.svg"/>), dropDown("car", <Image
-    src="Images/car.svg"/>), dropDown("van", <Image src="Images/van.svg"/>));
-
+vehicleTypeItems.push(
+    dropDown("bike", <Image src="Images/bike.svg"/>),
+    dropDown("car", <Image src="Images/car.svg"/>),
+    dropDown("van", <Image src="Images/van.svg"/>));
 
 const auctionFilterItems = [];
 auctionFilterItems.push(
