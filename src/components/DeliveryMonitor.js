@@ -15,7 +15,7 @@ export class DeliveryMonitor extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.loadingDone && this.props.loadingDone) {
+        if(this.props.loadingDone && typeof prevProps.data !== "undefined" && prevProps.data !== this.props.data){
             this.setState({data: this.props.data});
         }
     }
@@ -23,11 +23,10 @@ export class DeliveryMonitor extends Component {
     render() {
         return (
             <Page activetab="delivery">
-                {this.props.loadingDone !== []? this.state.data.map((deliverygood) => <MonitorRow key={deliverygood._id}
-                                                                                       deliverygood={deliverygood}
-                                                                                            onDelete={(id) => {
-                                                                                                this.props.onDelete(id)
-                                                                                            }}/>) :
+                {this.props.data.length !== 0 ? this.state.data.map((deliverygood) =>
+                        <MonitorRow key={deliverygood._id}
+                                    deliverygood={deliverygood}
+                                    deleteitem={(id) => {this.props.deleteitem(id)}}/>) :
                     <Container>
                         You've got no deliveries yet... Start by Clicking on "Send anything"! ;)
                     </Container>}

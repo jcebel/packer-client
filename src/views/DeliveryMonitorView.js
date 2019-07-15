@@ -1,6 +1,5 @@
 import React from 'react';
 import {DeliveryMonitor} from "../components/DeliveryMonitor";
-import {UserService} from "../services/UserService";
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 
 
@@ -22,8 +21,7 @@ export class DeliveryMonitorView extends React.Component {
     }
 
     refreshDeliveryData(){
-        let id = this.props.match.params.id;
-        UserService.getDeliveriesByUserId(id)
+        DeliveryGoodService.getDeliveryGoods()
             .then((data) => {
                 this.setState({
                     data: data,
@@ -32,6 +30,15 @@ export class DeliveryMonitorView extends React.Component {
             }).catch((e) => {
             console.error(e);
         });
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.refreshDeliveryData(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+        this.setState({loadingDone: false})
     }
 
     deleteDeliveryGood(id){
@@ -56,7 +63,7 @@ export class DeliveryMonitorView extends React.Component {
 
     render(){
         return (
-            <DeliveryMonitor loadingDone={this.state.loadingDone} data={this.state.data} onDelete={(id) => this.deleteDeliveryGood(id)}/>
+            <DeliveryMonitor loadingDone={this.state.loadingDone} data={this.state.data} deleteitem={(id) => this.deleteDeliveryGood(id)}/>
         );
     }
 }
