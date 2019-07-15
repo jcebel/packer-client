@@ -53,6 +53,14 @@ export class DeliveryGoodService{
             });
         });
     }
-
+    static createDeliveryGood(deliveryGood) {
+        return new Promise((resolve, reject) => {
+            HttpService.post(`${this.baseURL()}`, deliveryGood, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
 
 }

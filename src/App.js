@@ -3,12 +3,17 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom
 import {HomeView} from './views/HomeView';
 import {BiddingProcessView} from "./views/BiddingProcessView";
 import {RoutesListView} from "./views/RoutesListView";
+import RegisterDeliveryRequestView from "./views/RegisterDeliveryRequestView";
+import RegisterDeliveryRequestConfView from "./views/RegisterDeliveryRequestConfView";
 import {RegistrationView} from "./views/RegistrationView";
 import {LoginView} from "./views/LoginView";
 import {AuthService} from "./services/AuthService";
 import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
 import {DeliveryDetailsView} from "./views/DeliveryDetailsView";
 import {AsyncUserTypeRouting} from "./views/AsyncUserTypeRouting";
+import {UserService} from "./services/UserService";
+import Error500View from "./views/Error500View";
+import Error404View from "./views/Error404View";
 
 export default class App extends React.Component {
 
@@ -19,6 +24,14 @@ export default class App extends React.Component {
             title: 'Packer',
             routes: [
                 {component: HomeView, path: '/', exact: true},
+                { render: (props) => {
+                    if(AuthService.isAuthenticated()){
+                    return (<RegisterDeliveryRequestView{... props}/>)
+                } else {
+                    return (<Redirect to={'/login'}/>)
+                }
+                }, path: '/sendanything', exact:true},
+                { render: (props) => {return (<RegisterDeliveryRequestConfView{... props} />)} , path: '/sendanythingconf', exact:true},
                 {
                     render: (props) => {
                         if (AuthService.isAuthenticated()) {
@@ -60,7 +73,9 @@ export default class App extends React.Component {
                     }, path: '/deliverydetails/:id', exact: true
                 },
                 {component: RegistrationView, path: '/register', exact: true},
-                {component: LoginView, path: '/login', exact: true}
+                {component: LoginView, path: '/login', exact: true},
+                { component: Error500View, path: '/error500', exact:true},
+                { component: Error404View, path: '/error404', exact:true}
             ]
         };
     }
@@ -77,4 +92,3 @@ export default class App extends React.Component {
         );
     }
 }
-
