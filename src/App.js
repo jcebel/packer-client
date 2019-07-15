@@ -9,7 +9,6 @@ import {AuthService} from "./services/AuthService";
 import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
 import {DeliveryDetailsView} from "./views/DeliveryDetailsView";
 import {AsyncUserTypeRouting} from "./views/AsyncUserTypeRouting";
-import {UserService} from "./services/UserService";
 
 export default class App extends React.Component {
 
