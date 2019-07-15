@@ -17,8 +17,8 @@ const StyledTable = styled(Table)`vertical-align:middle;`;
 
 const imageSize = "65px";
 
-function dropDown(eventKey, child) {
-    return {eventKey: eventKey, child: child};
+function dropDown(eventKey, child, itemResolver) {
+    return {eventKey: eventKey, child: child, itemResolver: itemResolver};
 }
 
 const vehicleTypeItems = [];
@@ -33,6 +33,25 @@ auctionFilterItems.push(
     dropDown("looser", <Image src="Images/looser.png" height={imageSize}/>),
     dropDown("leader", <Image src="Images/leader.png" height={imageSize}/>),
     dropDown("nonleader", <Image src="Images/nonleader.png" height={imageSize}/>));
+
+const distanceFilterItems = [];
+distanceFilterItems.push(
+    dropDown("low05", "0 - 5 km", (attrValue) => {
+        return (attrValue >= 0 && attrValue < 5)
+    }),
+    dropDown("low10", "5 - 10 km", (attrValue) => {
+        return (attrValue >= 5 && attrValue < 10)
+    }),
+    dropDown("low15", "10 - 15 km", (attrValue) => {
+        return (attrValue >= 10 && attrValue < 15)
+    }),
+    dropDown("low20", "15 - 20 km", (attrValue) => {
+        return (attrValue >= 15 && attrValue < 20)
+    }),
+    dropDown("upp20", "> 20 km", (attrValue) => {
+        return (attrValue >= 20)
+    })
+);
 
 
 export class RoutesList extends React.Component {
@@ -52,7 +71,7 @@ export class RoutesList extends React.Component {
         const doesAttributeMatch = (criteriaName, row) => {
             const attribute = filterCriteria[criteriaName].resolveAttribute(row);
             if (attribute) {
-                return attribute.toLowerCase().startsWith(filterCriteria[criteriaName].inputValue.toLowerCase());
+                return filterCriteria[criteriaName].compareTo(attribute, filterCriteria[criteriaName].inputValue);
             }
             return false;
         };
@@ -99,15 +118,17 @@ export class RoutesList extends React.Component {
                             <StyledCell>
                                 <DropdownFilter items={auctionFilterItems} identifier="auctionStatus"
                                                 title="Auction Status"
-                                                resolver={(row) =>  AuctionStatusImage.getBidStatus(row, this.props.driverID) + ".png"}
-                                                compareTo={() => {
+                                                resolver={(row) => AuctionStatusImage.getBidStatus(row, this.props.driverID) + ".png"}
+                                                compareTo={(attribute, inputValue) => {
+                                                    return attribute.toLowerCase().startsWith(inputValue.toLowerCase());
                                                 }}
                                                 triggerFilter={this.onInputChanged}/>
                             </StyledCell>
                             <StyledCell>
                                 <DropdownFilter items={vehicleTypeItems} identifier="vehicleType" title="Vehicle Type"
                                                 resolver={(row) => row.vehicleType + ".svg"}
-                                                compareTo={() => {
+                                                compareTo={(attribute, inputValue) => {
+                                                    return attribute.toLowerCase().startsWith(inputValue.toLowerCase());
                                                 }}
                                                 triggerFilter={this.onInputChanged}/>
                             </StyledCell>
