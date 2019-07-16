@@ -75,7 +75,7 @@ export class BiddingProcessView extends React.Component{
                                 <GoogleMaps route={this.state.route}/>
                             </StyledCard>
                         </Col>
-                        <Col>
+                        <Col sm={4}>
                             <RouteDetails route={this.state.route}/>
                             <PackageList route={this.state.route}/>
                         </Col>
@@ -84,8 +84,8 @@ export class BiddingProcessView extends React.Component{
                         <Col sm={8}>
                             <BiddingInformation route={this.state.route} driverID={this.state.driverID} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
                         </Col>
-                        <Col>
-                            <AuctionStatusImage route={this.state.route} driverID={this.state.driverID} scale={"200px"}/>
+                        <Col >
+                            <AuctionStatusImage route={this.state.route} driverID={this.state.driverID} scale={"170px"}/>
                         </Col>
                     </Row>
                 </Container>

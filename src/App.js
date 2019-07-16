@@ -11,7 +11,6 @@ import {AuthService} from "./services/AuthService";
 import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
 import {DeliveryDetailsView} from "./views/DeliveryDetailsView";
 import {AsyncUserTypeRouting} from "./views/AsyncUserTypeRouting";
-import {UserService} from "./services/UserService";
 import Error500View from "./views/Error500View";
 import Error404View from "./views/Error404View";
 

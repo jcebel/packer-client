@@ -5,7 +5,7 @@ export class BiddingConfirmationPopup extends React.Component {
 
     render() {
         return (
-            <Popup trigger={<button type="submit" className="btn btn-primary mr-2" disabled={this.props.disabled}>Submit</button>}
+            <Popup trigger={<button type="submit" className="btn btn-primary mr-2">Submit</button>}
             position={"top center"}
             >
                 <div><b>Submitted successfully!</b></div>
