@@ -1,6 +1,7 @@
 import React from 'react';
 import {DeliveryMonitor} from "../components/DeliveryMonitor";
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
+import {Error} from "../components/Error";
 
 
 export class DeliveryMonitorView extends React.Component {
@@ -28,6 +29,7 @@ export class DeliveryMonitorView extends React.Component {
                     loadingDone: true
                 });
             }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
@@ -56,12 +58,16 @@ export class DeliveryMonitorView extends React.Component {
                 loadingDone: true
             });
             }).catch((e) => {
+                this.setState({error: e});
                 console.error(e);
             }
         )
     }
 
     render(){
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         return (
             <DeliveryMonitor loadingDone={this.state.loadingDone} data={this.state.data} deleteitem={(id) => this.deleteDeliveryGood(id)}/>
         );

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import {withRouter} from 'react-router-dom';
 import styled from 'styled-components/macro';
 import {AuthService} from "../services/AuthService";
+import {Error} from "./Error";
 
 
 const Warning = styled.div`
@@ -44,7 +45,10 @@ class Registration extends React.Component {
                     confirmPassword: '*************',
                     checkboxIds: checkboxes.filter(value => value.id !== this.props.missingCheckbox).map(value => value.id)
                 })
-            })
+            }).catch((e) => {
+                this.setState({error: e});
+                console.error(e);
+            });
         }
     }
 
@@ -56,6 +60,9 @@ class Registration extends React.Component {
     }
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         return (
             <Container className="p-3">
                 <Col sm={6}>

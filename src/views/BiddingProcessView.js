@@ -9,6 +9,7 @@ import {Page} from "../components/Page";
 import styled from 'styled-components/macro';
 import {UserService} from "../services/UserService";
 import {AuctionStatusImage} from "../components/AuctionStatusImage";
+import {Error} from "../components/Error";
 
 const StyledRow = styled(Row)`height:"350px"`;
 const StyledCard = styled(Card)`height:"350px"`;
@@ -35,6 +36,7 @@ export class BiddingProcessView extends React.Component{
                 driverID: data
             });
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
         this.refreshRouteData();
@@ -48,6 +50,7 @@ export class BiddingProcessView extends React.Component{
                 loading: false
             });
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
@@ -62,6 +65,9 @@ export class BiddingProcessView extends React.Component{
 
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
@@ -105,9 +111,11 @@ export class BiddingProcessView extends React.Component{
                     loading: false
                 });
             }).catch((e) => {
+                this.setState({error: e});
                 console.error(e);
             });
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
