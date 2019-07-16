@@ -8,7 +8,7 @@ export class PlainNavigationBar extends React.Component{
 
     render() {
         return (
-            <Navbar bg="light" variant="light" sticky="top">g
+            <Navbar bg="light" variant="light" sticky="top">
                 <Navbar.Brand>
                     <a href="/">
                         <img

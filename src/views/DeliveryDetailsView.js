@@ -1,11 +1,12 @@
 import React from 'react';
-import {DeliveryGoodService} from "../services/DeliveryGoodService";
-import {DeliveryDetails} from "../components/DeliveryDetails";
-import {Col, Container, Row} from "react-bootstrap";
-import {Page} from "../components/Page";
-import DeliveryGoodMap from "../components/DeliveryGoodMap";
-import {StatusBadge} from "../components/StatusBadge";
-import Geocode from "react-geocode";
+import {DeliveryGoodService} from '../services/DeliveryGoodService';
+import {DeliveryDetails} from '../components/DeliveryDetails';
+import {Col, Container, Row} from 'react-bootstrap';
+import {Page} from '../components/Page';
+import DeliveryGoodMap from '../components/DeliveryGoodMap';
+import {StatusBadge} from '../components/StatusBadge';
+import Geocode from 'react-geocode';
+import {Error} from '../components/Error';
 
 const currentLocation = {
     street: "Ludwigstraße",
@@ -65,6 +66,7 @@ export class DeliveryDetailsView extends React.Component {
                 });
             }
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
@@ -78,6 +80,7 @@ export class DeliveryDetailsView extends React.Component {
                 loading: false
             });
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
@@ -117,6 +120,9 @@ export class DeliveryDetailsView extends React.Component {
     }
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Error} from './Error';
 
 export class ErrorHandler extends React.Component {
   constructor(props) {
@@ -11,6 +12,6 @@ export class ErrorHandler extends React.Component {
   }
 
   render() {
-    return this.state.errorOccurred ? <h1>Something went wrong!</h1> : this.props.children
+    return this.state.errorOccurred ? <Error message="Something went wrong!"/> : this.props.children
   }
 }

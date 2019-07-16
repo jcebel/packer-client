@@ -27,9 +27,7 @@ export class Page extends React.Component {
             <ErrorHandler>
                 <section>
                     <PlainNavigationBar activetab={this.props.activetab}/>
-                    <ErrorHandler>
-                        {this.props.children}
-                    </ErrorHandler>
+                    {this.props.children}
                 </section>
             </ErrorHandler>
         );
