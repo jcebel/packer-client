@@ -38,28 +38,28 @@ export class AuctionStatusImage extends React.Component {
                 src="/Images/winner.png"
                 height={this.props.scale}
                 alt="Winner"
-                title="Auction Winner"
+                title="Congratulation, you won the auction!"
             />;
         } else if(auctionStatus === "leader"){
             return <img
                 src="/Images/leader.png"
                 height={this.props.scale}
                 alt="CheckBox"
-                title="Current Auction Leader"
+                title="You are currently leading the auction!"
             />;
         } else if(auctionStatus === "looser"){
             return <img
                 src="/Images/looser.png"
                 height={this.props.scale}
                 alt="Thumps down"
-                title="Auction Lost"
+                title="Your bid was to high. You lost the auction!"
             />;
         } else if(auctionStatus === "nonleader") {
             return <img
                 src="/Images/nonleader.png"
                 height={this.props.scale}
                 alt="Red Cross"
-                title="Not Auction Leader"
+                title="You are currently not leading the auction. Enter a lower bid to become the leader!"
             />;
         }
     }

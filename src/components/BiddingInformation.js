@@ -67,7 +67,7 @@ export class BiddingInformation extends React.Component{
                                         <div className="form-group">
                                             <label htmlFor="Bid"><b>Your Bid</b></label>
                                             <div className="form-inline" hidden={this.props.route.auctionOver}>
-                                                <BiddingConfirmationPopup disabled={(!touched.Bid && errors.Bid === undefined) || (errors.Bid !== undefined) } />
+                                                <BiddingConfirmationPopup/>
                                                 <Field name="Bid" type="text" className={'form-control' + (errors.Bid && touched.Bid ? ' is-invalid' : '')} />
                                                 <ErrorMessage name="Bid" component="div" className="invalid-feedback" />
                                             </div>

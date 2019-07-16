@@ -13,7 +13,7 @@ export class RoutesRow extends React.Component {
             <tr>
                 <StyledCell><AuctionStatusImage route={this.props.route} driverID={this.props.driverID} biddingState={this.props.biddingState} scale={this.props.scale}/></StyledCell>
                 <StyledCell><VehicleImage vehicleType={this.props.route.vehicleType}/></StyledCell>
-                <StyledCell>{`${this.props.route.meters / 1000} km`}</StyledCell>
+                <StyledCell>{`${(this.props.route.meters / 1000).toFixed(1)} km`}</StyledCell>
                 <StyledCell>{this.props.route.items.length}</StyledCell>
                 <StyledCell>{this.props.route.collect[0].street}</StyledCell>
                 <StyledCell>{this.props.route.deliver[this.props.route.deliver.length - 1].street}</StyledCell>
