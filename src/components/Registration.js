@@ -60,7 +60,7 @@ class Registration extends React.Component {
     }
 
     render() {
-        if(this.state.error){
+        if(this.state.error !== undefined){
             return <Error message={this.state.error}/>
         }
         return (
@@ -165,6 +165,7 @@ class Registration extends React.Component {
                                                     </div>
                                                 )}/>
                                     <Warning>{errors["checkboxIds"]}</Warning>
+                                    {this.props.error !== undefined ? <Warning>A User with this Email already exists</Warning>:""}
                                 </div>
                                 <div className="form-group">
                                     <button type="submit"
