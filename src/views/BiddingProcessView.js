@@ -13,7 +13,7 @@ import {AuctionStatusImage} from "../components/AuctionStatusImage";
 const StyledRow = styled(Row)`height:"350px"`;
 const StyledCard = styled(Card)`height:"350px"`;
 
-export class BiddingProcessView extends React.Component{
+export class BiddingProcessView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -26,7 +26,7 @@ export class BiddingProcessView extends React.Component{
 
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.setState({
             loading: true
         });
@@ -40,7 +40,7 @@ export class BiddingProcessView extends React.Component{
         this.refreshRouteData();
     }
 
-    refreshRouteData(){
+    refreshRouteData() {
         let id = this.props.match.params.id;
         RouteService.getRoute(id).then((data) => {
             this.setState({
@@ -74,20 +74,15 @@ export class BiddingProcessView extends React.Component{
                             <StyledCard>
                                 <GoogleMaps route={this.state.route}/>
                             </StyledCard>
+                            <BiddingInformation route={this.state.route} driverID={this.state.driverID}
+                                                onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
+
                         </Col>
                         <Col sm={4}>
                             <RouteDetails route={this.state.route}/>
                             <PackageList route={this.state.route}/>
                         </Col>
                     </StyledRow>
-                    <Row>
-                        <Col sm={8}>
-                            <BiddingInformation route={this.state.route} driverID={this.state.driverID} onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
-                        </Col>
-                        <Col >
-                            <AuctionStatusImage route={this.state.route} driverID={this.state.driverID} scale={"170px"}/>
-                        </Col>
-                    </Row>
                 </Container>
             </Page>
         );

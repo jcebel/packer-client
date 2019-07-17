@@ -4,6 +4,7 @@ import {ButtonVehicleType} from "./ButtonVehicleType";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
+import {AuctionStatusImage} from "./AuctionStatusImage";
 
 export class BiddingInformation extends React.Component{
 
@@ -38,6 +39,10 @@ export class BiddingInformation extends React.Component{
                             <p>
                                 {this.props.route.auctionBids.length}
                             </p>
+                        </Col>
+                        <Col>
+                            <AuctionStatusImage route={this.props.route} driverID={this.props.driverID}
+                                                scale={"70px"}/>
                         </Col>
                     </Row>
                     <Row>
