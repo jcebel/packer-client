@@ -8,7 +8,6 @@ import {RouteService} from "../services/RouteService";
 import {Page} from "../components/Page";
 import styled from 'styled-components/macro';
 import {UserService} from "../services/UserService";
-import {AuctionStatusImage} from "../components/AuctionStatusImage";
 
 const StyledRow = styled(Row)`height:"350px"`;
 const StyledCard = styled(Card)`height:"350px"`;

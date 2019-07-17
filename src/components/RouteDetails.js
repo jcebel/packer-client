@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export class RouteDetails extends React.Component{
+export class RouteDetails extends React.Component {
 
     secondsToHms(d) {
         d = Number(d);
@@ -14,23 +14,22 @@ export class RouteDetails extends React.Component{
     }
 
     render() {
-
         return (
-                <div>
-                    <h4>Route Details</h4>
-                    <div className="font-weight-bold">Length</div>
-                    <p>
-                        {`${(this.props.route.meters / 1000).toFixed(1)} km`}
-                    </p>
-                    <div className="font-weight-bold">Estimated time</div>
-                    <p>
-                        {this.secondsToHms(this.props.route.estimatedTime)}
-                    </p>
-                    <div className="font-weight-bold">Number of packages</div>
-                    <p>
-                        {this.props.route.items.length}
-                    </p>
-                </div>
+            <div>
+                <h4>Route Details</h4>
+                <div className="font-weight-bold">Length</div>
+                <p>
+                    {`${(this.props.route.meters / 1000).toFixed(1)} km`}
+                </p>
+                <div className="font-weight-bold">Estimated time</div>
+                <p>
+                    {this.secondsToHms(this.props.route.estimatedTime)}
+                </p>
+                <div className="font-weight-bold">Number of packages</div>
+                <p>
+                    {this.props.route.items.length}
+                </p>
+            </div>
         );
     }
 
