@@ -3,6 +3,7 @@ import {RoutesList} from '../components/RoutesList';
 import {RouteService} from '../services/RouteService';
 import {UserService} from "../services/UserService";
 import {AuctionStatusImage} from "../components/AuctionStatusImage";
+import {Error} from "../components/Error";
 
 export class RoutesListView extends React.Component {
 
@@ -24,6 +25,7 @@ export class RoutesListView extends React.Component {
             this.loadRoutes();
             this.interval = setInterval(() => this.loadRoutes(true), 1000);
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
@@ -51,7 +53,8 @@ export class RoutesListView extends React.Component {
                     dirtyData: dirty
                 });
             }).catch((e) => {
-            console.log(e);
+                this.setState({error: e});
+                console.error(e);
         });
     }
 
@@ -60,6 +63,9 @@ export class RoutesListView extends React.Component {
     }
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         return (
             <RoutesList loadingDone={this.state.loadingDone} data={this.state.data}
                         dirtyData={this.state.dirtyData} driverID={this.state.driverID}/>

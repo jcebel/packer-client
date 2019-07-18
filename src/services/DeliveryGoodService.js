@@ -29,9 +29,9 @@ export class DeliveryGoodService{
         });
     }
 
-    static getDeliveryState(id) {
+    static getDeliveryStatus(id) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${this.baseURL()}/${id}/deliverystate`, function(data) {
+            HttpService.get(`${this.baseURL()}/${id}/deliverystatus`, function(data) {
                 if(data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }

@@ -11,8 +11,7 @@ import {AuthService} from "./services/AuthService";
 import {DeliveryMonitorView} from "./views/DeliveryMonitorView"
 import {DeliveryDetailsView} from "./views/DeliveryDetailsView";
 import {AsyncUserTypeRouting} from "./views/AsyncUserTypeRouting";
-import Error500View from "./views/Error500View";
-import Error404View from "./views/Error404View";
+import {Error404} from "./components/Error404"
 
 export default class App extends React.Component {
 
@@ -73,8 +72,7 @@ export default class App extends React.Component {
                 },
                 {component: RegistrationView, path: '/register', exact: true},
                 {component: LoginView, path: '/login', exact: true},
-                { component: Error500View, path: '/error500', exact:true},
-                { component: Error404View, path: '/error404', exact:true}
+                {component: Error404, path: '/*', exact:true}
             ]
         };
     }
