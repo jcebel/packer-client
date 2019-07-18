@@ -11,7 +11,7 @@ export class Error extends React.Component{
                 <section>
                     <Container>
                         <Alert variant="danger">
-                            <Alert.Heading>{this.props.message}</Alert.Heading>
+                            <Alert.Heading>Something went wrong!</Alert.Heading>
                             <p>
                                 Please try again or contact our support team.
                             </p>
