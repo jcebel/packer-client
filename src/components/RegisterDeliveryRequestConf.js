@@ -78,6 +78,9 @@ class RegisterDeliveryRequestConf extends Component{
         };
 
         PriceService.createPriceCalculation(parameters).then((data) => {
+                if(data.price === 0) {
+                    this.setState({noData:true})
+                }
                 this.setState({
                     price : data.price,
                     distance: data.distance
@@ -89,6 +92,9 @@ class RegisterDeliveryRequestConf extends Component{
           }
 
       submitRequest = () => {
+        if(this.state.price === 0) {
+            this.setState({noData:true})
+        }
         let deliveryRequest = {
             "name": this.state.what,
             "deliveryDate": this.state.date,
