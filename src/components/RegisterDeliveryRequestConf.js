@@ -5,7 +5,7 @@ import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {PriceService} from "../services/PriceService";
 import {AuthService} from "../services/AuthService";
 import {Error} from "./Error";
-    
+
 
 class RegisterDeliveryRequestConf extends Component{
 
@@ -15,6 +15,7 @@ class RegisterDeliveryRequestConf extends Component{
         if(this.props.datadr !== undefined) {
             this.state = {
                 show: false,
+                noprice: false,
                 noData: false,
                 emailstate: false,
                 mail: "",
@@ -30,7 +31,7 @@ class RegisterDeliveryRequestConf extends Component{
                 distance: 0,
                 endnum: this.props.datadr.endnum,
                 endcity: this.props.datadr.endcity,
-                endpostalcode: this.props.datadr.endpostalcode, 
+                endpostalcode: this.props.datadr.endpostalcode,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
                 date: this.props.datadr.date,
@@ -42,6 +43,7 @@ class RegisterDeliveryRequestConf extends Component{
                 noData: true,
                 show: false,
                 emailstate: false,
+                noprice: false,
                 mail: "",
                 what: "",
                 sender: "",
@@ -59,7 +61,7 @@ class RegisterDeliveryRequestConf extends Component{
                 weight: "",
                 date: today
                     }
-                    
+
                 }
             }
 
@@ -69,7 +71,7 @@ class RegisterDeliveryRequestConf extends Component{
                 });
               }
 
-    
+
     priceCalculation() {
         let parameters = {
             size: this.state.size,
@@ -84,13 +86,14 @@ class RegisterDeliveryRequestConf extends Component{
                     distance: data.distance
                 });
             }).catch((e) => {
-                this.setState({error: e});
-                console.error(e);
-            });   
-            
+            });
+
           }
 
       submitRequest = () => {
+          if(this.state.price===0) {
+            this.setState({noprice:true})
+          } else {
         let deliveryRequest = {
             "name": this.state.what,
             "deliveryDate": this.state.date,
@@ -116,7 +119,7 @@ class RegisterDeliveryRequestConf extends Component{
         };
 
         let mail = AuthService.getCurrentUser().email;
-        
+
         if(this.state.mail !== mail.toString()) {
             this.setState({
                 emailstate: true
@@ -125,14 +128,13 @@ class RegisterDeliveryRequestConf extends Component{
 
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
         }).catch((e) => {
-            this.setState({error: e});
-            console.error(e);
-        }); 
+        });
 
         this.setState( {
             emailstate: false,
             show: true
             });
+            }
         }
     }
 
@@ -206,7 +208,7 @@ class RegisterDeliveryRequestConf extends Component{
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl readOnly placeholder={this.state.start + " " + this.state.startnum + ", " + this.state.startcity}/>
-                        
+
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
@@ -226,7 +228,7 @@ class RegisterDeliveryRequestConf extends Component{
                                 <InputGroup.Text>Size:</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl readOnly placeholder={this.state.size}/>
-                        
+
                         <InputGroup.Prepend>
                                 <InputGroup.Text>Weight:</InputGroup.Text>
                             </InputGroup.Prepend>
@@ -269,7 +271,7 @@ class RegisterDeliveryRequestConf extends Component{
                   <Row>
                     <label>
                     <ButtonToolbar>
-                      <Button disabled={this.state.show || this.state.noData} 
+                      <Button disabled={this.state.show || this.state.noData || this.state.noprice}
                       onClick={this.submitRequest} variant="success">Accept</Button>
                       <Button disabled={this.state.show} href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
@@ -289,6 +291,13 @@ class RegisterDeliveryRequestConf extends Component{
                         You can´t send no data!
                     </p>
                 </Alert>
+                <Alert show={this.state.noprice} variant="danger">
+                    <Alert.Heading>Locations are wrong</Alert.Heading>
+                    <p>
+                        We can´t find your locations and therefore can´t calculate a price! Please go back and enter the information!
+                    </p>
+                    <Button href = '/sendanything'>Go to Send anything</Button>
+                </Alert>
                 </Container>
             </Page>
         );
@@ -298,7 +307,7 @@ class RegisterDeliveryRequestConf extends Component{
             <div>
                 Fehler 404
             </div>
-        );   
+        );
     }
     };
 
