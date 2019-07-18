@@ -225,14 +225,14 @@ export class RoutesList extends React.Component {
                         <tbody>
 
                         {this.props.loadingDone ? (
-                                this.state.data.length > 0 ?
+                                this.props.data.length > 0 ?
                                     this.state.data.map((route) => {
                                         return <RoutesRow key={route._id}
                                                           route={route}
                                                           scale={imageSize}
                                                           biddingState={route.auctionState}
                                                           driverID={this.props.driverID}/>;
-                                    }) : <EmptyRow text={"There are no Routes available for today, yet..."}/>)
+                                    }) :<EmptyRow text={"There are no Routes available for today, yet..."}/>)
                             : <EmptyRow text={"We are still loading...."}/>}
                         </tbody>
                     </StyledTable>
