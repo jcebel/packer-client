@@ -25,12 +25,13 @@ class LocationSearchInput extends React.Component {
  
   handleSelect = address => {
     geocodeByAddress(address)
-      .then(results => this.handleChange(results[0].address_components.find((item) => { 
+      .then(results => this.handleChange(results[0].address_components.find((item) => {
           return item.types.includes("route");
       }).long_name,results[0].address_components.find((item) => { 
         return item.types.includes("locality");
     }).long_name))
-      .catch();
+      .catch(error => this.setState({ address : "",
+        city : ""}));
   };
  
   render() {
