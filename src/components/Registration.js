@@ -52,11 +52,12 @@ class Registration extends React.Component {
         }
     }
 
-    handleSubmit(event) {
+    handleSubmit(event, {resetForm}) {
         this.setState(event);
         let fields = this.state;
         delete fields.confirmPassword;
         this.props.onSubmit(fields);
+        resetForm({confirmPassword: ''});
     }
 
     render() {
@@ -149,7 +150,7 @@ class Registration extends React.Component {
                                                                         name="checkboxIds"
                                                                         type="checkbox"
                                                                         value={category.id}
-                                                                        checked={values.checkboxIds.includes(category.id)}
+                                                                        checked={values.checkboxIds !== undefined ? values.checkboxIds.includes(category.id):false}
                                                                         onChange={e => {
                                                                             if (e.target.checked) arrayHelpers.push(category.id);
                                                                             else {
@@ -170,8 +171,6 @@ class Registration extends React.Component {
                                 <div className="form-group">
                                     <button type="submit"
                                             className="btn btn-primary mr-2">{this.props.missingCheckbox ? "Update User" : "Register"}</button>
-                                    {!this.props.missingCheckbox &&
-                                    < button type="reset" className="btn btn-secondary mr-2">Reset</button>}
                                     {!this.props.missingCheckbox && <button type="button" className="btn btn-secondary"
                                                                             onClick={() => this.props.history.push('/login')}>Login
                                     </button>
