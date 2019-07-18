@@ -85,7 +85,6 @@ class RegisterDeliveryRequestConf extends Component{
                     distance: data.distance
                 });
             }).catch((e) => {
-                console.error(e);
             });   
             
           }
@@ -128,7 +127,6 @@ class RegisterDeliveryRequestConf extends Component{
 
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
         }).catch((e) => {
-            console.error(e);
         }); 
 
         this.setState( {
