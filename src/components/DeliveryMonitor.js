@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Container} from 'react-bootstrap'
 import {Page} from "./Page";
 import {MonitorRow} from "./MonitorRow";
+import Alert from "react-bootstrap/Alert";
 
 export class DeliveryMonitor extends Component {
 
@@ -28,7 +29,9 @@ export class DeliveryMonitor extends Component {
                                     deliverygood={deliverygood}
                                     deleteitem={(id) => {this.props.deleteitem(id)}}/>) :
                     <Container>
-                        You've got no deliveries yet... Start by Clicking on "Send anything"! ;)
+                        <Alert variant={"secondary"}>
+                            You've got no deliveries yet... Start by Clicking on "Send anything"! ;)
+                        </Alert>
                     </Container>}
             </Page>
         )

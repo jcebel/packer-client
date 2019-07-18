@@ -8,12 +8,12 @@ export class PlainNavigationBar extends React.Component{
 
     render() {
         return (
-            <Navbar bg="light" variant="light">
+            <Navbar bg="light" variant="light" sticky="top">
                 <Navbar.Brand>
                     <a href="/">
                         <img
                         src="/Images/Packer.png"
-                        height="50x"
+                        height="50px"
                         alt="Company Logo"
                         />
                     </a>

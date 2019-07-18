@@ -31,14 +31,14 @@ class DeliveryGoodMap extends React.Component{
     };
 
     render() {
-        if (this.state.loading) {
+        if (this.state.loading || this.props.google === undefined) {
             return (<h2>Loading...</h2>);
         }
         return (
             <Map
                 google={this.props.google}
                 zoom={13}
-                initialCenter={this.props.currentLoc}
+                initialCenter={this.props.currentLoc  || {lat: 48.162955, lng: 11.570895}}
             >
                 <Marker
                     onClick={this.onMarkerClick}

@@ -4,6 +4,7 @@ import {Page} from './Page';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {PriceService} from "../services/PriceService";
 import {AuthService} from "../services/AuthService";
+import {Error} from "./Error";
     
 
 class RegisterDeliveryRequestConf extends Component{
@@ -83,6 +84,7 @@ class RegisterDeliveryRequestConf extends Component{
                     distance: data.distance
                 });
             }).catch((e) => {
+                this.setState({error: e});
                 console.error(e);
             });   
             
@@ -123,6 +125,7 @@ class RegisterDeliveryRequestConf extends Component{
 
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         }); 
 
@@ -134,6 +137,9 @@ class RegisterDeliveryRequestConf extends Component{
     }
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         try{
         return (
             <Page activetab = "send">

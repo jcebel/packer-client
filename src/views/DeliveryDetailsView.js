@@ -1,18 +1,14 @@
-import React from 'react';
-import {DeliveryGoodService} from "../services/DeliveryGoodService";
-import {DeliveryDetails} from "../components/DeliveryDetails";
-import {Col, Container, Row} from "react-bootstrap";
-import {Page} from "../components/Page";
-import DeliveryGoodMap from "../components/DeliveryGoodMap";
-import {StatusBadge} from "../components/StatusBadge";
-import Geocode from "react-geocode";
+import React, {Suspense} from 'react';
+import {DeliveryGoodService} from '../services/DeliveryGoodService';
+import {DeliveryDetails} from '../components/DeliveryDetails';
+import {Col, Container, Row} from 'react-bootstrap';
+import {Page} from '../components/Page';
+import {StatusBadge} from '../components/StatusBadge';
+import Geocode from 'react-geocode';
+import {Error} from '../components/Error';
 
-const currentLocation = {
-    street: "Ludwigstraße",
-    houseNumber: "27",
-    postalCode: "80539",
-    city: "München"
-};
+
+const DeliveryGoodMap = React.lazy(() => import('../components/DeliveryGoodMap'));
 
 export class DeliveryDetailsView extends React.Component {
 
@@ -34,11 +30,11 @@ export class DeliveryDetailsView extends React.Component {
             loading: true
         });
         this.refreshDelGoodData();
-        this.refreshDelState();
+        this.refreshDelStatus();
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.refreshDelState(), 5000);
+        this.interval = setInterval(() => this.refreshDelStatus(), 5000);
         this.interval2 = setInterval(() => this.refreshDelGoodData(), 30000);
     }
 
@@ -47,15 +43,15 @@ export class DeliveryDetailsView extends React.Component {
         clearInterval(this.interval2)
     }
 
-    refreshDelState(){
+    refreshDelStatus(){
         let id = this.props.match.params.id;
-        DeliveryGoodService.getDeliveryState(id).then((deliveryState) => {
-            if(this.state.deliveryState !== deliveryState.deliveryState) {
+        DeliveryGoodService.getDeliveryStatus(id).then((deliveryStatus) => {
+            if(this.state.deliveryState !== deliveryStatus.deliveryState) {
                 this.setState({
-                    deliveryState: deliveryState.deliveryState
+                    deliveryState: deliveryStatus.deliveryState
                 });
             }
-            if(deliveryState.deliveryState === "Waiting for Routing" || deliveryState.deliveryState === "In Bidding Process"){
+            if(deliveryStatus.deliveryState === "Waiting for Routing" || deliveryStatus.deliveryState === "In Bidding Process"){
                 this.setState({
                     noDriver: true
                 });
@@ -64,7 +60,9 @@ export class DeliveryDetailsView extends React.Component {
                     noDriver: false
                 });
             }
+            this.setCurrentLocation(deliveryStatus);
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
@@ -72,51 +70,49 @@ export class DeliveryDetailsView extends React.Component {
     refreshDelGoodData(){
         let id = this.props.match.params.id;
         DeliveryGoodService.getDeliveryGood(id).then((data) => {
-            this.getCoordinates(data);
             this.setState({
                 data: data,
                 loading: false
             });
+            this.getCoordinates(data.deliverygood.origination, "senderAddress");
+            this.getCoordinates(data.deliverygood.destination, "recipientAddress");
         }).catch((e) => {
+            this.setState({error: e});
             console.error(e);
         });
     }
 
-    getCoordinates(data){
-        Geocode.fromAddress(this.createAddress(data.deliverygood.origination)).then(resp => {
+    getCoordinates(address, key){
+        Geocode.fromAddress(this.createAddress(address)).then(resp => {
             const { lat, lng } = resp.results[0].geometry.location;
             this.setState({
-                senderAddress: {
-                    lat: lat,
-                    lng: lng
-                }
-            })
-        });
-        Geocode.fromAddress(this.createAddress(data.deliverygood.destination)).then(resp => {
-            const { lat, lng } = resp.results[0].geometry.location;
-            this.setState({
-                recipientAddress: {
-                    lat: lat,
-                    lng: lng
-                }
-            })
-        });
-        Geocode.fromAddress(this.createAddress(currentLocation)).then(resp => {
-            const { lat, lng } = resp.results[0].geometry.location;
-            this.setState({
-                currentLocation: {
+                [key]: {
                     lat: lat,
                     lng: lng
                 }
             })
         });
     }
+
+    setCurrentLocation(deliveryStatus){
+        if(deliveryStatus.deliveryState === "In Delivery"){
+            this.setState({
+                currentLocation: deliveryStatus.currentLoc
+            })
+        } else{
+            this.getCoordinates(deliveryStatus.currentLoc, "currentLocation");
+        }
+    }
+
 
     createAddress(element) {
         return element.street + " " + element.houseNumber + ", " + element.postalCode + " " + element.city;
     }
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
         }
@@ -144,9 +140,13 @@ export class DeliveryDetailsView extends React.Component {
                     <p/>
                     <Row>
                         <Col sm={8} className="d-flex">
-                            <DeliveryGoodMap sender={this.state.senderAddress}
-                                             recipient={this.state.recipientAddress}
-                                            currentLoc={this.state.currentLocation}/>
+                                <div>
+                                    <Suspense fallback={<div>Loading...</div>}>
+                                        <DeliveryGoodMap sender={this.state.senderAddress}
+                                                 recipient={this.state.recipientAddress}
+                                                 currentLoc={this.state.currentLocation}/>
+                                    </Suspense>
+                                </div>
                         </Col>
                         <Col className="d-flex ml-2">
                             <DeliveryDetails loading={this.state.loading}
