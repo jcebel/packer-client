@@ -84,7 +84,7 @@ export class Home extends Component {
             Do you want te be a driver?
           </p>
           <p>
-            <Button variant="primary">Be a driver</Button>
+            <Button href = '/beAdriver' variant="primary">Be a driver</Button>
           </p>
         </Jumbotron>
         <Jumbotron>
@@ -92,7 +92,7 @@ export class Home extends Component {
             Do you want to have an overview of your deliveries?
           </p>
           <p>
-            <Button variant="primary">My deliveries</Button>
+            <Button href = '/deliverymonitor' variant="primary">My deliveries</Button>
           </p>
         </Jumbotron>
         </Container>
