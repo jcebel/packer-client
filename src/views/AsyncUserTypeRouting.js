@@ -3,6 +3,7 @@ import {Redirect} from "react-router-dom";
 import {Page} from "../components/Page";
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
+import {Error} from "../components/Error";
 
 /**
  * Renders a redirect to the RegistrationView, if the given async query returns a false value.
@@ -19,10 +20,16 @@ export class AsyncUserTypeRouting extends React.Component {
                 decision: true,
                 value: value
             })
-        }).catch((err) => console.log(new Date(), err));
+        }).catch((err) => {
+            this.setState({error: err});
+            console.log(new Date(), err)
+        });
     }
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         if (this.state.decision) {
             return this.state.value ? React.createElement(this.props.component) :
                 <Redirect to={{

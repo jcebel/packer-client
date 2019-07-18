@@ -4,7 +4,8 @@ import {Page} from './Page';
 import {DeliveryGoodService} from "../services/DeliveryGoodService";
 import {PriceService} from "../services/PriceService";
 import {AuthService} from "../services/AuthService";
-    
+import {Error} from "./Error";
+
 
 class RegisterDeliveryRequestConf extends Component{
 
@@ -30,7 +31,7 @@ class RegisterDeliveryRequestConf extends Component{
                 distance: 0,
                 endnum: this.props.datadr.endnum,
                 endcity: this.props.datadr.endcity,
-                endpostalcode: this.props.datadr.endpostalcode, 
+                endpostalcode: this.props.datadr.endpostalcode,
                 size: this.props.datadr.size,
                 weight: this.props.datadr.weight,
                 date: this.props.datadr.date,
@@ -60,7 +61,7 @@ class RegisterDeliveryRequestConf extends Component{
                 weight: "",
                 date: today
                     }
-                    
+
                 }
             }
 
@@ -70,7 +71,7 @@ class RegisterDeliveryRequestConf extends Component{
                 });
               }
 
-    
+
     priceCalculation() {
         let parameters = {
             size: this.state.size,
@@ -85,8 +86,8 @@ class RegisterDeliveryRequestConf extends Component{
                     distance: data.distance
                 });
             }).catch((e) => {
-            });   
-            
+            });
+
           }
 
       submitRequest = () => {
@@ -118,7 +119,7 @@ class RegisterDeliveryRequestConf extends Component{
         };
 
         let mail = AuthService.getCurrentUser().email;
-        
+
         if(this.state.mail !== mail.toString()) {
             this.setState({
                 emailstate: true
@@ -127,17 +128,20 @@ class RegisterDeliveryRequestConf extends Component{
 
         DeliveryGoodService.createDeliveryGood(deliveryRequest).then((data) => {
         }).catch((e) => {
-        }); 
+        });
 
         this.setState( {
             emailstate: false,
             show: true
             });
             }
-        }   
+        }
     }
 
     render() {
+        if(this.state.error){
+            return <Error message={this.state.error}/>
+        }
         try{
         return (
             <Page activetab = "send">
@@ -204,7 +208,7 @@ class RegisterDeliveryRequestConf extends Component{
                                 <InputGroup.Text>Start</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl readOnly placeholder={this.state.start + " " + this.state.startnum + ", " + this.state.startcity}/>
-                        
+
                         <InputGroup.Prepend>
                                 <InputGroup.Text>End</InputGroup.Text>
                             </InputGroup.Prepend>
@@ -224,7 +228,7 @@ class RegisterDeliveryRequestConf extends Component{
                                 <InputGroup.Text>Size:</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl readOnly placeholder={this.state.size}/>
-                        
+
                         <InputGroup.Prepend>
                                 <InputGroup.Text>Weight:</InputGroup.Text>
                             </InputGroup.Prepend>
@@ -267,7 +271,7 @@ class RegisterDeliveryRequestConf extends Component{
                   <Row>
                     <label>
                     <ButtonToolbar>
-                      <Button disabled={this.state.show || this.state.noData || this.state.noprice} 
+                      <Button disabled={this.state.show || this.state.noData || this.state.noprice}
                       onClick={this.submitRequest} variant="success">Accept</Button>
                       <Button disabled={this.state.show} href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
@@ -303,7 +307,7 @@ class RegisterDeliveryRequestConf extends Component{
             <div>
                 Fehler 404
             </div>
-        );   
+        );
     }
     };
 

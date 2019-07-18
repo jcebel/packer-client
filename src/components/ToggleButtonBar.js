@@ -68,7 +68,7 @@ class ToggleButtonBarWeight extends Component{
                             placement={"top"}
                             overlay={renderTooltipWeight}
                             >
-                          <Button variant="primary">Weight (information)</Button>
+                          <Button variant="primary">Weight</Button>
                           </OverlayTrigger>
                         </Col>
                         <Col>            
@@ -114,7 +114,7 @@ class ToggleButtonBarSize extends Component{
                             placement={"top"}
                             overlay={renderTooltipSize}
                             >
-                          <Button variant="primary">Size (information)</Button>
+                          <Button variant="primary">Size</Button>
                           </OverlayTrigger>
                         </Col>
                         <Col>
