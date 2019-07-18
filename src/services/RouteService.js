@@ -17,7 +17,7 @@ export class RouteService {
 
     static getRoutes(){
         return new Promise((resolve, reject) => {
-            HttpService.get(`${this.baseURL()}`, function(data) {
+            HttpService.get(`${this.baseURL()}/ofToday`, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
