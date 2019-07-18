@@ -14,6 +14,7 @@ class RegisterDeliveryRequestConf extends Component{
         if(this.props.datadr !== undefined) {
             this.state = {
                 show: false,
+                noprice: false,
                 noData: false,
                 emailstate: false,
                 mail: "",
@@ -41,6 +42,7 @@ class RegisterDeliveryRequestConf extends Component{
                 noData: true,
                 show: false,
                 emailstate: false,
+                noprice: false,
                 mail: "",
                 what: "",
                 sender: "",
@@ -78,9 +80,6 @@ class RegisterDeliveryRequestConf extends Component{
         };
 
         PriceService.createPriceCalculation(parameters).then((data) => {
-                if(data.price === 0) {
-                    this.setState({noData:true})
-                }
                 this.setState({
                     price : data.price,
                     distance: data.distance
@@ -92,9 +91,9 @@ class RegisterDeliveryRequestConf extends Component{
           }
 
       submitRequest = () => {
-        if(this.state.price === 0) {
-            this.setState({noData:true})
-        }
+          if(this.state.price===0) {
+            this.setState({noprice:true})
+          } else {
         let deliveryRequest = {
             "name": this.state.what,
             "deliveryDate": this.state.date,
@@ -136,7 +135,8 @@ class RegisterDeliveryRequestConf extends Component{
             emailstate: false,
             show: true
             });
-        }
+            }
+        }   
     }
 
     render() {
@@ -269,7 +269,7 @@ class RegisterDeliveryRequestConf extends Component{
                   <Row>
                     <label>
                     <ButtonToolbar>
-                      <Button disabled={this.state.show || this.state.noData} 
+                      <Button disabled={this.state.show || this.state.noData || this.state.noprice} 
                       onClick={this.submitRequest} variant="success">Accept</Button>
                       <Button disabled={this.state.show} href = "/sendanything" variant="danger">Reject</Button>
                     </ButtonToolbar>
@@ -288,6 +288,13 @@ class RegisterDeliveryRequestConf extends Component{
                     <p>
                         You can´t send no data!
                     </p>
+                </Alert>
+                <Alert show={this.state.noprice} variant="danger">
+                    <Alert.Heading>Locations are wrong</Alert.Heading>
+                    <p>
+                        We can´t find your locations and therefore can´t calculate a price! Please go back and enter the information!
+                    </p>
+                    <Button href = '/sendanything'>Go to Send anything</Button>
                 </Alert>
                 </Container>
             </Page>
