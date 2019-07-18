@@ -84,24 +84,33 @@ export class Home extends Component {
           </Carousel.Item>
         </Carousel>
         <Jumbotron>
-          <p>
+          <h4>
             Do you want to send a package?
+          </h4>
+          <p>
+            If you have an old Smartphone, a dishwasher or some Pokemon cards, enter the details submit the request!
           </p>
           <p>
             <Button variant="primary" href="/sendanything" >Send anything!</Button>
           </p>
         </Jumbotron>
         <Jumbotron>
-          <p>
+          <h4>
             Do you want te be a driver?
+          </h4>
+          <p>
+            Do you want to earn some extra money as package delivery driver? Register as a driver and search for your routes!
           </p>
           <p>
             <Button href = '/beAdriver' variant="primary">Be a driver</Button>
           </p>
         </Jumbotron>
         <Jumbotron>
-          <p>
+          <h4>
             Do you want to have an overview of your deliveries?
+          </h4>
+          <p>
+            Have you already submitted a delivery request? Get an overview and see the current status of your package!
           </p>
           <p>
             <Button href = '/deliverymonitor' variant="primary">My deliveries</Button>
