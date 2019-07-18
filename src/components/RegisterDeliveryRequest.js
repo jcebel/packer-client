@@ -129,7 +129,7 @@ class RegisterDeliveryRequest extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>What is it?</InputGroup.Text>
                             </InputGroup.Prepend>
-                        <FormControl value = {this.state.what} onChange={this.changeHandlerWhat} />
+                        <FormControl value = {this.state.what} onChange={this.changeHandlerWhat} placeholder={"e.g. Smartphone"}/>
                         </InputGroup>
                     </label>
                     </Col>
@@ -143,11 +143,11 @@ class RegisterDeliveryRequest extends Component{
                             <InputGroup.Prepend>
                                 <InputGroup.Text>Sender</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl value = {this.state.sender} onChange={this.changeHandlerSender}/>
+                            <FormControl value = {this.state.sender} onChange={this.changeHandlerSender} placeholder={"Full Name"}/>
                         <InputGroup.Prepend>
-                                <InputGroup.Text>Receiver</InputGroup.Text>
+                                <InputGroup.Text>Recipient</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl value = {this.state.reciever} onChange={this.changeHandlerReceiver}/>
+                            <FormControl value = {this.state.reciever} onChange={this.changeHandlerReceiver} placeholder={"Full Name"}/>
                         </InputGroup>
                     </Col>
                     </label>
