@@ -1,10 +1,12 @@
 export class HttpService {
 
     static apiURL() {
-        return "http://localhost:3000";
+        if (false) {
+            return "http://localhost:3000";
+        } else {
+            return "http://ec2-52-59-232-100.eu-central-1.compute.amazonaws.com:3000"
+        }
     }
-    //static apiURL() {return "http://ec2-3-16-129-205.us-east-2.compute.amazonaws.com:3000" }
-
 
     static get(url, onSuccess, onError) {
         let token = window.localStorage['jwtToken'];
