@@ -1,22 +1,14 @@
 import React, {Suspense} from 'react';
 import {DeliveryGoodService} from '../services/DeliveryGoodService';
 import {DeliveryDetails} from '../components/DeliveryDetails';
-import {Col, Container, OverlayTrigger, Row, Tooltip} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import {Page} from '../components/Page';
-// import DeliveryGoodMap from '../components/DeliveryGoodMap';
 import {StatusBadge} from '../components/StatusBadge';
 import Geocode from 'react-geocode';
 import {Error} from '../components/Error';
 
 
 const DeliveryGoodMap = React.lazy(() => import('../components/DeliveryGoodMap'));
-
-const currentLocation = {
-    street: "Ludwigstraße",
-    houseNumber: "27",
-    postalCode: "80539",
-    city: "München"
-};
 
 export class DeliveryDetailsView extends React.Component {
 
@@ -148,15 +140,6 @@ export class DeliveryDetailsView extends React.Component {
                     <p/>
                     <Row>
                         <Col sm={8} className="d-flex">
-                            {/*<OverlayTrigger*/}
-                            {/*    key="top"*/}
-                            {/*    placement="top"*/}
-                            {/*    overlay={*/}
-                            {/*        <Tooltip id={"tooltip-top"}>*/}
-                            {/*            If the map appears grey, please reload the page.*/}
-                            {/*        </Tooltip>*/}
-                            {/*    }*/}
-                            {/*>*/}
                                 <div>
                                     <Suspense fallback={<div>Loading...</div>}>
                                         <DeliveryGoodMap sender={this.state.senderAddress}
@@ -164,8 +147,6 @@ export class DeliveryDetailsView extends React.Component {
                                                  currentLoc={this.state.currentLocation}/>
                                     </Suspense>
                                 </div>
-                            {/*</OverlayTrigger>*/}
-
                         </Col>
                         <Col className="d-flex ml-2">
                             <DeliveryDetails loading={this.state.loading}
