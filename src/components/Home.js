@@ -3,16 +3,9 @@ import { Carousel, Jumbotron, Container, Button, Row, Col, Image} from 'react-bo
 import {Page} from './Page';
 import styled from 'styled-components';
 
-
 const Profile = styled(Image)`
   width: 50%;
 `;
-
-
-
-
-
-
 
 export class Home extends Component {
   
@@ -87,7 +80,7 @@ export class Home extends Component {
           <h4>
             Do you want to send a package?
           </h4>
-          <p>
+            <p>
             If you have an old Smartphone, a dishwasher or some Pokemon cards, enter the details submit the request!
           </p>
           <p>
@@ -99,7 +92,7 @@ export class Home extends Component {
             Do you want te be a driver?
           </h4>
           <p>
-            Do you want to earn some extra money as package delivery driver? Register as a driver and search for your routes!
+            {Do you want to earn some extra money as package delivery driver? Register as a driver and search for your routes!}
           </p>
           <p>
             <Button href = '/beAdriver' variant="primary">Be a driver</Button>
