@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
-import { Carousel, Jumbotron, Container, Button} from 'react-bootstrap';
+import { Carousel, Jumbotron, Container, Button, Row, Col, Image} from 'react-bootstrap';
 import {Page} from './Page';
+import styled from 'styled-components';
+
+
+const Profile = styled(Image)`
+  width: 50%;
+`;
+
+
+
+
+
+
 
 export class Home extends Component {
   
@@ -94,6 +106,31 @@ export class Home extends Component {
           <p>
             <Button href = '/deliverymonitor' variant="primary">My deliveries</Button>
           </p>
+        </Jumbotron>
+        <Jumbotron>
+          <h1>Our Team:</h1>
+          <Row>
+            <Col>
+              <Profile src = "Images/Alex.jpg" rounded = {true}/>
+              <h3>Alex</h3>
+              <p>Computer Science</p>
+            </Col>
+            <Col>
+              <Profile src = "Images/Lukas.jpg" rounded = {true}/>
+              <h3>Lukas</h3>
+              <p>Information Systems</p>
+            </Col>
+            <Col>
+              <Profile src = "Images/Jonas.jpg" rounded = {true}/>
+              <h3>Jonas</h3>
+              <p>Information Systems</p>
+            </Col>
+            <Col>
+              <Profile src = "Images/Max.jpg" rounded = {true}/>
+              <h3>Max</h3>
+              <p>Information Systems</p>
+            </Col>
+          </Row>
         </Jumbotron>
         </Container>
       </Page>
