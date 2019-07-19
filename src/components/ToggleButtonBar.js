@@ -1,41 +1,5 @@
 import React, { Component } from 'react';
-import { Row, OverlayTrigger, ToggleButtonGroup, ToggleButton, Col, Button, Alert} from 'react-bootstrap';
-
-const renderTooltipSize = props => (
-   
-   <div
-      {...props}
-      style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        padding: '2px 10px',
-        color: 'white',
-        borderRadius: 3,
-        ...props.style,
-      }}
-    >
-      Small means the size of a Smartphone<br></br>
-      Medium means the size of a backpack<br></br>
-      Large means the size of a chair
-    </div>
-  );
-  
-  const renderTooltipWeight = props => (
-    <div
-      {...props}
-      style={{
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        padding: '2px 10px',
-        color: 'white',
-        borderRadius: 3,
-        ...props.style,
-      }}
-    >
-      Light means under 5 kilogram<br></br>
-      Medium means between 5 and 10 kilogram<br></br>
-      Heavy means more than 15 kilogram
-    </div>
-  );
-  
+import { Row, ToggleButtonGroup, ToggleButton, Col, Button, Alert} from 'react-bootstrap';
 
 class ToggleButtonBarWeight extends Component{
 
