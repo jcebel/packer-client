@@ -33,10 +33,6 @@ export class LoginView extends React.Component {
         });
     }
 
-    // componentDidMount() {
-    //     window.scroll(0, 0)
-    // }
-
     render() {
         return (
             <Content>
