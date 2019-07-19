@@ -10,8 +10,7 @@ const Content = styled.div`
     background-image: url(/Images/registrationBackground.jpg);
     background-position: center top;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100%;
+    background-size: cover;
 `;
 
 class RegistrationViewComponent extends React.Component {
