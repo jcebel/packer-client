@@ -4,11 +4,10 @@ import {AuthService} from '../services/AuthService';
 import styled from 'styled-components/macro';
 
 const Content = styled.div`
-    height: 60em; 
+    height: 100vh; 
     background-image: url(/Images/registrationBackground.jpg);
     background-position: center top;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: 100%;
 `;
 
@@ -34,9 +33,9 @@ export class LoginView extends React.Component {
         });
     }
 
-    componentDidMount() {
-        window.scroll(0, 0)
-    }
+    // componentDidMount() {
+    //     window.scroll(0, 0)
+    // }
 
     render() {
         return (

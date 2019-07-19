@@ -66,7 +66,7 @@ class Registration extends React.Component {
             return <Error message={this.state.error}/>
         }
         return (
-            <Container className="p-5">
+            <Container className="pt-5">
                 <Row className="justify-content-sm-center pt-5">
                     <a href="/">
                         <Image src="/Images/packer.png"
@@ -74,7 +74,7 @@ class Registration extends React.Component {
                                alt="Company Logo"/>
                     </a>
                 </Row>
-                <Row className="justify-content-sm-center p-5">
+                <Row className="justify-content-sm-center pt-5">
                     <Col sm={6}>
                         <h3>Join the Packer community!</h3>
                         <Formik
