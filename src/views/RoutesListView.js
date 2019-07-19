@@ -2,8 +2,8 @@ import React from 'react';
 import {RoutesList} from '../components/RoutesList';
 import {RouteService} from '../services/RouteService';
 import {UserService} from "../services/UserService";
-import {AuctionStatusImage} from "../components/AuctionStatusImage";
 import {Error} from "../components/Error";
+import {AuctionStatusService} from "../services/AuctionStatusService";
 
 export class RoutesListView extends React.Component {
 
@@ -31,7 +31,6 @@ export class RoutesListView extends React.Component {
     }
 
     loadRoutes(interval) {
-        //TODO: USe getRoutesByDate, when the Database contains real data.
         RouteService.getRoutes()
             .then((data) => {
                 let dirty = false;
@@ -42,7 +41,7 @@ export class RoutesListView extends React.Component {
                         dirty = this.state.data.reduce(
                             (total, route, i) =>
                                 total || route._id !== data[i]._id || route.currentBid !== data[i].currentBid ||
-                                AuctionStatusImage.getBidStatus(route, this.state.driverID) !== AuctionStatusImage.getBidStatus(data[i], this.state.driverID),
+                                AuctionStatusService.getBidStatus(route, this.state.driverID) !== AuctionStatusService.getBidStatus(data[i], this.state.driverID),
                             false);
                     }
                 }

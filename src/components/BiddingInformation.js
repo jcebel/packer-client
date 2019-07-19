@@ -5,6 +5,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
 import {AuctionStatusImage} from "./AuctionStatusImage";
+import Button from "react-bootstrap/Button";
 
 export class BiddingInformation extends React.Component {
 
@@ -91,6 +92,7 @@ export class BiddingInformation extends React.Component {
                                 )}
                             />
                         </Col>
+                        <Col> <Button>Hallo</Button></Col>
                     </Row>
                 </Container>
             </div>
