@@ -6,8 +6,20 @@ import * as Yup from 'yup';
 import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
 import {AuctionStatusImage} from "./AuctionStatusImage";
 import Button from "react-bootstrap/Button";
+import {AuctionStatusService} from "../services/AuctionStatusService";
+import Alert from "react-bootstrap/Alert";
 
 export class BiddingInformation extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            startedDriving: false
+        };
+
+        this.startDriving = this.startDriving.bind(this);
+    }
 
     getPersonalLowestBid(route, driverID) {
         const ownBids = route.auctionBids.filter(bid => bid.owner === driverID);
@@ -21,6 +33,15 @@ export class BiddingInformation extends React.Component {
                 return a.bid < b.bid ? a.bid : b.bid;
             });
         }
+    }
+
+    startDriving() {
+        this.setState({startedDriving:true});
+        this.props.startDriving();
+    }
+
+    isInDriving() {
+        return this.state.startedDriving || ["In Delivery", "Delivered"].includes(this.props.route.items[0].deliveryState);
     }
 
     render() {
@@ -92,8 +113,13 @@ export class BiddingInformation extends React.Component {
                                 )}
                             />
                         </Col>
-                        <Col> <Button>Hallo</Button></Col>
+                        {AuctionStatusService.getBidStatus(this.props.route, this.props.driverID) ?
+                            <Col><Button variant={"success"} onClick={this.startDriving} disabled={this.isInDriving()}>Start
+                                Delivering Now</Button></Col>
+                            : null}
                     </Row>
+                    {this.state.startedDriving ? <Alert variant={"success"}>Now go and deliver all Packages!</Alert>:null}
+
                 </Container>
             </div>
         );

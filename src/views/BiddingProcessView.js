@@ -23,7 +23,7 @@ export class BiddingProcessView extends React.Component {
             route: {},
             driverID: undefined
         };
-
+        this.drivingStarts = this.drivingStarts.bind(this);
     }
 
     componentWillMount() {
@@ -54,6 +54,16 @@ export class BiddingProcessView extends React.Component {
         });
     }
 
+    drivingStarts() {
+        if (!this.state.loading) {
+            RouteService.sendDrivingStarts(this.state.route._id)
+                .catch((e) => {
+                    this.setState({error: e});
+                    console.error(e);
+                });
+        }
+    };
+
     componentDidMount() {
         this.interval = setInterval(() => this.refreshRouteData(), 1000);
     }
@@ -64,7 +74,7 @@ export class BiddingProcessView extends React.Component {
 
 
     render() {
-        if(this.state.error){
+        if (this.state.error) {
             return <Error message={this.state.error}/>
         }
         if (this.state.loading) {
@@ -80,7 +90,8 @@ export class BiddingProcessView extends React.Component {
                                 <GoogleMaps route={this.state.route}/>
                             </StyledCard>
                             <BiddingInformation route={this.state.route} driverID={this.state.driverID}
-                                                onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}/>
+                                                onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}
+                                                startDriving={this.drivingStarts}/>
 
                         </Col>
                         <Col sm={4}>

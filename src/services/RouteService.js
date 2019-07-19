@@ -50,4 +50,8 @@ export class RouteService {
         });
     }
 
+    static sendDrivingStarts(routeId) {
+        console.log("Driving starts for route: " + routeId);
+        return Promise.resolve();
+    }
 }
