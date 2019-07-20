@@ -151,7 +151,8 @@ export class DeliveryDetailsView extends React.Component {
                         <Col className="d-flex ml-2">
                             <DeliveryDetails loading={this.state.loading}
                                              data={this.state.data}
-                                             noDriver={this.state.noDriver}/>
+                                             noDriver={this.state.noDriver}
+                                            deliveryState={this.state.deliveryState}/>
                         </Col>
                     </Row>
                 </Container>
