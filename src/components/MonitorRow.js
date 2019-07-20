@@ -13,8 +13,8 @@ export class MonitorRow extends React.Component {
         this.state = {popupShow: false}
     };
 
-    render(){
-        let popupClose = () => this.setState({ popupShow: false });
+    render() {
+        let popupClose = () => this.setState({popupShow: false});
         return (
             <Container>
                 <p/>
@@ -60,23 +60,25 @@ export class MonitorRow extends React.Component {
                             </Col>
                             <Col className="align-self-center text-center">
                                 <p>
-                                    <Button href={`/deliverydetails/${this.props.deliverygood._id}`} variant="primary" size="xs">More Info</Button>
+                                    <Button href={`/deliverydetails/${this.props.deliverygood._id}`} variant="primary"
+                                            size="xs">More Info</Button>
                                 </p>
                                 {this.props.deliverygood.deliveryState === "Waiting for Routing" ?
-                                <p>
-                                    <Button href="#" variant="danger" onClick={() => {
-                                        this.setState({popupShow: true})}
-                                    } size="xs">Delete</Button>
-                                    <ConfirmPopup
-                                        show={this.state.popupShow}
-                                        onHide={popupClose}
-                                        id={this.props.deliverygood._id}
-                                        onSubmit={() => {
-                                            popupClose();
-                                            this.props.deleteitem(this.props.deliverygood._id);
-                                        }}
-                                    />
-                                </p> : <span/>}
+                                    <p>
+                                        <Button href="#" variant="danger" onClick={() => {
+                                            this.setState({popupShow: true})
+                                        }
+                                        } size="xs">Delete</Button>
+                                        <ConfirmPopup
+                                            show={this.state.popupShow}
+                                            onHide={popupClose}
+                                            id={this.props.deliverygood._id}
+                                            onSubmit={() => {
+                                                popupClose();
+                                                this.props.deleteitem(this.props.deliverygood._id);
+                                            }}
+                                        />
+                                    </p> : <span/>}
                             </Col>
                         </Row>
                     </div>

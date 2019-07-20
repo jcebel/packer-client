@@ -22,7 +22,8 @@ export class DropdownFilter extends React.Component {
 
                 {this.props.items.map(item => {
                     return (<Dropdown.Item as="button" key={item.eventKey}
-                                           eventKey={item.eventKey} onSelect={this.handleClick}>{item.child}</Dropdown.Item>)
+                                           eventKey={item.eventKey}
+                                           onSelect={this.handleClick}>{item.child}</Dropdown.Item>)
                 })}
             </DropdownButton>
         )

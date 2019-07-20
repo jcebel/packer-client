@@ -2,10 +2,6 @@ import React from 'react';
 import {PlainNavigationBar} from './NavigationBar';
 import {ErrorHandler} from './ErrorHandler';
 
-/*
-Source:https://github.com/sebischair/sebamaster-movie-frontend
- */
-
 export class Page extends React.Component {
 
     constructor(props) {
@@ -16,7 +12,7 @@ export class Page extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.setState({
             title: document.title
         });

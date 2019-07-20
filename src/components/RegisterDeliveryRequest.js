@@ -194,7 +194,7 @@ class RegisterDeliveryRequest extends Component{
                     <Link onClick={this.checkdata}
                     to={{
                         pathname: "/sendanythingconf",
-                        data: this.state // your data array of objects
+                        data: this.state
                     }}>
                     <Button onClick={this.checkdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
                     </Link>

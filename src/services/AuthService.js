@@ -3,8 +3,9 @@ import {HttpService} from "./HttpService";
 
 export class AuthService {
 
-    static baseURL() {return HttpService.apiURL() + "/auth"; }
-
+    static baseURL() {
+        return HttpService.apiURL() + "/auth";
+    }
 
     static register(fields) {
         return new Promise((resolve, reject) => {
@@ -58,7 +59,7 @@ export class AuthService {
 
     static isUserADriver() {
         return new Promise((resolve, reject) => {
-            (async function() {
+            (async function () {
                 const user = await AuthService.getCurrentUserFromDB();
                 return user.driver;
             })().then(resolve).catch(reject);
@@ -67,7 +68,7 @@ export class AuthService {
 
     static isUserADeliveryClient() {
         return new Promise((resolve, reject) => {
-            (async function() {
+            (async function () {
                 const user = await AuthService.getCurrentUserFromDB();
                 return user.deliveryClient;
             })().then(resolve).catch(reject);

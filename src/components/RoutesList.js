@@ -232,7 +232,7 @@ export class RoutesList extends React.Component {
                                                           scale={imageSize}
                                                           biddingState={route.auctionState}
                                                           driverID={this.props.driverID}/>;
-                                    }) :<EmptyRow text={"There are no Routes available for today, yet..."}/>)
+                                    }) : <EmptyRow text={"There are no Routes available for today, yet..."}/>)
                             : <EmptyRow text={"We are still loading...."}/>}
                         </tbody>
                     </StyledTable>

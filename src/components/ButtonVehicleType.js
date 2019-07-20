@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "react-bootstrap";
 
 
-export class ButtonVehicleType extends React.Component{
+export class ButtonVehicleType extends React.Component {
 
     render() {
         if (this.props.vehicleType.toLowerCase() === "van") {

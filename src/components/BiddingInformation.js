@@ -85,7 +85,7 @@ export class BiddingInformation extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            <div className="font-weight-bold">Vehicle Type</div>
+                            <div className="font-weight-bold">Recommended Vehicle Type</div>
                             <ButtonVehicleType vehicleType={this.props.route.vehicleType}/>
                         </Col>
 
@@ -110,7 +110,7 @@ export class BiddingInformation extends React.Component {
                                         <div className="form-group">
                                             <label htmlFor="Bid"><b>Your Bid</b></label>
                                             <div className="form-inline" hidden={this.props.route.auctionOver}>
-                                                <BiddingConfirmationPopup/>
+                                                <BiddingConfirmationPopup error={errors}/>
                                                 <Field name="Bid" type="text"
                                                        className={'form-control' + (errors.Bid && touched.Bid ? ' is-invalid' : '')}/>
                                                 <ErrorMessage name="Bid" component="div" className="invalid-feedback"/>

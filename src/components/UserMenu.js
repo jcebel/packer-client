@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {NavDropdown} from 'react-bootstrap';
 import {AuthService} from '../services/AuthService'
 import styled from 'styled-components/macro'
@@ -23,31 +23,32 @@ class UserMenu extends React.Component {
         this.setState({
             user: AuthService.isAuthenticated() ? AuthService.getCurrentUser() : undefined
         });
-        if(this.props.location.pathname !== '/') {
+        if (this.props.location.pathname !== '/') {
             this.props.history.push('/');
-        }
-        else {
+        } else {
             window.location.reload();
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <NavDropdown alignRight title={
-                                 <img
-                                     src="/Images/Account Icon.png"
-                                     width="50px"
-                                     height="50x"
-                                     alt="Account Icon"
-                                 />
-                         }>
-                {this.state.user ?[
+                <img
+                    src="/Images/Account Icon.png"
+                    width="50px"
+                    height="50x"
+                    alt="Account Icon"
+                />
+            }>
+                {this.state.user ? [
                     <NavDropdown.Item className="text-center" key={1} onClick={this.handleLogout}>
                         <div>Logout</div>
                         <StyledDiv>({this.state.user.email})</StyledDiv>
                     </NavDropdown.Item>
-            ]: [<NavDropdown.Item className="text-center" key={1} onClick={()=> this.props.history.push('/login')}>Login</NavDropdown.Item>,
-                <NavDropdown.Item className="text-center" key={2} onClick={()=> this.props.history.push('/register')}>Register</NavDropdown.Item>
+                ] : [<NavDropdown.Item className="text-center" key={1}
+                                       onClick={() => this.props.history.push('/login')}>Login</NavDropdown.Item>,
+                    <NavDropdown.Item className="text-center" key={2}
+                                      onClick={() => this.props.history.push('/register')}>Register</NavDropdown.Item>
                 ]}
 
             </NavDropdown>
