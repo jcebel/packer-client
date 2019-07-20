@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, ToggleButtonGroup, ToggleButton, Col, Button, Alert} from 'react-bootstrap';
+import { Row, ToggleButtonGroup, ToggleButton, Col, Button, Alert, InputGroup} from 'react-bootstrap';
 
 class ToggleButtonBarWeight extends Component{
 
@@ -28,8 +28,11 @@ class ToggleButtonBarWeight extends Component{
               <div>
                 <Row>
                      <Col>
-                        <Button variant="primary">Weight</Button>
-                        <br></br>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Weight</InputGroup.Text>
+                            </InputGroup.Prepend>
+                        </InputGroup>
                         <Alert variant="info">
                           <Alert.Heading>Weight Information</Alert.Heading>
                               <p>
@@ -78,8 +81,11 @@ class ToggleButtonBarSize extends Component{
         <div>    
                       <Row>
                         <Col>
-                          <Button variant="primary">Size</Button>
-                          <br></br>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text>Size</InputGroup.Text>
+                            </InputGroup.Prepend>
+                        </InputGroup>
                           <Alert variant="info">
                           <Alert.Heading>Size Information</Alert.Heading>
                               <p>

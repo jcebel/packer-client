@@ -5,7 +5,7 @@ import {ToggleButtonBarSize} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
 import LocationSearchInput from './LocationSearchInput';
 import {Page} from './Page';
-import {Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 class RegisterDeliveryRequest extends Component{
 
@@ -95,6 +95,7 @@ class RegisterDeliveryRequest extends Component{
     }
 
     checkdata = (e) => {
+            
             if(this.state.what === ""|| this.state.date === "" || this.state.sender === "" || this.state.receiver === "" || this.state.start === "" || this.state.startnum === ""
             || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === "" 
             || this.state.weight === "") {
@@ -102,7 +103,12 @@ class RegisterDeliveryRequest extends Component{
                     show: true
                 });
                 e.preventDefault();
-                } 
+                } else {
+                    this.props.history.push({
+                        pathname: '/sendanythingconf',
+                        data: this.state
+                    })
+                }
     }
     checkdataalert = (e) => {
                 this.setState({
@@ -191,13 +197,7 @@ class RegisterDeliveryRequest extends Component{
                 <div>
                 <p></p>
                 <Row>
-                    <Link onClick={this.checkdata}
-                    to={{
-                        pathname: "/sendanythingconf",
-                        data: this.state // your data array of objects
-                    }}>
-                    <Button onClick={this.checkdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
-                    </Link>
+                    <Button onClick={this.checkdata} variant="success">Make me an offer!</Button>
                 </Row>
                  </div>
                  <Alert show={this.state.show} variant="danger">
@@ -218,4 +218,4 @@ class RegisterDeliveryRequest extends Component{
 }
 
 
-export default RegisterDeliveryRequest;
+export default withRouter(RegisterDeliveryRequest);
