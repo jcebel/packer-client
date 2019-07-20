@@ -20,8 +20,6 @@ class LocationSearchInput extends React.Component {
             city: city
         });
         let addressInput = address;
-
-
         this.props.onSelectAdd(addressInput, city);
     };
 
