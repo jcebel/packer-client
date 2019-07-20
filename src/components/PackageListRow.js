@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyledCell} from "./StyledCell";
 
-export class PackageListRow extends React.Component{
+export class PackageListRow extends React.Component {
 
     render() {
-        return(
+        return (
             <tr>
                 <StyledCell>{this.props.index}.</StyledCell>
                 <StyledCell>{this.props.route.name}</StyledCell>

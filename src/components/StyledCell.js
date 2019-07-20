@@ -7,7 +7,7 @@ export class StyledCell extends React.Component {
      * @returns {*}
      */
     render() {
-        return (<td style={{'textAlign':'center', 'verticalAlign':'middle'}}>{this.props.children}</td>)
+        return (<td style={{'textAlign': 'center', 'verticalAlign': 'middle'}}>{this.props.children}</td>)
     }
 }
 

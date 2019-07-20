@@ -1,14 +1,16 @@
 import {HttpService} from "./HttpService";
 
-export class DeliveryGoodService{
+export class DeliveryGoodService {
 
-    static baseURL() {return HttpService.apiURL() + "/deliverygoods"; }
+    static baseURL() {
+        return HttpService.apiURL() + "/deliverygoods";
+    }
 
-    static getDeliveryGoods(){
+    static getDeliveryGoods() {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${this.baseURL()}/`, function(data) {
+            HttpService.get(`${this.baseURL()}/`, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -16,14 +18,13 @@ export class DeliveryGoodService{
 
     static getDeliveryGood(id) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${this.baseURL()}/${id}`, function(data) {
-                if(data !== undefined || Object.keys(data).length !== 0) {
+            HttpService.get(`${this.baseURL()}/${id}`, function (data) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
-                }
-                else {
+                } else {
                     reject('Error while retrieving Delivery Good');
                 }
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -31,14 +32,13 @@ export class DeliveryGoodService{
 
     static getDeliveryStatus(id) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${this.baseURL()}/${id}/deliverystatus`, function(data) {
-                if(data !== undefined || Object.keys(data).length !== 0) {
+            HttpService.get(`${this.baseURL()}/${id}/deliverystatus`, function (data) {
+                if (data !== undefined || Object.keys(data).length !== 0) {
                     resolve(data);
-                }
-                else {
+                } else {
                     reject('Error while retrieving Delivery Good');
                 }
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
@@ -46,18 +46,19 @@ export class DeliveryGoodService{
 
     static deleteDeliveryGood(id) {
         return new Promise((resolve, reject) => {
-            HttpService.remove(`${this.baseURL()}/${id}`, function(data) {
+            HttpService.remove(`${this.baseURL()}/${id}`, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
     }
+
     static createDeliveryGood(deliveryGood) {
         return new Promise((resolve, reject) => {
-            HttpService.post(`${this.baseURL()}`, deliveryGood, function(data) {
+            HttpService.post(`${this.baseURL()}`, deliveryGood, function (data) {
                 resolve(data);
-            }, function(textStatus) {
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
