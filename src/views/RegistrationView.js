@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Registration from '../components/Registration'
 import {AuthService} from '../services/AuthService';
 import {withRouter} from "react-router-dom";
@@ -18,7 +17,7 @@ class RegistrationViewComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        if(!this.props.location.state) {
+        if (!this.props.location.state) {
             this.props.location.state = {};
         }
     }
@@ -52,8 +51,9 @@ class RegistrationViewComponent extends React.Component {
     render() {
         return (
             <Content>
-                <Registration missingCheckbox={this.props.location.state.missingCheckbox} onSubmit={(fields) => this.register(fields)}
-                      error={this.state.error}/>
+                <Registration missingCheckbox={this.props.location.state.missingCheckbox}
+                              onSubmit={(fields) => this.register(fields)}
+                              error={this.state.error}/>
             </Content>
         );
     }

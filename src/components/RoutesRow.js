@@ -11,7 +11,9 @@ export class RoutesRow extends React.Component {
         const StyledInfoButton = styled(Button)`display:block`;
         return (
             <tr>
-                <StyledCell><AuctionStatusImage route={this.props.route} driverID={this.props.driverID} biddingState={this.props.biddingState} scale={this.props.scale}/></StyledCell>
+                <StyledCell><AuctionStatusImage route={this.props.route} driverID={this.props.driverID}
+                                                biddingState={this.props.biddingState}
+                                                scale={this.props.scale}/></StyledCell>
                 <StyledCell><VehicleImage vehicleType={this.props.route.vehicleType}/></StyledCell>
                 <StyledCell>{`${(this.props.route.meters / 1000).toFixed(1)} km`}</StyledCell>
                 <StyledCell>{this.props.route.items.length}</StyledCell>
@@ -20,7 +22,8 @@ export class RoutesRow extends React.Component {
                 <StyledCell>
                     {this.props.route.currentBid} €
                 </StyledCell>
-                <StyledCell><StyledInfoButton variant="success" href={`/route/${this.props.route._id}`}>More Info</StyledInfoButton>
+                <StyledCell><StyledInfoButton variant="success" href={`/route/${this.props.route._id}`}>More
+                    Info</StyledInfoButton>
                 </StyledCell>
             </tr>
         );

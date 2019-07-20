@@ -27,7 +27,7 @@ export class AsyncUserTypeRouting extends React.Component {
     }
 
     render() {
-        if(this.state.error){
+        if (this.state.error) {
             return <Error message={this.state.error}/>
         }
         if (this.state.decision) {

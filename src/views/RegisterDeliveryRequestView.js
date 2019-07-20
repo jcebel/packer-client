@@ -6,17 +6,15 @@ export default class RegisterDeliveryRequestView extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-        }
+        this.state = {}
     }
 
-    componentDidMount(){
-        this.setState({
-        });
+    componentDidMount() {
+        this.setState({});
     }
 
     render() {
-        
+
         return (
             <section>
                 <RegisterDeliveryRequest/>

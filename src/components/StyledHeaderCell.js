@@ -7,7 +7,7 @@ export class StyledHeaderCell extends React.Component {
      * @returns {*}
      */
     render() {
-        return (<th style={{'textAlign':'center', 'verticalAlign':'middle'}}>{this.props.children}</th>)
+        return (<th style={{'textAlign': 'center', 'verticalAlign': 'middle'}}>{this.props.children}</th>)
     }
 }
 

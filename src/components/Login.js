@@ -21,7 +21,7 @@ class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         this.setState(event);
         let fields = this.state;
         delete fields.confirmPassword;
@@ -33,9 +33,9 @@ class Login extends React.Component {
             <Container className="pt-5">
                 <Row className="justify-content-sm-center pt-5">
                     <a href="/">
-                    <Image src="/Images/packer.png"
-                           height="70x"
-                           alt="Company Logo"/>
+                        <Image src="/Images/packer.png"
+                               height="70x"
+                               alt="Company Logo"/>
                     </a>
                 </Row>
                 <Row className="justify-content-sm-center p-5">
@@ -58,22 +58,26 @@ class Login extends React.Component {
                                 <Form>
                                     <div className="form-group">
                                         <label htmlFor="email">Email</label>
-                                        <Field name="email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
-                                        <ErrorMessage name="email" component="div" className="invalid-feedback" />
+                                        <Field name="email" type="text"
+                                               className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')}/>
+                                        <ErrorMessage name="email" component="div" className="invalid-feedback"/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="password">Password</label>
-                                        <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
-                                        <ErrorMessage name="password" component="div" className="invalid-feedback" />
-                                        {this.props.error !== undefined ? <Warning>Wrong Email or Password</Warning>:""}
+                                        <Field name="password" type="password"
+                                               className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')}/>
+                                        <ErrorMessage name="password" component="div" className="invalid-feedback"/>
+                                        {this.props.error !== undefined ?
+                                            <Warning>Wrong Email or Password</Warning> : ""}
                                     </div>
                                     <div className="form-group">
                                         <button type="submit" className="btn btn-primary mr-2">Login</button>
                                         <button type="button" className="btn btn-secondary"
-                                                onClick={()=> this.props.history.push('/register')}>Register</button>
+                                                onClick={() => this.props.history.push('/register')}>Register
+                                        </button>
                                     </div>
                                 </Form>
-                                )}
+                            )}
                         />
                     </Col>
                 </Row>

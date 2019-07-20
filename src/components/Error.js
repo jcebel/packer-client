@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert, Button, Container} from "react-bootstrap";
 import {Page} from "./Page";
 
-export class Error extends React.Component{
+export class Error extends React.Component {
 
 
     render() {
@@ -15,7 +15,7 @@ export class Error extends React.Component{
                             <p>
                                 Please try again or contact our support team.
                             </p>
-                            <Button href = "/">Go to Home</Button>
+                            <Button href="/">Go to Home</Button>
                         </Alert>
                     </Container>
                 </section>

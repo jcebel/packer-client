@@ -22,14 +22,20 @@ export default class App extends React.Component {
             title: 'Packer',
             routes: [
                 {component: HomeView, path: '/', exact: true},
-                { render: (props) => {
-                    if(AuthService.isAuthenticated()){
-                    return (<RegisterDeliveryRequestView{... props}/>)
-                } else {
-                    return (<Redirect to={'/login'}/>)
-                }
-                }, path: '/sendanything', exact:true},
-                { render: (props) => {return (<RegisterDeliveryRequestConfView{... props} />)} , path: '/sendanythingconf', exact:true},
+                {
+                    render: (props) => {
+                        if (AuthService.isAuthenticated()) {
+                            return (<RegisterDeliveryRequestView{...props}/>)
+                        } else {
+                            return (<Redirect to={'/login'}/>)
+                        }
+                    }, path: '/sendanything', exact: true
+                },
+                {
+                    render: (props) => {
+                        return (<RegisterDeliveryRequestConfView{...props} />)
+                    }, path: '/sendanythingconf', exact: true
+                },
                 {
                     render: (props) => {
                         if (AuthService.isAuthenticated()) {
@@ -53,7 +59,8 @@ export default class App extends React.Component {
                 {
                     render: (props) => {
                         if (AuthService.isAuthenticated()) {
-                            return <AsyncUserTypeRouting {...props} component={DeliveryMonitorView} path={'/deliverymonitor'}
+                            return <AsyncUserTypeRouting {...props} component={DeliveryMonitorView}
+                                                         path={'/deliverymonitor'}
                                                          missingCheckbox="deliveryClient"
                                                          query={AuthService.isUserADeliveryClient}/>;
                         } else {
@@ -72,7 +79,7 @@ export default class App extends React.Component {
                 },
                 {component: RegistrationView, path: '/register', exact: true},
                 {component: LoginView, path: '/login', exact: true},
-                {component: Error404, path: '/*', exact:true}
+                {component: Error404, path: '/*', exact: true}
             ]
         };
     }

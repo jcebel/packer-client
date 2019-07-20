@@ -31,7 +31,6 @@ export class RoutesListView extends React.Component {
     }
 
     loadRoutes(interval) {
-        //TODO: USe getRoutesByDate, when the Database contains real data.
         RouteService.getRoutes()
             .then((data) => {
                 let dirty = false;
@@ -53,8 +52,8 @@ export class RoutesListView extends React.Component {
                     dirtyData: dirty
                 });
             }).catch((e) => {
-                this.setState({error: e});
-                console.error(e);
+            this.setState({error: e});
+            console.error(e);
         });
     }
 
@@ -63,7 +62,7 @@ export class RoutesListView extends React.Component {
     }
 
     render() {
-        if(this.state.error){
+        if (this.state.error) {
             return <Error message={this.state.error}/>
         }
         return (
