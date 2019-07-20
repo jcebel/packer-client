@@ -51,7 +51,12 @@ export class RouteService {
     }
 
     static sendDrivingStarts(routeId) {
-        console.log("Driving starts for route: " + routeId);
-        return Promise.resolve();
+        return new Promise(((resolve,reject) => {
+            HttpService.get(`${this.baseURL()}/startDriving/${routeId}`, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        }))
     }
 }

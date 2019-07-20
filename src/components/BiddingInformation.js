@@ -36,7 +36,7 @@ export class BiddingInformation extends React.Component {
     }
 
     startDriving() {
-        this.setState({startedDriving:true});
+        this.setState({startedDriving: true});
         this.props.startDriving();
     }
 
@@ -113,12 +113,15 @@ export class BiddingInformation extends React.Component {
                                 )}
                             />
                         </Col>
-                        {AuctionStatusService.getBidStatus(this.props.route, this.props.driverID) ?
-                            <Col><Button variant={"success"} onClick={this.startDriving} disabled={this.isInDriving()}>Start
-                                Delivering Now</Button></Col>
+                        {AuctionStatusService.getBidStatus(this.props.route, this.props.driverID) === "winner" ?
+                            <Col>
+                                <Button variant={"success"} onClick={this.startDriving} disabled={this.isInDriving()}>Start
+                                    Delivering Now</Button>
+                            </Col>
                             : null}
                     </Row>
-                    {this.state.startedDriving ? <Alert variant={"success"}>Now go and deliver all Packages!</Alert>:null}
+                    {this.state.startedDriving ?
+                        <Alert variant={"success"}>Now go and deliver all Packages!</Alert> : null}
 
                 </Container>
             </div>
