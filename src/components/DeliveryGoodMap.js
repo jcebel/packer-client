@@ -1,7 +1,7 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
 
-class DeliveryGoodMap extends React.Component{
+class DeliveryGoodMap extends React.Component {
 
     constructor(props) {
         super(props);
@@ -38,7 +38,7 @@ class DeliveryGoodMap extends React.Component{
             <Map
                 google={this.props.google}
                 zoom={13}
-                initialCenter={this.props.currentLoc  || {lat: 48.162955, lng: 11.570895}}
+                initialCenter={this.props.currentLoc || {lat: 48.162955, lng: 11.570895}}
             >
                 <Marker
                     onClick={this.onMarkerClick}
@@ -79,8 +79,8 @@ class DeliveryGoodMap extends React.Component{
             </Map>
         );
     }
-
 }
+
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyAf7aIGVns1ktVf5sw__NGaygucuRsqCiw'
 })(DeliveryGoodMap);

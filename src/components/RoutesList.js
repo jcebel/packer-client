@@ -8,9 +8,9 @@ import Container from "react-bootstrap/Container";
 import {StyledCell} from './StyledCell';
 import styled from 'styled-components/macro';
 import {FilterInput} from './FilterInput';
-import {AuctionStatusImage} from "./AuctionStatusImage";
 import Image from "react-bootstrap/Image";
 import {DropdownFilter} from "./DropdownFilter";
+import {AuctionStatusService} from "../services/AuctionStatusService";
 
 const StyledDeleteFilter = styled(Button)`width:max-content`;
 const StyledTable = styled(Table)`vertical-align:middle;`;
@@ -148,7 +148,7 @@ export class RoutesList extends React.Component {
                             <StyledCell>
                                 <DropdownFilter items={auctionFilterItems} identifier="auctionStatus"
                                                 title="Auction Status"
-                                                resolver={(row) => AuctionStatusImage.getBidStatus(row, this.props.driverID) + ".png"}
+                                                resolver={(row) => AuctionStatusService.getBidStatus(row, this.props.driverID) + ".png"}
                                                 compareTo={(attribute, inputValue) => {
                                                     return attribute.toLowerCase().startsWith(inputValue.toLowerCase());
                                                 }}
@@ -232,7 +232,7 @@ export class RoutesList extends React.Component {
                                                           scale={imageSize}
                                                           biddingState={route.auctionState}
                                                           driverID={this.props.driverID}/>;
-                                    }) :<EmptyRow text={"There are no Routes available for today, yet..."}/>)
+                                    }) : <EmptyRow text={"There are no Routes available for today, yet..."}/>)
                             : <EmptyRow text={"We are still loading...."}/>}
                         </tbody>
                     </StyledTable>

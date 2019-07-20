@@ -4,8 +4,8 @@ import Popup from "reactjs-popup";
 export class BiddingConfirmationPopup extends React.Component {
 
     isEmpty(obj) {
-        for(let key in obj) {
-            if(obj.hasOwnProperty(key))
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key))
                 return false;
         }
         return true;
@@ -14,7 +14,7 @@ export class BiddingConfirmationPopup extends React.Component {
     render() {
         return (
             <Popup trigger={<button type="submit" className="btn btn-primary mr-2">Submit</button>}
-            position={"top center"} disabled={!this.isEmpty(this.props.error)}
+                   position={"top center"} disabled={!this.isEmpty(this.props.error)}
             >
                 <div><b>Submitted successfully!</b></div>
             </Popup>

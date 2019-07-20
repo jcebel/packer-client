@@ -6,19 +6,17 @@ export default class RegisterDeliveryRequestConfView extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-        }
+        this.state = {}
     }
 
-    componentDidMount(){
-        this.setState({
-        });
+    componentDidMount() {
+        this.setState({});
     }
 
     render() {
         return (
             <section>
-                <RegisterDeliveryRequestConf datadr = {this.props.location.data}/>
+                <RegisterDeliveryRequestConf datadr={this.props.location.data}/>
                 {this.props.children}
             </section>
         );

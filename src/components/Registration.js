@@ -62,7 +62,7 @@ class Registration extends React.Component {
     }
 
     render() {
-        if(this.state.error !== undefined){
+        if (this.state.error !== undefined) {
             return <Error message={this.state.error}/>
         }
         return (
@@ -140,7 +140,8 @@ class Registration extends React.Component {
                                         <Field name="confirmPassword" type="password"
                                                className={'form-control' + (errors.confirmPassword && touched.confirmPassword ? ' is-invalid' : '')}
                                                disabled={this.props.missingCheckbox ? true : false}/>
-                                        <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback"/>
+                                        <ErrorMessage name="confirmPassword" component="div"
+                                                      className="invalid-feedback"/>
                                     </div>
 
                                     {this.props.missingCheckbox ? <Alert
@@ -159,7 +160,7 @@ class Registration extends React.Component {
                                                                             name="checkboxIds"
                                                                             type="checkbox"
                                                                             value={category.id}
-                                                                            checked={values.checkboxIds !== undefined ? values.checkboxIds.includes(category.id):false}
+                                                                            checked={values.checkboxIds !== undefined ? values.checkboxIds.includes(category.id) : false}
                                                                             onChange={e => {
                                                                                 if (e.target.checked) arrayHelpers.push(category.id);
                                                                                 else {
@@ -175,13 +176,15 @@ class Registration extends React.Component {
                                                         </div>
                                                     )}/>
                                         <Warning>{errors["checkboxIds"]}</Warning>
-                                        {this.props.error !== undefined ? <Warning>A User with this Email already exists</Warning>:""}
+                                        {this.props.error !== undefined ?
+                                            <Warning>A User with this Email already exists</Warning> : ""}
                                     </div>
                                     <div className="form-group">
                                         <button type="submit"
                                                 className="btn btn-primary mr-2">{this.props.missingCheckbox ? "Update User" : "Register"}</button>
-                                        {!this.props.missingCheckbox && <button type="button" className="btn btn-secondary"
-                                                                                onClick={() => this.props.history.push('/login')}>Login
+                                        {!this.props.missingCheckbox &&
+                                        <button type="button" className="btn btn-secondary"
+                                                onClick={() => this.props.history.push('/login')}>Login
                                         </button>
                                         }
                                     </div>

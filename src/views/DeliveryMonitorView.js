@@ -21,7 +21,7 @@ export class DeliveryMonitorView extends React.Component {
         this.refreshDeliveryData()
     }
 
-    refreshDeliveryData(){
+    refreshDeliveryData() {
         DeliveryGoodService.getDeliveryGoods()
             .then((data) => {
                 this.setState({
@@ -43,12 +43,12 @@ export class DeliveryMonitorView extends React.Component {
         this.setState({loadingDone: false})
     }
 
-    deleteDeliveryGood(id){
+    deleteDeliveryGood(id) {
         this.setState({
             data: [...this.state.data],
             loadingDone: false
         });
-        DeliveryGoodService.deleteDeliveryGood(id).then(() =>{
+        DeliveryGoodService.deleteDeliveryGood(id).then(() => {
 
             let deliveryGoodIndex = this.state.data.map(deliverygood => deliverygood['_id']).indexOf(id);
             let deliverygoods = this.state.data;
@@ -57,19 +57,20 @@ export class DeliveryMonitorView extends React.Component {
                 data: [...deliverygoods],
                 loadingDone: true
             });
-            }).catch((e) => {
+        }).catch((e) => {
                 this.setState({error: e});
                 console.error(e);
             }
         )
     }
 
-    render(){
-        if(this.state.error){
+    render() {
+        if (this.state.error) {
             return <Error message={this.state.error}/>
         }
         return (
-            <DeliveryMonitor loadingDone={this.state.loadingDone} data={this.state.data} deleteitem={(id) => this.deleteDeliveryGood(id)}/>
+            <DeliveryMonitor loadingDone={this.state.loadingDone} data={this.state.data}
+                             deleteitem={(id) => this.deleteDeliveryGood(id)}/>
         );
     }
 }

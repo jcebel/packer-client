@@ -43,19 +43,19 @@ export class DeliveryDetailsView extends React.Component {
         clearInterval(this.interval2)
     }
 
-    refreshDelStatus(){
+    refreshDelStatus() {
         let id = this.props.match.params.id;
         DeliveryGoodService.getDeliveryStatus(id).then((deliveryStatus) => {
-            if(this.state.deliveryState !== deliveryStatus.deliveryState) {
+            if (this.state.deliveryState !== deliveryStatus.deliveryState) {
                 this.setState({
                     deliveryState: deliveryStatus.deliveryState
                 });
             }
-            if(deliveryStatus.deliveryState === "Waiting for Routing" || deliveryStatus.deliveryState === "In Bidding Process"){
+            if (deliveryStatus.deliveryState === "Waiting for Routing" || deliveryStatus.deliveryState === "In Bidding Process") {
                 this.setState({
                     noDriver: true
                 });
-            } else{
+            } else {
                 this.setState({
                     noDriver: false
                 });
@@ -67,7 +67,7 @@ export class DeliveryDetailsView extends React.Component {
         });
     }
 
-    refreshDelGoodData(){
+    refreshDelGoodData() {
         let id = this.props.match.params.id;
         DeliveryGoodService.getDeliveryGood(id).then((data) => {
             this.setState({
@@ -82,9 +82,9 @@ export class DeliveryDetailsView extends React.Component {
         });
     }
 
-    getCoordinates(address, key){
+    getCoordinates(address, key) {
         Geocode.fromAddress(this.createAddress(address)).then(resp => {
-            const { lat, lng } = resp.results[0].geometry.location;
+            const {lat, lng} = resp.results[0].geometry.location;
             this.setState({
                 [key]: {
                     lat: lat,
@@ -94,12 +94,12 @@ export class DeliveryDetailsView extends React.Component {
         });
     }
 
-    setCurrentLocation(deliveryStatus){
-        if(deliveryStatus.deliveryState === "In Delivery"){
+    setCurrentLocation(deliveryStatus) {
+        if (deliveryStatus.deliveryState === "In Delivery") {
             this.setState({
                 currentLocation: deliveryStatus.currentLoc
             })
-        } else{
+        } else {
             this.getCoordinates(deliveryStatus.currentLoc, "currentLocation");
         }
     }
@@ -110,7 +110,7 @@ export class DeliveryDetailsView extends React.Component {
     }
 
     render() {
-        if(this.state.error){
+        if (this.state.error) {
             return <Error message={this.state.error}/>
         }
         if (this.state.loading) {
@@ -140,13 +140,13 @@ export class DeliveryDetailsView extends React.Component {
                     <p/>
                     <Row>
                         <Col sm={8} className="d-flex">
-                                <div>
-                                    <Suspense fallback={<div>Loading...</div>}>
-                                        <DeliveryGoodMap sender={this.state.senderAddress}
-                                                 recipient={this.state.recipientAddress}
-                                                 currentLoc={this.state.currentLocation}/>
-                                    </Suspense>
-                                </div>
+                            <div>
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <DeliveryGoodMap sender={this.state.senderAddress}
+                                                     recipient={this.state.recipientAddress}
+                                                     currentLoc={this.state.currentLocation}/>
+                                </Suspense>
+                            </div>
                         </Col>
                         <Col className="d-flex ml-2">
                             <DeliveryDetails loading={this.state.loading}

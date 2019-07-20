@@ -11,7 +11,7 @@ class RegisterDeliveryRequest extends Component{
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             show: false,
             what : "",
@@ -68,7 +68,7 @@ class RegisterDeliveryRequest extends Component{
     changeHandlerStartAdd = (startadd, city) => {
         this.setState({start: startadd,
                      startcity: city});
-        
+
     }
     changeHandlerEndAdd = (endadd, city) => {
         this.setState({end: endadd,
@@ -95,9 +95,9 @@ class RegisterDeliveryRequest extends Component{
     }
 
     checkdata = (e) => {
-            
+
             if(this.state.what === ""|| this.state.date === "" || this.state.sender === "" || this.state.receiver === "" || this.state.start === "" || this.state.startnum === ""
-            || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === "" 
+            || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === ""
             || this.state.weight === "") {
                 this.setState({
                     show: true
@@ -115,7 +115,7 @@ class RegisterDeliveryRequest extends Component{
                     show: false
                 });
     }
-      
+
     render() {
         try{
         return (
@@ -211,7 +211,7 @@ class RegisterDeliveryRequest extends Component{
             </Page>
         );
     }catch(e){
-        console.log('error', e);        
+        console.log('error', e);
         }
     };
 
