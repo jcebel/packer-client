@@ -14,6 +14,7 @@ class RegisterDeliveryRequest extends Component{
 
         this.state = {
             show: false,
+            checkLocation: false,
             what : "",
             sender: "",
             receiver: "",
@@ -103,6 +104,11 @@ class RegisterDeliveryRequest extends Component{
                     show: true
                 });
                 e.preventDefault();
+                } else if(typeof this.state.startcity === "undefined" || typeof this.state.endcity === "undefined") {
+                    this.setState({
+                        checkLocation: true
+                    });
+                    e.preventDefault();
                 } else {
                     this.props.history.push({
                         pathname: '/sendanythingconf',
@@ -207,11 +213,19 @@ class RegisterDeliveryRequest extends Component{
                     </p>
                     <Button onClick={this.checkdataalert}>Ok</Button>
                 </Alert>
+                <Alert show={this.state.checkLocation} variant="danger">
+                    <Alert.Heading>Warning!</Alert.Heading>
+                    <p>
+                        Check your Location!
+                    </p>
+                    <Button onClick={() => {this.setState({
+                                  checkLocation: false
+                                })}}>Ok</Button>
+                </Alert>
                 </Container>
             </Page>
         );
     }catch(e){
-        console.log('error', e);
         }
     };
 

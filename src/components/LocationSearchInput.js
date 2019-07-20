@@ -36,12 +36,17 @@ class LocationSearchInput extends React.Component {
             }));
     };
 
+    onError = (e) => {
+    }
+
     render() {
+        try{
         return (
             <PlacesAutocomplete
                 value={this.state.address}
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
+                onError={this.onError}
             >
                 {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
                     <div>
@@ -77,6 +82,8 @@ class LocationSearchInput extends React.Component {
                 )}
             </PlacesAutocomplete>
         );
+        } catch(e) {
+        }
     }
 }
 
