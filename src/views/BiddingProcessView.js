@@ -24,6 +24,7 @@ export class BiddingProcessView extends React.Component {
             driverID: undefined
         };
         this.drivingStarts = this.drivingStarts.bind(this);
+        this.drivingStopped = this.drivingStopped.bind(this);
     }
 
     componentWillMount() {
@@ -64,6 +65,16 @@ export class BiddingProcessView extends React.Component {
         }
     };
 
+    drivingStopped() {
+        if(!this.state.loading) {
+            RouteService.sendDrivingStopped(this.state.route._id)
+                .catch((e) => {
+                    this.setState({error: e});
+                    console.error(e);
+                });
+        }
+    };
+
     componentDidMount() {
         this.interval = setInterval(() => this.refreshRouteData(), 1000);
     }
@@ -91,7 +102,8 @@ export class BiddingProcessView extends React.Component {
                             </StyledCard>
                             <BiddingInformation route={this.state.route} driverID={this.state.driverID}
                                                 onSubmit={(id, newBid) => this.submitBidByID(id, newBid)}
-                                                startDriving={this.drivingStarts}/>
+                                                startDriving={this.drivingStarts}
+                                                stopDriving={this.drivingStopped}/>
 
                         </Col>
                         <Col sm={4}>

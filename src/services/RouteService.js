@@ -57,6 +57,16 @@ export class RouteService {
             }, function(textStatus) {
                 reject(textStatus);
             });
-        }))
+        }));
+    }
+
+    static sendDrivingStopped(routeId) {
+        return new Promise(((resolve,reject) => {
+            HttpService.get(`${this.baseURL()}/stopDriving/${routeId}`, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        }));
     }
 }
