@@ -5,8 +5,23 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {BiddingConfirmationPopup} from "./BiddingConfirmationPopup";
 import {AuctionStatusImage} from "./AuctionStatusImage";
+import Button from "react-bootstrap/Button";
+import {AuctionStatusService} from "../services/AuctionStatusService";
+import Alert from "react-bootstrap/Alert";
 
 export class BiddingInformation extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            startedDriving: false,
+            stoppedDriving: false
+        };
+
+        this.startDriving = this.startDriving.bind(this);
+        this.stopDriving = this.stopDriving.bind(this);
+    }
 
     getPersonalLowestBid(route, driverID) {
         const ownBids = route.auctionBids.filter(bid => bid.owner === driverID);
@@ -20,6 +35,23 @@ export class BiddingInformation extends React.Component {
                 return a.bid < b.bid ? a.bid : b.bid;
             });
         }
+    }
+
+    startDriving() {
+        this.setState({startedDriving: true, stoppedDriving: false});
+        this.props.startDriving();
+    }
+
+    stopDriving() {
+        this.setState({stoppedDriving: true, startedDriving: false});
+        this.props.stopDriving();
+    }
+
+    stoppedDriving() {
+        return  this.state.stoppedDriving || "Delivered" === (this.props.route.items[0].deliveryState);
+    }
+    isInDriving() {
+        return (this.state.startedDriving || "In Delivery" === (this.props.route.items[0].deliveryState)) && !this.state.stoppedDriving;
     }
 
     render() {
@@ -91,7 +123,20 @@ export class BiddingInformation extends React.Component {
                                 )}
                             />
                         </Col>
+                        {AuctionStatusService.getBidStatus(this.props.route, this.props.driverID) === "winner" && !this.stoppedDriving() ?
+                            <Col>
+                                {this.isInDriving() ?
+                                    <Button variant={"danger"} onClick={this.stopDriving}>Stop
+                                        Delivering Now</Button>
+                                    :
+                                    <Button variant={"success"} onClick={this.startDriving}>Start
+                                        Delivering Now</Button>}
+                            </Col>
+                            : null}
                     </Row>
+                    {this.isInDriving() ?
+                        <Alert variant={"info"}>Now go and deliver all Packages!</Alert> : null}
+                    {this.stoppedDriving() ? <Alert variant={"success"}>You successfully delivered all Packages!</Alert>: null }
                 </Container>
             </div>
         );
