@@ -40,7 +40,6 @@ class LocationSearchInput extends React.Component {
     }
 
     render() {
-        try{
         return (
             <PlacesAutocomplete
                 value={this.state.address}
@@ -82,8 +81,6 @@ class LocationSearchInput extends React.Component {
                 )}
             </PlacesAutocomplete>
         );
-        } catch(e) {
-        }
     }
 }
 
