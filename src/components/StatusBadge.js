@@ -15,10 +15,13 @@ export class StatusBadge extends React.Component{
             return "warning";
         }
         else if(deliveryState === "Waiting for Pickup"){
-            return "dark"
+            return "dark";
         }
         else if(deliveryState === "In Bidding Process"){
-            return "secondary"
+            return "secondary";
+        }
+        else if(deliveryState === "Cancelled"){
+            return "danger";
         }
         else{
             return "dark";
