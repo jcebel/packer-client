@@ -6,7 +6,7 @@ export class AuctionStatusImage extends React.Component {
     render() {
         let auctionStatus;
         if (this.props.biddingState === undefined) {
-            auctionStatus = AuctionStatusImage.getBidStatus(this.props.route, this.props.driverID);
+            auctionStatus = AuctionStatusService.getBidStatus(this.props.route, this.props.driverID);
         } else {
             auctionStatus = this.props.biddingState;
         }
