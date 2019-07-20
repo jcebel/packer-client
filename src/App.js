@@ -25,7 +25,10 @@ export default class App extends React.Component {
                 {
                     render: (props) => {
                         if (AuthService.isAuthenticated()) {
-                            return (<RegisterDeliveryRequestView{...props}/>)
+                            return <AsyncUserTypeRouting {...props} component={RegisterDeliveryRequestView}
+                                                         path={'/sendanything'}
+                                                         missingCheckbox="deliveryClient"
+                                                         query={AuthService.isUserADeliveryClient}/>;
                         } else {
                             return (<Redirect to={'/login'}/>)
                         }
