@@ -35,7 +35,7 @@ class LocationSearchInput extends React.Component {
                 city: ""
             }));
     };
-
+    //No Error Log because manual errorhandling in RegisterDeliveryRequest
     onError = (e) => {
     }
 
