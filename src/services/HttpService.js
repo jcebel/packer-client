@@ -20,7 +20,8 @@ export class HttpService {
             headers: header
         }).then((resp) => {
             if (this.checkIfUnauthorized(resp)) {
-                window.location = "/#login";
+                delete window.localStorage['jwtToken'];
+                window.location = "/login";
             } else {
                 return resp.json();
             }
@@ -52,8 +53,8 @@ export class HttpService {
             body: JSON.stringify(data)
         }).then((resp) => {
             if (this.checkIfUnauthorized(resp)) {
-                window.location = "/#login";
-                return;
+                delete window.localStorage['jwtToken'];
+                window.location = "/login";
             } else {
                 return resp.json();
             }
@@ -117,8 +118,8 @@ export class HttpService {
             headers: header
         }).then((resp) => {
             if (this.checkIfUnauthorized(resp)) {
-                window.location = "/#login";
-                return;
+                delete window.localStorage['jwtToken'];
+                window.location = "/login";
             } else {
                 return resp.json();
             }
@@ -134,10 +135,8 @@ export class HttpService {
     }
 
     static checkIfUnauthorized(res) {
-        if (res.status === 401) {
-            return true;
-        }
-        return false;
+        return res.status === 401;
+
     }
 
 }
