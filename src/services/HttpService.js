@@ -1,7 +1,7 @@
 export class HttpService {
 
     static apiURL() {
-        if (false) {
+        if (true) {
             return "http://localhost:3000";
         } else {
             return "http://ec2-3-122-232-169.eu-central-1.compute.amazonaws.com:3000"
