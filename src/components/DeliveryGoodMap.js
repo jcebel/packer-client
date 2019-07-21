@@ -49,7 +49,7 @@ class DeliveryGoodMap extends React.Component {
             <Map
                 google={this.props.google}
                 zoom={13}
-                initialCenter={this.props.currentLoc || {lat: 48.162955, lng: 11.570895}}
+                initialCenter={this.props.currentLoc}
             >
                 <Marker
                     onClick={this.onMarkerClick}

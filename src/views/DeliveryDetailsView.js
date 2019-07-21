@@ -34,7 +34,7 @@ export class DeliveryDetailsView extends React.Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.refreshDelStatus(), 5000);
+        this.interval = setInterval(() => this.refreshDelStatus(), 2000);
         this.interval2 = setInterval(() => this.refreshDelGoodData(), 30000);
     }
 
@@ -95,11 +95,13 @@ export class DeliveryDetailsView extends React.Component {
     }
 
     setCurrentLocation(deliveryStatus) {
-        if (deliveryStatus.deliveryState === "In Delivery") {
+//The following if-statement is only used for demo purposes and should not be used in production.
+//Only the content of the else-clause is needed.
+        if (deliveryStatus.name) {
             this.setState({
                 currentLocation: deliveryStatus.currentLoc
             })
-        } else {
+        } else{
             this.getCoordinates(deliveryStatus.currentLoc, "currentLocation");
         }
     }
