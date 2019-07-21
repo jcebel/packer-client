@@ -4,7 +4,7 @@ export class HttpService {
         if (false) {
             return "http://localhost:3000";
         } else {
-            return "http://ec2-52-59-232-100.eu-central-1.compute.amazonaws.com:3000"
+            return "http://ec2-3-122-232-169.eu-central-1.compute.amazonaws.com:3000"
         }
     }
 
