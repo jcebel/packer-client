@@ -15,7 +15,7 @@ import {AuctionStatusService} from "../services/AuctionStatusService";
 const StyledDeleteFilter = styled(Button)`width:max-content`;
 const StyledTable = styled(Table)`vertical-align:middle;`;
 
-const imageSize = "65px";
+const imageSize = "45px";
 
 function dropDown(eventKey, child, itemComparer) {
     return {eventKey: eventKey, child: child, compareItemBased: itemComparer};

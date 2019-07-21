@@ -71,7 +71,7 @@ export class Home extends Component {
                             <Carousel.Caption>
                                 <h3>And they will deliver it</h3>
                                 <p>
-                                    At your entered destination
+                                    To your desired destination
                                 </p>
                             </Carousel.Caption>
                         </Carousel.Item>
