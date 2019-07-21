@@ -30,8 +30,19 @@ class DeliveryGoodMap extends React.Component {
         }
     };
 
+    isEmpty(obj) {
+        if(obj !== undefined){
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key))
+                    return false;
+        }}
+        return true;
+    }
+
+
     render() {
-        if (this.state.loading || this.props.google === undefined) {
+        if (this.state.loading || this.isEmpty(this.props.google) || this.isEmpty(this.props.currentLoc)
+        || this.isEmpty(this.props.sender) || this.isEmpty(this.props.recipient)) {
             return (<h2>Loading...</h2>);
         }
         return (
