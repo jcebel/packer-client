@@ -20,8 +20,6 @@ class LocationSearchInput extends React.Component {
             city: city
         });
         let addressInput = address;
-
-
         this.props.onSelectAdd(addressInput, city);
     };
 
@@ -37,6 +35,9 @@ class LocationSearchInput extends React.Component {
                 city: ""
             }));
     };
+    //No Error Log because manual errorhandling in RegisterDeliveryRequest
+    onError = (e) => {
+    }
 
     render() {
         return (
@@ -44,6 +45,7 @@ class LocationSearchInput extends React.Component {
                 value={this.state.address}
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
+                onError={this.onError}
             >
                 {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
                     <div>

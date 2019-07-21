@@ -5,15 +5,16 @@ import {ToggleButtonBarSize} from './ToggleButtonBar';
 import DatepickerClass from './Datepicker';
 import LocationSearchInput from './LocationSearchInput';
 import {Page} from './Page';
-import {Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 class RegisterDeliveryRequest extends Component{
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             show: false,
+            checkLocation: false,
             what : "",
             sender: "",
             receiver: "",
@@ -68,7 +69,7 @@ class RegisterDeliveryRequest extends Component{
     changeHandlerStartAdd = (startadd, city) => {
         this.setState({start: startadd,
                      startcity: city});
-        
+
     }
     changeHandlerEndAdd = (endadd, city) => {
         this.setState({end: endadd,
@@ -95,21 +96,32 @@ class RegisterDeliveryRequest extends Component{
     }
 
     checkdata = (e) => {
+
             if(this.state.what === ""|| this.state.date === "" || this.state.sender === "" || this.state.receiver === "" || this.state.start === "" || this.state.startnum === ""
-            || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === "" 
+            || this.state.startcity === "" || this.state.end === "" || this.state.endnum === "" || this.state.endcity === "" || this.state.size === ""
             || this.state.weight === "") {
                 this.setState({
                     show: true
                 });
                 e.preventDefault();
-                } 
+                } else if(typeof this.state.startcity === "undefined" || typeof this.state.endcity === "undefined") {
+                    this.setState({
+                        checkLocation: true
+                    });
+                    e.preventDefault();
+                } else {
+                    this.props.history.push({
+                        pathname: '/sendanythingconf',
+                        data: this.state
+                    })
+                }
     }
     checkdataalert = (e) => {
                 this.setState({
                     show: false
                 });
     }
-      
+
     render() {
         try{
         return (
@@ -191,13 +203,7 @@ class RegisterDeliveryRequest extends Component{
                 <div>
                 <p></p>
                 <Row>
-                    <Link onClick={this.checkdata}
-                    to={{
-                        pathname: "/sendanythingconf",
-                        data: this.state
-                    }}>
-                    <Button onClick={this.checkdata} href = "/sendanythingconf" variant="success">Make me an offer!</Button>
-                    </Link>
+                    <Button onClick={this.checkdata} variant="success">Make me an offer!</Button>
                 </Row>
                  </div>
                  <Alert show={this.state.show} variant="danger">
@@ -207,15 +213,23 @@ class RegisterDeliveryRequest extends Component{
                     </p>
                     <Button onClick={this.checkdataalert}>Ok</Button>
                 </Alert>
+                <Alert show={this.state.checkLocation} variant="danger">
+                    <Alert.Heading>Warning!</Alert.Heading>
+                    <p>
+                        Check your Location!
+                    </p>
+                    <Button onClick={() => {this.setState({
+                                  checkLocation: false
+                                })}}>Ok</Button>
+                </Alert>
                 </Container>
             </Page>
         );
     }catch(e){
-        console.log('error', e);        
         }
     };
 
 }
 
 
-export default RegisterDeliveryRequest;
+export default withRouter(RegisterDeliveryRequest);

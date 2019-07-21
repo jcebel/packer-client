@@ -9,6 +9,7 @@ class ToggleButtonBarWeight extends Component {
 
         this.state = {
             value: "",
+            showWeight: false
         };
     }
 
@@ -26,15 +27,20 @@ class ToggleButtonBarWeight extends Component {
             <div>
                 <Row>
                     <Col>
-                        <Button variant="primary">Weight</Button>
+                        <Button onClick={() => {this.setState({
+                          showWeight: true
+                        })}} variant="primary">Weight</Button>
                         <br></br>
-                        <Alert variant="info">
+                        <Alert show={this.state.showWeight} variant="info" closeLabel={"Close me"}>
                             <Alert.Heading>Weight Information</Alert.Heading>
                             <p>
                                 Light means under 5 kilogram<br></br>
                                 Medium means between 5 and 10 kilogram<br></br>
                                 Heavy means more than 15 kilogram
-                            </p>
+                                </p>
+                            <Button onClick={() => {this.setState({
+                                  showWeight: false
+                                })}} variant="primary">Got it!</Button>
                         </Alert>
                     </Col>
                     <Col>
@@ -60,6 +66,7 @@ class ToggleButtonBarSize extends Component {
 
         this.state = {
             value: "",
+            showSize: false
         };
     }
 
@@ -78,15 +85,20 @@ class ToggleButtonBarSize extends Component {
             <div>
                 <Row>
                     <Col>
-                        <Button variant="primary">Size</Button>
+                        <Button onClick={() => {this.setState({
+                          showSize: true
+                        })}} variant="primary">Size</Button>
                         <br></br>
-                        <Alert variant="info">
+                        <Alert show={this.state.showSize} variant="info" closeLabel >
                             <Alert.Heading>Size Information</Alert.Heading>
                             <p>
                                 Small means the size of a Smartphone<br></br>
                                 Medium means the size of a backpack<br></br>
                                 Large means the size of a chair
                             </p>
+                                <Button onClick={() => {this.setState({
+                                  showSize: false
+                                })}} variant="primary">Got it!</Button>
                         </Alert>
                     </Col>
                     <Col>
