@@ -19,7 +19,8 @@ export class DeliveryDetails extends React.Component {
                         <Card.Title className="font-weight-bold">
                             Driver Details:<br/>
                         </Card.Title>
-                        {this.props.deliveryState === "Cancelled" ? <Row><Col className="text-center">No driver was found for this item.<br/>It will not be delivered.</Col></Row> :
+                        {this.props.deliveryState === "Cancelled" ? <Row><Col className="text-center">No driver was found for this item.
+                                <br/>It will not be delivered.<br/>Please submit a new Delivery Request.</Col></Row> :
                             <>
                                 <Row>
                                     <Col>Driver Name:</Col>
