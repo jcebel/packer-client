@@ -69,7 +69,7 @@ class Registration extends React.Component {
             <Container className="pt-5">
                 <Row className="justify-content-sm-center pt-5">
                     <a href="/">
-                        <Image src="/Images/packer.png"
+                        <Image src="/Images/Packer.png"
                                height="70x"
                                alt="Company Logo"/>
                     </a>
