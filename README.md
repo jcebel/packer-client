@@ -1,6 +1,8 @@
 # packer-client
 This is the Frontend Application of Packer.
 
+This was part of a student's project on Technical University of Munich
+
 ## Setup (before first run)
 
 Go to your project root folder via command line
